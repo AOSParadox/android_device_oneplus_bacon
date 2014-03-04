@@ -228,5 +228,8 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalv
 # call hwui memory config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
+# call the proprietary setup
+$(call inherit-product-if-exists, vendor/oppo/msm8974-common/msm8974-common-vendor.mk)
+
 # Inherit from oppo-common
 $(call inherit-product, device/oppo/common/common.mk)

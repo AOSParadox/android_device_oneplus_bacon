@@ -147,3 +147,5 @@ TARGET_NO_RPC := true
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
 endif
+
+-include vendor/oppo/msm8974-common/BoardConfigVendor.mk

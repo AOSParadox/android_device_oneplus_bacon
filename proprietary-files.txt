@@ -1,0 +1,2 @@
+# NFC
+/etc/firmware/libpn544_fw.so:vendor/firmware/libpn544_fw.so
