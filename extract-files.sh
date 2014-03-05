@@ -5,7 +5,7 @@ set -e
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 rm -rf $BASE/*
 
-for FILE in `egrep -v '(^#|^$)' ../msm8974-common/proprietary-files.txt` `egrep -v '(^#|^$)' ../msm8974-common/proprietary-files-qc.txt`; do
+for FILE in `egrep -v '(^#|^$)' ../../oppo/msm8974-common/proprietary-files.txt` `egrep -v '(^#|^$)' ../../oppo/msm8974-common/proprietary-files-qc.txt`; do
   OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
   FILE=`echo ${PARSING_ARRAY[0]} | sed -e "s/^-//g"`
   DEST=${PARSING_ARRAY[1]}
@@ -26,4 +26,4 @@ for FILE in `egrep -v '(^#|^$)' ../msm8974-common/proprietary-files.txt` `egrep 
   fi
 done
 
-./../msm8974-common/setup-makefiles.sh
+./../../oppo/msm8974-common/setup-makefiles.sh
