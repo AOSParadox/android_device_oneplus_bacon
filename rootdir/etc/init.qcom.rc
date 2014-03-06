@@ -218,6 +218,13 @@ on post-fs-data
     chown system camera /sys/class/leds/led:flash_torch/brightness
     chmod 0660 /sys/class/leds/led:flash_torch/brightness
 
+    # Touchscreen
+    chown root system /proc/touchpanel/double_tap_enable
+    chmod 0660 /proc/touchpanel/double_tap_enable
+
+    chown root system /proc/touchpanel/keypad_enable
+    chmod 0660 /proc/touchpanel/keypad_enable
+
 on charger
     # Booting modem
     wait /dev/block/platform/msm_sdcc.1/by-name/modem
