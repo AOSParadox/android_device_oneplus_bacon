@@ -3,25 +3,9 @@ etc/firmware/audience-es325-fw.bin
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.msm8974.so:lib/hw/camera.vendor.msm8974.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
-vendor/lib/libchromatix_imx214_common.so
-vendor/lib/libchromatix_imx214_default_video.so
-vendor/lib/libchromatix_imx214_hfr_120.so
-vendor/lib/libchromatix_imx214_hfr_60.so
-vendor/lib/libchromatix_imx214_liveshot.so
-vendor/lib/libchromatix_imx214_preview.so
-vendor/lib/libchromatix_imx214_snapshot.so
-vendor/lib/libchromatix_imx214_snapshot_hdr.so
-vendor/lib/libchromatix_imx214_video_cmcc.so
-vendor/lib/libchromatix_imx214_video_hdr.so
-vendor/lib/libchromatix_ov5648_common.so
-vendor/lib/libchromatix_ov5648_default_video.so
-vendor/lib/libchromatix_ov5648_preview.so
-vendor/lib/libchromatix_ov5648_video_cmcc.so
-vendor/lib/libchromatix_ov5648_zsl.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -49,14 +33,8 @@ vendor/lib/libmmcamera_wavelet_lib.so
 vendor/lib/libmmipl.so
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
-vendor/lib/liboemcamera.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
-
-# Camera firmware
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
 
 # Sensors
 vendor/lib/libAKM8963.so
