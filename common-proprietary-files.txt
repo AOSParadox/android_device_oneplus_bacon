@@ -3,6 +3,3 @@ etc/firmware/audience-es325-fw.bin
 
 # Sensors
 vendor/lib/libAKM8963.so
-
-# Wifi
-bin/hwaddrs

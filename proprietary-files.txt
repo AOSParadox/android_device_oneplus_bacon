@@ -42,3 +42,6 @@ etc/firmware/cpp_firmware_v1_2_0.fw
 
 # Sensors
 etc/sensor_def_qcomdev.conf
+
+# Wifi
+bin/hwaddrs
