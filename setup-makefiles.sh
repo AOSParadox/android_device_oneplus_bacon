@@ -43,7 +43,10 @@ for FILE in `egrep -v '(^#|^$)' ../../oppo/msm8974-common/proprietary-files.txt`
     echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
   fi
 done
+(cat << EOF) >> $MAKEFILE
 
+PRODUCT_COPY_FILES += \\
+EOF
 LINEEND=" \\"
 COUNT=`wc -l device-proprietary-files.txt | awk {'print $1'}`
 DISM=`egrep -c '(^#|^$)' device-proprietary-files.txt`
