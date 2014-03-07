@@ -177,3 +177,6 @@ vendor/lib/liblistensoundmodel.so
 -app/ims.apk
 etc/permissions/ims.xml
 framework/imslibrary.jar
+
+# Fastcharge
+bin/hvdcp
