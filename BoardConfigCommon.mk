@@ -44,7 +44,6 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-BOARD_CUSTOM_BOOTIMG_MK := device/oppo/msm8974-common/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
 TARGET_CUSTOM_DTBTOOL := dtbTool-oppo
 
