@@ -65,6 +65,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     af.resampler.quality=4 \
     audio.offload.buffer.size.kb=32 \
     av.offload.enable=true \
+    av.streaming.offload.enable=true \
     use.voice.path.for.pcm.voip=true \
     audio.offload.gapless.enabled=false \
     qcom.hw.aac.encoder=true
