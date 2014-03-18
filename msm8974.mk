@@ -59,16 +59,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
     mm.enable.qcom_parser=37491 \
     ro.qc.sdk.audio.fluencetype=none \
-    persist.audio.fluence.voicecall=true \
-    persist.audio.fluence.voicerec=false \
-    persist.audio.fluence.speaker=true \
     af.resampler.quality=4 \
     audio.offload.buffer.size.kb=32 \
     av.offload.enable=true \
     av.streaming.offload.enable=true \
     use.voice.path.for.pcm.voip=true \
     audio.offload.gapless.enabled=false \
-    qcom.hw.aac.encoder=true
+    qcom.hw.aac.encoder=true \
+    persist.aanc.enable=true
 
 # Charger
 PRODUCT_PACKAGES += \

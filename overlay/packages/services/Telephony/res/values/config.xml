@@ -27,4 +27,7 @@
     <!-- Show enabled lte option for lte device -->
     <bool name="config_enabled_lte" translatable="false">true</bool>
 
+    <bool name="has_in_call_noise_suppression">true</bool>
+    <string name="in_call_noise_suppression_audioparameter" translatable="false">anc_enabled=true=false</string>
+
 </resources>
