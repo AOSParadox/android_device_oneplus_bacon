@@ -278,8 +278,11 @@
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia2" value="0" />
     <!-- afe-proxy end-->
 
-    <!-- Extra Oppo things -->
+    <!-- 24bit/96KHz toggle -->
     <ctl name="SLIM_0_RX Format" value="S16_LE" />
+    <ctl name="SLIM_0_RX SampleRate" value="KHZ_48" />
+
+    <!-- Speaker amp -->
     <ctl name="SPKR Enable" value="0" />
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
@@ -797,6 +800,8 @@
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="HPHL DAC Switch" value="1" />
         <ctl name="COMP1 Switch" value="1" />
+        <ctl name="SLIM_0_RX Format" value="S24_LE" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
     </path>
 
     <path name="headset-mic">
