@@ -282,9 +282,6 @@
     <ctl name="SLIM_0_RX Format" value="S16_LE" />
     <ctl name="SLIM_0_RX SampleRate" value="KHZ_48" />
 
-    <!-- Speaker amp -->
-    <ctl name="SPKR Enable" value="0" />
-
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="deep-buffer-playback">
         <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia1" value="1" />
@@ -727,7 +724,6 @@
         <ctl name="LINEOUT3 Volume" value="80" />
         <ctl name="RX3 Digital Volume" value="80" />
         <ctl name="RX4 Digital Volume" value="80" />
-        <ctl name="SPKR Enable" value="1" />
     </path>
 
     <path name="sidetone-iir">
