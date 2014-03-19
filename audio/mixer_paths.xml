@@ -703,6 +703,7 @@
         <ctl name="SLIM TX7 MUX" value="DEC5" />
         <ctl name="DEC5 MUX" value="ADC2" />
         <ctl name="IIR1 INP1 MUX" value="DEC5" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="dmic1">
@@ -712,6 +713,7 @@
         <ctl name="DEC4 MUX" value="ADC3" />
         <ctl name="ADC3 Volume" value="100" />
         <ctl name="DEC4 Volume" value="100" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="speaker">
@@ -724,6 +726,7 @@
         <ctl name="LINEOUT3 Volume" value="80" />
         <ctl name="RX3 Digital Volume" value="80" />
         <ctl name="RX4 Digital Volume" value="80" />
+        <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
     <path name="sidetone-iir">
@@ -994,6 +997,7 @@
         <ctl name="DEC3 MUX" value="ADC4" />
         <ctl name="ADC4 Volume" value="100" />
         <ctl name="DEC3 Volume" value="100" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="dmic-endfire">
