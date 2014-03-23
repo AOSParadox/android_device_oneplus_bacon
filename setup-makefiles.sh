@@ -188,9 +188,8 @@ PRODUCT_PACKAGES += \\
 PRODUCT_PACKAGES += \\
     com.qualcomm.location \\
     ims \\
-    CABLService \\
     PPPreference \\
-    SVIService \\
+    QuickBoot \\
     qcrilmsgtunnel \\
     shutdownlistener
 
@@ -279,16 +278,6 @@ LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
-LOCAL_MODULE := CABLService
-LOCAL_MODULE_OWNER := oppo
-LOCAL_SRC_FILES := proprietary/app/CABLService.apk
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := platform
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
 LOCAL_MODULE := PPPreference
 LOCAL_MODULE_OWNER := oppo
 LOCAL_SRC_FILES := proprietary/app/PPPreference.apk
@@ -299,9 +288,9 @@ LOCAL_CERTIFICATE := platform
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
-LOCAL_MODULE := SVIService
+LOCAL_MODULE := QuickBoot
 LOCAL_MODULE_OWNER := oppo
-LOCAL_SRC_FILES := proprietary/app/SVIService.apk
+LOCAL_SRC_FILES := proprietary/app/QuickBoot.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS

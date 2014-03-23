@@ -183,3 +183,6 @@ framework/imslibrary.jar
 
 # Fastcharge
 bin/hvdcp
+
+# QuickBoot
+-app/QuickBoot.apk
