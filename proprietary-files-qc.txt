@@ -181,8 +181,10 @@ vendor/lib/liblistensoundmodel.so
 etc/permissions/ims.xml
 framework/imslibrary.jar
 
+# QuickBoot
+-app/QuickBoot.apk
+
 # Fastcharge
 bin/hvdcp
 
-# QuickBoot
--app/QuickBoot.apk
+
