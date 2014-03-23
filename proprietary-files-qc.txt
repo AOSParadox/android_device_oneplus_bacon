@@ -111,9 +111,7 @@ vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
 
 # Postprocessing
--app/CABLService.apk
 -app/PPPreference.apk
--app/SVIService.apk
 bin/mm-pp-daemon
 vendor/lib/libdisp-aba.so
 -vendor/lib/libmm-abl.so
