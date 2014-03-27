@@ -146,6 +146,9 @@ TARGET_RECOVERY_FSTAB := device/oppo/msm8974-common/rootdir/etc/fstab.qcom
 # No old RPC for prop
 TARGET_NO_RPC := true
 
+# GPS HAL lives here
+TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
+
 # inherit from the proprietary version
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
