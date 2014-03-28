@@ -113,10 +113,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Power
-TARGET_USES_CM_POWERHAL := true
-TARGET_POWERHAL_NO_TOUCH_BOOST := true
-
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
 BOARD_WLAN_DEVICE                := qcwcn
