@@ -145,6 +145,9 @@ TARGET_NO_RPC := true
 # GPS HAL lives here
 TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
 
+# Use HW crypto for ODE
+TARGET_HW_DISK_ENCRYPTION := true
+
 # inherit from the proprietary version
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
