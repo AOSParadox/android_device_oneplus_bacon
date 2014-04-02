@@ -71,6 +71,7 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 
 # Charger
 BOARD_CHARGER_RES := device/oppo/msm8974-common/charger/images
+BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/oppo/msm8974-common/cmhw
