@@ -81,6 +81,7 @@ vendor/lib/libc2d30-a3xx.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libOpenCL.so
+vendor/lib/libOpenVG.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/librs_adreno.so
