@@ -1,6 +1,4 @@
 # Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
 vendor/lib/liboi_sbc_decoder.so
 
 # Perf
@@ -20,13 +18,6 @@ vendor/lib/rfsa/adsp/libdspCV_skel.so
 vendor/lib/rfsa/adsp/libscveT2T_skel.so
 
 # Audio
-etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
-etc/acdbdata/MTP/MTP_General_cal.acdb
-etc/acdbdata/MTP/MTP_Global_cal.acdb
-etc/acdbdata/MTP/MTP_Handset_cal.acdb
-etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
-etc/acdbdata/MTP/MTP_Headset_cal.acdb
-etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
@@ -189,5 +180,3 @@ framework/imslibrary.jar
 
 # Fastcharge
 bin/hvdcp
-
-
