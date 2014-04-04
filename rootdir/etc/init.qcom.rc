@@ -201,7 +201,7 @@ on post-fs-data
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
     mkdir /data/misc/location/gpsone_d 0770 system gps
-    mkdir /data/misc/location/quipc 0770 gps system
+    mkdir /data/misc/location/quipc 0770 gps gps
     mkdir /data/misc/location/gsiff 0770 gps gps
 
     #Create directory from IMS services
@@ -337,6 +337,10 @@ service sensors /system/bin/sensors.qcom
     class late_start
     user root
     group root
+
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main

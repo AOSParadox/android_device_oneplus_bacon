@@ -184,11 +184,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
+# Connectivity Engine support
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig \
+    services-ext
+
+PRODUCT_PROPERTIES_OVERRIES +=
+    persist.cne.feature=1
+
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
     persist.timed.enable=true \
-    ro.input.noresample=1 \
     ro.opengles.version=196608 \
     ro.qualcomm.bt.hci_transport=smd \
     ro.telephony.default_network=9 \
