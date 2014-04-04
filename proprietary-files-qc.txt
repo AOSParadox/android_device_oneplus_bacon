@@ -60,6 +60,9 @@ vendor/lib/libStDrvInt.so
 # GPS
 app/com.qualcomm.location.apk
 bin/gsiff_daemon
+bin/location-mq
+bin/quipc_igsn
+bin/quipc_main
 etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
