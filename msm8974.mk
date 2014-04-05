@@ -71,7 +71,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true \
     audio.offload.gapless.enabled=false \
     qcom.hw.aac.encoder=true \
-    persist.aanc.enable=true
+    persist.aanc.enable=true \
+    tunnel.audio.encode=true
 
 # Charger
 PRODUCT_PACKAGES += \
