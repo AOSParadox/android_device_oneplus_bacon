@@ -180,4 +180,13 @@
 
     <!-- Traffic stats -->
     <string name="config_datause_iface">rmnet0</string>
+
+
+    <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
+    on the headphone/microphone jack. When false use the older uevent framework -->
+    <bool name="config_useDevInputEventForAudioJack">true</bool>
+
+    <!-- Is the device capable of hot swapping an ICC Card -->
+    <bool name="config_hotswapCapable">true</bool>
+
 </resources>
