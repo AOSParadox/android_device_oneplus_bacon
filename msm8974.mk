@@ -185,9 +185,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     wcnss_service \
-    conn_init \
-    WCNSS_qcom_cfg.ini \
-    WCNSS_qcom_wlan_nv.bin
+    conn_init
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
