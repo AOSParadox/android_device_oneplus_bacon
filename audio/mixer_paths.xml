@@ -20,19 +20,19 @@
     <ctl name="Voip Evrc Min Max Rate Config" id="1" value="4" />
     <ctl name="Voip Dtx Mode" value="0" />
     <ctl name="TTY Mode" value="Off" />
-    <ctl name="LINEOUT1 Volume" value="0" />
-    <ctl name="LINEOUT2 Volume" value="0" />
-    <ctl name="LINEOUT3 Volume" value="0" />
-    <ctl name="LINEOUT4 Volume" value="0" />
-    <ctl name="HPHL Volume" value="0" />
-    <ctl name="HPHR Volume" value="0" />
-    <ctl name="RX1 Digital Volume" value="0" />
-    <ctl name="RX2 Digital Volume" value="0" />
-    <ctl name="RX3 Digital Volume" value="0" />
-    <ctl name="RX4 Digital Volume" value="0" />
-    <ctl name="RX5 Digital Volume" value="0" />
-    <ctl name="RX6 Digital Volume" value="0" />
-    <ctl name="RX7 Digital Volume" value="0" />
+    <ctl name="LINEOUT1 Volume" value="68" />
+    <ctl name="LINEOUT2 Volume" value="68" />
+    <ctl name="LINEOUT3 Volume" value="68" />
+    <ctl name="LINEOUT4 Volume" value="68" />
+    <ctl name="HPHL Volume" value="20" />
+    <ctl name="HPHR Volume" value="20" />
+    <ctl name="RX1 Digital Volume" value="84" />
+    <ctl name="RX2 Digital Volume" value="84" />
+    <ctl name="RX3 Digital Volume" value="84" />
+    <ctl name="RX4 Digital Volume" value="84" />
+    <ctl name="RX5 Digital Volume" value="84" />
+    <ctl name="RX6 Digital Volume" value="84" />
+    <ctl name="RX7 Digital Volume" value="84" />
     <ctl name="ADC1 Volume" value="0" />
     <ctl name="ADC2 Volume" value="0" />
     <ctl name="ADC3 Volume" value="0" />
@@ -276,6 +276,9 @@
     <!-- afe-proxy -->
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia2" value="0" />
     <!-- afe-proxy end-->
+
+    <!-- OPPO speaker control -->
+    <ctl name="SPKR Enable" value="1" />
 
     <!-- 24bit/96KHz toggle -->
     <ctl name="SLIM_0_RX Format" value="S16_LE" />
@@ -729,7 +732,6 @@
         <ctl name="SLIM_0_RX Channels" value="One" />
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
-        <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="DAC1 Switch" value="1" />
     </path>
 
@@ -739,10 +741,10 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
-        <ctl name="LINEOUT1 Volume" value="80" />
-        <ctl name="LINEOUT3 Volume" value="80" />
-        <ctl name="RX3 Digital Volume" value="76" />
-        <ctl name="RX5 Digital Volume" value="76" />
+        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="SLIM_0_RX Format" value="S24_LE" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
+        <ctl name="SPKR Enable" value="1" />
     </path>
 
     <path name="headphones">
@@ -754,11 +756,8 @@
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="HPHL DAC Switch" value="1" />
         <ctl name="COMP1 Switch" value="1" />
-        <ctl name="HPHL Volume" value="95" />
-        <ctl name="HPHR Volume" value="95" />
-        <ctl name="RX1 Digital Volume" value="65" />
-        <ctl name="RX2 Digital Volume" value="65" />
         <ctl name="SLIM_0_RX Format" value="S24_LE" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
     </path>
 
     <path name="speaker-and-headphones">
@@ -766,10 +765,8 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
-        <ctl name="LINEOUT1 Volume" value="80" />
-        <ctl name="LINEOUT3 Volume" value="80" />
-        <ctl name="RX3 Digital Volume" value="80" />
-        <ctl name="RX4 Digital Volume" value="80" />
+        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="SPKR Enable" value="1" />
     </path>
 
 
