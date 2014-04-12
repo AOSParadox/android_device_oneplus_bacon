@@ -278,7 +278,7 @@
     <!-- afe-proxy end-->
 
     <!-- OPPO speaker control -->
-    <ctl name="SPKR Enable" value="1" />
+    <ctl name="SPKR Enable" value="0" />
 
     <!-- 24bit/96KHz toggle -->
     <ctl name="SLIM_0_RX Format" value="S16_LE" />
@@ -742,8 +742,6 @@
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
         <ctl name="RX3 Digital Volume" value="84" />
-        <ctl name="SLIM_0_RX Format" value="S24_LE" />
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
         <ctl name="SPKR Enable" value="1" />
     </path>
 
