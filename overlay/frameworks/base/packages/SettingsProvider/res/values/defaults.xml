@@ -23,4 +23,6 @@
     <bool name="def_screen_brightness_automatic_mode">true</bool>
     <!-- Default screen brightness, from 0 to 255. 87 is 34%. -->
     <integer name="def_screen_brightness">87</integer>
+    <!-- Enable AANC by default -->
+    <bool name="def_noise_suppression">true</bool>
 </resources>
