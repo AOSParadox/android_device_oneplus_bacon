@@ -1,4 +1,7 @@
 # Bluetooth
+bin/btnvtool
+bin/hci_qcomm_init
+vendor/lib/libbtnv.so
 vendor/lib/liboi_sbc_decoder.so
 
 # Perf
@@ -197,3 +200,6 @@ vendor/lib/libcneqmiutils.so
 vendor/lib/libcneutils.so
 vendor/lib/libNimsWrap.so
 vendor/lib/libxml.so
+
+# WiFi
+bin/wcnss_service

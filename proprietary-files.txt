@@ -1,7 +1,3 @@
-# Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-
 # Camera
 bin/mm-qcamera-daemon
 lib/hw/camera.msm8974.so:lib/hw/camera.vendor.msm8974.so

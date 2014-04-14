@@ -538,11 +538,6 @@ service time_daemon /system/bin/time_daemon
     user root
     group root
 
-service wcnss-init /system/bin/sh /system/etc/init.qcom.wifi.sh
-    class main
-    user root
-    oneshot
-
 service qrngd /system/bin/qrngd -f
     class main
     user root
@@ -592,8 +587,8 @@ service audiod /system/bin/audiod
 service wcnss-service /system/bin/wcnss_service
     class late_start
     user system
-    group system wifi
-    disabled
+    group system wifi qcom_diag radio
+    oneshot
 
 # GPS
 service gsiff_daemon /system/bin/gsiff_daemon

@@ -29,9 +29,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Config scripts
 PRODUCT_PACKAGES += \
-    init.bbv.sh \
-    init.qcom.bt.sh \
-    init.qcom.wifi.sh
+    init.qcom.bt.sh
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -146,7 +144,7 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     qcmediaplayer
 
-PRODUCT_BOOT_JARS += qcmediaplayer
+PRODUCT_BOOT_JARS += qcmediaplayer WfdCommon
 
 # Power
 PRODUCT_PACKAGES += \
@@ -177,15 +175,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf
 
+# wcnss-service needs to talk to QMI to get NV, so blobify it
+ifneq ($(QCPATH),)
 PRODUCT_PACKAGES += \
-    wcnss_service \
-    conn_init
+    wcnss_service
+endif
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
