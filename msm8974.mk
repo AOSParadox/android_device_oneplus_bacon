@@ -144,7 +144,7 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     qcmediaplayer
 
-PRODUCT_BOOT_JARS += qcmediaplayer WfdCommon
+PRODUCT_BOOT_JARS += qcmediaplayer
 
 # Power
 PRODUCT_PACKAGES += \
@@ -185,6 +185,11 @@ PRODUCT_PACKAGES += \
 ifneq ($(QCPATH),)
 PRODUCT_PACKAGES += \
     wcnss_service
+endif
+
+# proprietary wifi display, if available
+ifneq ($(QCPATH),)
+PRODUCT_BOOT_JARS += WfdCommon
 endif
 
 # Set default USB interface
