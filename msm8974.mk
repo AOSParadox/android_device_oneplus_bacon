@@ -181,11 +181,8 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf
 
-# wcnss-service needs to talk to QMI to get NV, so blobify it
-ifneq ($(QCPATH),)
 PRODUCT_PACKAGES += \
     wcnss_service
-endif
 
 # proprietary wifi display, if available
 ifneq ($(QCPATH),)

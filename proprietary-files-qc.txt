@@ -202,4 +202,4 @@ vendor/lib/libNimsWrap.so
 vendor/lib/libxml.so
 
 # WiFi
-bin/wcnss_service
+lib/libwcnss_qmi.so
