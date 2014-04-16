@@ -198,7 +198,7 @@ PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     services-ext
 
-PRODUCT_PROPERTIES_OVERRIES +=
+PRODUCT_PROPERTIES_OVERRIDES +=
     persist.cne.feature=1
 
 # System properties
