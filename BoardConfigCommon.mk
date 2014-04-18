@@ -143,9 +143,6 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 
-# Recovery
-TARGET_RECOVERY_FSTAB := device/oppo/msm8974-common/rootdir/etc/fstab.qcom
-
 # No old RPC for prop
 TARGET_NO_RPC := true
 
