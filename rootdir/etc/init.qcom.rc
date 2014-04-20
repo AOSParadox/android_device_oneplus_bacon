@@ -456,6 +456,7 @@ service location_mq /system/bin/location-mq
     class late_start
     user gps
     group gps
+    disabled
 
 service xtwifi_inet /system/bin/xtwifi-inet-agent
     class late_start
@@ -609,16 +610,6 @@ service ppd /system/bin/mm-pp-daemon
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
-
-service nvinit /system/bin/hwaddrs
-    class core
-    user root
-    group system wifi
-    oneshot
-
-service bbvinit /system/bin/sh /system/etc/init.bbv.sh
-    class late_start
-    oneshot
 
 # CM Performance Profiles
 
