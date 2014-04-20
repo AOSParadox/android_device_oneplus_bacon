@@ -58,7 +58,11 @@ TARGET_QCOM_AUDIO_VARIANT := caf
 TARGET_QCOM_DISPLAY_VARIANT := caf-new
 TARGET_QCOM_MEDIA_VARIANT := caf-new
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
+
+# Simple time service client
+ifeq ($(QCPROP),)
 BOARD_USES_QC_TIME_SERVICES := true
+endif
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
