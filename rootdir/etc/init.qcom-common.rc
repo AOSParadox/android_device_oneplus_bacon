@@ -193,10 +193,6 @@ on post-fs-data
     mkdir /data/time/ 0700 system system
     restorecon_recursive /data/time
 
-    # Torch
-    chown system camera /sys/class/leds/torch-light/brightness
-    chmod 0660 /sys/class/leds/torch-light/brightness
-
     # Touchscreen
     chown root system /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
