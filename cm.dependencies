@@ -16,11 +16,7 @@
     "target_path": "hardware/qcom/media-caf-new"
   },
   {
-    "repository": "android_external_connectivity",
-    "target_path": "external/connectivity"
-  },
-  {
     "repository": "android_frameworks_opt_connectivity",
-    "target_path": "frameworks_opt_connectivity"
+    "target_path": "frameworks/opt/connectivity"
   }
 ]
