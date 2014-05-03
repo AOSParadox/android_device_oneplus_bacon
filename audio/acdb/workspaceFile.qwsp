@@ -8,8 +8,7 @@
     <ACDBFile_Paths path="MTP_Headset_cal.acdb" />
     <ACDBFile_Paths path="MTP_Speaker_cal.acdb" />
   </ACDBFile_Paths>
-  <GUI_Data>
-  </GUI_Data>
+  <GUI_Data />
   <OpenDSP MajorMinor="1_0">
     <AREA_LIST>
       <AREA name="AUDIO_POPP_RX" type="RX">
