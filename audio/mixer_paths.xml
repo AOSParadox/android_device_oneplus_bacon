@@ -19,7 +19,7 @@
     <ctl name="Voip Evrc Min Max Rate Config" id="0" value="1" />
     <ctl name="Voip Evrc Min Max Rate Config" id="1" value="4" />
     <ctl name="Voip Dtx Mode" value="0" />
-    <ctl name="TTY Mode" value="Off" />
+    <ctl name="TTY Mode" value="OFF" />
     <ctl name="LINEOUT1 Volume" value="0" />
     <ctl name="LINEOUT2 Volume" value="0" />
     <ctl name="LINEOUT3 Volume" value="0" />
@@ -276,9 +276,6 @@
     <!-- afe-proxy -->
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia2" value="0" />
     <!-- afe-proxy end-->
-
-    <!-- OPPO speaker control -->
-    <ctl name="SPKR Enable" value="0" />
 
     <!-- 24bit/96KHz toggle -->
     <ctl name="SLIM_0_RX Format" value="S16_LE" />
@@ -731,6 +728,7 @@
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="RX1 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_3_DB" />
         <ctl name="DAC1 Switch" value="1" />
     </path>
 
@@ -739,10 +737,9 @@
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
         <ctl name="LINEOUT1 Volume" value="13" />
-        <ctl name="LINEOUT2 Volume" value="13" />
+        <ctl name="LINEOUT3 Volume" value="13" />
         <ctl name="RX3 Digital Volume" value="79" />
         <ctl name="RX4 Digital Volume" value="79" />
-        <ctl name="SPKR Enable" value="1" />
     </path>
 
     <path name="hph">
@@ -888,6 +885,7 @@
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
         <ctl name="AIF1_CAP Mixer SLIM TX9" value="1" />
+        <ctl name="SLIM_0_TX Channels" value="Three" />
         <ctl name="SLIM_0_RX AANC MUX" value="SLIMBUS_0_TX" />
         <ctl name="SLIM TX7 MUX" value="DEC4" />
         <ctl name="DEC4 MUX" value="ADC3" />
@@ -901,7 +899,6 @@
         <ctl name="DEC2 MUX" value="ADC5" />
         <ctl name="ADC5 Volume" value="8" />
         <ctl name="DEC2 Volume" value="83" />
-        <ctl name="SLIM_0_TX Channels" value="Three" />
     </path>
 
     <path name="anc-handset">
@@ -911,7 +908,7 @@
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="DAC1 Switch" value="1" />
-        <ctl name="RX1 Digital Volume" value="80" />
+        <ctl name="RX1 Digital Volume" value="81" />
         <ctl name="ANC Slot" value="6" />
         <ctl name="ANC1 MUX" value="ADC4" />
         <ctl name="ANC1 FB MUX" value="EAR_HPH_L" />
