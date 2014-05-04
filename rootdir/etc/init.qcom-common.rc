@@ -32,11 +32,6 @@ on early-boot
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
 
-on fs
-    mount_all ./fstab.qcom
-    restorecon_recursive /persist
-    setprop ro.crypto.fuse_sdcard true
-
 on boot
     # bring CPUs online
     write /sys/module/msm_thermal/core_control/enabled 0
