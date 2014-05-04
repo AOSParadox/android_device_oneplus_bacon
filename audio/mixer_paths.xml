@@ -876,7 +876,12 @@
     </path>
 
     <path name="voice-headset-mic">
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="SLIM_0_TX Channels" value="One" />
+        <ctl name="SLIM TX7 MUX" value="DEC5" />
         <path name="hph-mic" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_48" />
     </path>
 
 
