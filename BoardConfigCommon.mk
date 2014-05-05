@@ -148,6 +148,7 @@ TARGET_NO_RPC := true
 
 # GPS HAL lives here
 TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
+TARGET_PROVIDES_GPS_LOC_API := true
 
 # Use HW crypto for ODE
 TARGET_HW_DISK_ENCRYPTION := true
