@@ -172,11 +172,6 @@ vendor/lib/liblistenjni.so
 -vendor/lib/liblisten.so
 vendor/lib/liblistensoundmodel.so
 
-# IMS core
--app/ims.apk
-etc/permissions/ims.xml
-framework/imslibrary.jar
-
 # QuickBoot
 -app/QuickBoot.apk
 
