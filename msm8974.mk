@@ -67,7 +67,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
-    mm.enable.qcom_parser=37491 \
+    mm.enable.qcom_parser=3183219 \
     ro.qc.sdk.audio.fluencetype=fluence \
     af.resampler.quality=4 \
     audio.offload.buffer.size.kb=32 \
