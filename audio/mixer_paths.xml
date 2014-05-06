@@ -915,7 +915,8 @@
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="DAC1 Switch" value="1" />
-        <ctl name="RX1 Digital Volume" value="81" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+        <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="ANC Slot" value="6" />
         <ctl name="ANC1 MUX" value="ADC4" />
         <ctl name="ANC1 FB MUX" value="EAR_HPH_L" />
