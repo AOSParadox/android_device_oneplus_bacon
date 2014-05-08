@@ -56,8 +56,8 @@ public:
     inline const MsgTask* getMsgTask() { return mMsgTask; }
     inline LocApiBase* getLocApi() { return mLocApi; }
     inline LocApiProxyBase* getLocApiProxy() { return mLocApiProxy; }
-    inline bool hasAgpsExt() { return mLBSProxy->hasAgpsExt(); }
-    inline bool hasCPIExt() { return mLBSProxy->hasCPIExt(); }
+    inline bool hasAgpsExtendedCapabilities() { return mLBSProxy->hasAgpsExtendedCapabilities(); }
+    inline bool hasCPIExtendedCapabilities() { return mLBSProxy->hasCPIExtendedCapabilities(); }
     inline void requestUlp(LocAdapterBase* adapter,
                            unsigned long capabilities) {
         mLBSProxy->requestUlp(adapter, capabilities);

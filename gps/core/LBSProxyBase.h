@@ -49,8 +49,8 @@ public:
     inline virtual ~LBSProxyBase() {}
     inline virtual void requestUlp(LocAdapterBase* adapter,
                                    unsigned long capabilities) const {}
-    inline virtual bool hasAgpsExt() const { return false; }
-    inline virtual bool hasCPIExt() const { return false; }
+    inline virtual bool hasAgpsExtendedCapabilities() const { return false; }
+    inline virtual bool hasCPIExtendedCapabilities() const { return false; }
 };
 
 typedef LBSProxyBase* (getLBSProxy_t)();
