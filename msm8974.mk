@@ -186,6 +186,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     wcnss_service
 
+# Misc dependency packages
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    curl \
+    libnl_2 \
+    libbson
+
+
 # proprietary wifi display, if available
 ifneq ($(QCPATH),)
 PRODUCT_BOOT_JARS += WfdCommon
