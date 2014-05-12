@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    init.cne.rc \
     init.qcom-common.rc \
     init.qcom.usb.rc \
     init.recovery.qcom.rc \
