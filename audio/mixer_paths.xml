@@ -817,8 +817,8 @@
     <path name="speaker-mic">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
-        <ctl name="SLIM TX7 MUX" value="DEC3" />
-        <path name="sec-mic" />
+        <ctl name="SLIM TX7 MUX" value="DEC2" />
+        <path name="anc-mic" />
     </path>
 
     <path name="headset-mic">
@@ -1040,10 +1040,7 @@
     </path>
 
     <path name="speaker-dmic-endfire">
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
-        <ctl name="SLIM_0_TX Channels" value="One" />
-        <ctl name="SLIM TX7 MUX" value="DEC3" />
-        <path name="sec-mic" />
+        <path name="speaker-mic" />
     </path>
 
     <path name="handset-stereo-dmic-ef">
