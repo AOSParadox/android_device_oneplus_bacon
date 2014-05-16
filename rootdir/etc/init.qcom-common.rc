@@ -220,6 +220,9 @@ on post-fs-data
     chown system system /sys/devices/virtual/graphics/fb0/cabc
     chmod 0660 /sys/devices/virtual/graphics/fb0/cabc
 
+    chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration
+    chmod 0660 /sys/devices/virtual/graphics/fb0/panel_calibration
+
     setprop vold.post_fs_data_done 1
 
 on charger
@@ -530,6 +533,7 @@ service qrngp /system/bin/qrngp
 
 on property:sys.boot_completed=1
     start qrngp
+    write /sys/devices/virtual/graphics/fb0/panel_calibration 1
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
