@@ -90,8 +90,15 @@ BOARD_SEPOLICY_UNION += \
     file.te \
     device.te \
     app.te \
+    cne.te \
+    qmux.te \
+    mpdecision.te \
+    thermald.te \
     ueventd.te \
-    file_contexts
+    vold.te \
+    file_contexts \
+    genfs_contexts \
+    te_macros
 
 PRODUCT_BOOT_JARS := $(subst $(space),:,$(PRODUCT_BOOT_JARS))
 
