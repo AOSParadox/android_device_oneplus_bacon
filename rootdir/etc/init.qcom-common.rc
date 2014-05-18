@@ -611,9 +611,6 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
     write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
-    write /sys/devices/system/cpu/cpufreq/interactive/sync_freq 1036800
-    write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load 50
-    write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq 1190400
     write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 30000
 
     write /sys/module/cpu_boost/parameters/boost_ms 10
