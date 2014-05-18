@@ -168,6 +168,9 @@ BOARD_USES_QCNE := true
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
+# Enable CPU boosting events in the power HAL
+TARGET_USES_CPU_BOOST_HINT := true
+
 # inherit from the proprietary version
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
