@@ -63,3 +63,5 @@ allow mpdecision kernel:process setsched;
 
 # FIXME!
 allow mpdecision self:capability dac_override;
+allow mpdecision system_data_file:dir rw_dir_perms;
+allow mpdecision system_data_file:file create_file_perms;

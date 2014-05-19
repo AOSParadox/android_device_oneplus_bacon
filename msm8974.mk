@@ -231,7 +231,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
     telephony.lteOnGsmDevice=1 \
     wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
+    wifi.supplicant_scan_interval=15 \
+    ro.qualcomm.perf.cores_online=2
 
 # Permissions
 PRODUCT_COPY_FILES += \
