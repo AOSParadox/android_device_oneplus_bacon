@@ -61,7 +61,7 @@ TARGET_QCOM_MEDIA_VARIANT := caf-new
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
 # Simple time service client
-ifeq ($(QCPROP),)
+ifeq ($(QCPATH),)
 BOARD_USES_QC_TIME_SERVICES := true
 endif
 
