@@ -35,7 +35,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.cne.rc \
     init.qcom-common.rc \
-    init.qcom.usb.rc \
     init.recovery.qcom.rc \
     ueventd.qcom.rc
 
