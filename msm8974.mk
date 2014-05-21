@@ -69,14 +69,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
     mm.enable.qcom_parser=3183219 \
     ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.voicecall=true \
     af.resampler.quality=4 \
     audio.offload.buffer.size.kb=32 \
     av.offload.enable=true \
     av.streaming.offload.enable=true \
     use.voice.path.for.pcm.voip=true \
-    audio.offload.gapless.enabled=false \
+    audio.offload.gapless.enabled=true \
     qcom.hw.aac.encoder=true \
-    persist.aanc.enable=true \
     tunnel.audio.encode=true \
     media.aac_51_output_enabled=true
 
