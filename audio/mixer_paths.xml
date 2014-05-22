@@ -578,13 +578,12 @@
     </path>
 
     <path name="spk">
+        <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
+        <ctl name="SLIM_0_RX Channels" value="One" />
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
         <ctl name="LINEOUT1 Volume" value="13" />
-        <ctl name="LINEOUT3 Volume" value="13" />
-        <ctl name="RX3 Digital Volume" value="79" />
-        <ctl name="RX4 Digital Volume" value="79" />
     </path>
 
     <path name="hph">
@@ -600,6 +599,15 @@
         <ctl name="HPHR Volume" value="19" />
     </path>
 
+    <path name="spk-hph">
+        <path name="hph" />
+        <ctl name="RX3 MIX1 INP1" value="RX1" />
+        <ctl name="RDAC5 MUX" value="DEM3_INV" />
+        <ctl name="COMP2 Switch" value="1" />
+        <ctl name="LINEOUT1 Volume" value="13" />
+    </path>
+
+
     <!-- Output paths -->
     <path name="handset">
         <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
@@ -612,13 +620,14 @@
     </path>
 
     <path name="speaker">
-        <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
-        <ctl name="SLIM_0_RX Channels" value="One" />
         <path name="spk" />
+        <ctl name="RX3 Digital Volume" value="79" />
+        <ctl name="RX4 Digital Volume" value="79" />
+        <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
     <path name="voice-speaker">
-        <path name="speaker" />
+        <path name="spk" />
         <ctl name="RX3 Digital Volume" value="86" />
         <ctl name="RX4 Digital Volume" value="86" />
     </path>
@@ -637,8 +646,12 @@
     </path>
 
     <path name="speaker-and-headphones">
-        <path name="headphones" />
-        <path name="spk" />
+        <path name="spk-hph" />
+        <ctl name="RX1 Digital Volume" value="82" />
+        <ctl name="RX2 Digital Volume" value="82" />
+        <ctl name="RX3 Digital Volume" value="79" />
+        <ctl name="RX4 Digital Volume" value="79" />
+        <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
 
@@ -648,6 +661,7 @@
         <ctl name="IIR1 INP1 MUX" value="DEC5" />
         <ctl name="ADC2 Volume" value="13" />
         <ctl name="DEC5 Volume" value="84" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="main-mic">
@@ -655,12 +669,14 @@
         <ctl name="SLIM TX7 MUX" value="DEC4" />
         <ctl name="DEC4 MUX" value="ADC3" />
         <ctl name="DEC4 Volume" value="84" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="anc-mic">
         <ctl name="DEC2 MUX" value="ADC5" />
         <ctl name="ADC5 Volume" value="19" />
         <ctl name="DEC2 Volume" value="84" />
+        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
 
@@ -683,7 +699,6 @@
         <ctl name="SLIM_0_TX Channels" value="One" />
         <ctl name="SLIM TX7 MUX" value="DEC5" />
         <path name="hph-mic" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="voice-rec-mic">
@@ -699,7 +714,6 @@
         <ctl name="SLIM_0_TX Channels" value="One" />
         <ctl name="SLIM TX7 MUX" value="DEC5" />
         <path name="hph-mic" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
 
