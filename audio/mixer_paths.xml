@@ -139,6 +139,7 @@
     <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia4" value="0" />
+    <ctl name="Speaker Function" value="Off" />
 
     <!-- usb headset -->
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia1" value="0" />
@@ -584,6 +585,7 @@
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
         <ctl name="LINEOUT1 Volume" value="13" />
+        <ctl name="Speaker Function" value="On" />
     </path>
 
     <path name="hph">
@@ -605,6 +607,7 @@
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
         <ctl name="LINEOUT1 Volume" value="13" />
+        <ctl name="Speaker Function" value="On" />
     </path>
 
 
