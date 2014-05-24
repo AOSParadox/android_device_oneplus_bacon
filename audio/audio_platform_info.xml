@@ -40,4 +40,5 @@
 
     <device name="SND_DEVICE_IN_VOICE_REC_MIC" acdb_id="119" />
     <device name="SND_DEVICE_IN_VOICE_REC_HEADSET_MIC" acdb_id="23" />
+    <device name="SND_DEVICE_IN_CAMCORDER_MIC" acdb_id="35" />
 </audio_platform_info>
