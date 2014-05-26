@@ -139,7 +139,6 @@
     <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia4" value="0" />
-    <ctl name="Speaker Function" value="Off" />
 
     <!-- usb headset -->
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia1" value="0" />
@@ -584,8 +583,8 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
-        <ctl name="LINEOUT1 Volume" value="13" />
-        <ctl name="Speaker Function" value="On" />
+        <ctl name="LINEOUT1 Volume" value="14" />
+        <ctl name="LINEOUT3 Volume" value="14" />
     </path>
 
     <path name="hph">
@@ -597,8 +596,8 @@
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="HPHL DAC Switch" value="1" />
         <ctl name="COMP1 Switch" value="1" />
-        <ctl name="HPHL Volume" value="19" />
-        <ctl name="HPHR Volume" value="19" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
     </path>
 
     <path name="spk-hph">
@@ -606,8 +605,8 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
-        <ctl name="LINEOUT1 Volume" value="13" />
-        <ctl name="Speaker Function" value="On" />
+        <ctl name="LINEOUT1 Volume" value="14" />
+        <ctl name="LINEOUT3 Volume" value="14" />
     </path>
 
 
@@ -624,21 +623,21 @@
 
     <path name="speaker">
         <path name="spk" />
-        <ctl name="RX3 Digital Volume" value="79" />
-        <ctl name="RX4 Digital Volume" value="79" />
+        <ctl name="RX3 Digital Volume" value="80" />
+        <ctl name="RX4 Digital Volume" value="80" />
         <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
     <path name="voice-speaker">
         <path name="spk" />
-        <ctl name="RX3 Digital Volume" value="86" />
-        <ctl name="RX4 Digital Volume" value="86" />
+        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="RX4 Digital Volume" value="84" />
     </path>
 
     <path name="headphones">
         <path name="hph" />
-        <ctl name="RX1 Digital Volume" value="82" />
-        <ctl name="RX2 Digital Volume" value="82" />
+        <ctl name="RX1 Digital Volume" value="84" />
+        <ctl name="RX2 Digital Volume" value="84" />
         <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
@@ -650,10 +649,10 @@
 
     <path name="speaker-and-headphones">
         <path name="spk-hph" />
-        <ctl name="RX1 Digital Volume" value="82" />
-        <ctl name="RX2 Digital Volume" value="82" />
-        <ctl name="RX3 Digital Volume" value="79" />
-        <ctl name="RX4 Digital Volume" value="79" />
+        <ctl name="RX1 Digital Volume" value="84" />
+        <ctl name="RX2 Digital Volume" value="84" />
+        <ctl name="RX3 Digital Volume" value="80" />
+        <ctl name="RX4 Digital Volume" value="80" />
         <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
