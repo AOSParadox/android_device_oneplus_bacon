@@ -583,8 +583,8 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC5 MUX" value="DEM3_INV" />
         <ctl name="COMP2 Switch" value="1" />
-        <ctl name="LINEOUT1 Volume" value="14" />
-        <ctl name="LINEOUT3 Volume" value="14" />
+        <ctl name="LINEOUT1 Volume" value="13" />
+        <ctl name="LINEOUT3 Volume" value="13" />
     </path>
 
     <path name="hph">
@@ -623,8 +623,8 @@
 
     <path name="speaker">
         <path name="spk" />
-        <ctl name="RX3 Digital Volume" value="80" />
-        <ctl name="RX4 Digital Volume" value="80" />
+        <ctl name="RX3 Digital Volume" value="82" />
+        <ctl name="RX4 Digital Volume" value="82" />
         <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
@@ -651,8 +651,8 @@
         <path name="spk-hph" />
         <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="RX2 Digital Volume" value="84" />
-        <ctl name="RX3 Digital Volume" value="80" />
-        <ctl name="RX4 Digital Volume" value="80" />
+        <ctl name="RX3 Digital Volume" value="82" />
+        <ctl name="RX4 Digital Volume" value="82" />
         <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
