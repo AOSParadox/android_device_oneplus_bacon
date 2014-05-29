@@ -662,7 +662,6 @@
         <ctl name="DEC5 MUX" value="ADC2" />
         <ctl name="IIR1 INP1 MUX" value="DEC5" />
         <ctl name="DEC5 Volume" value="84" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="main-mic">
@@ -670,13 +669,11 @@
         <ctl name="SLIM TX7 MUX" value="DEC4" />
         <ctl name="DEC4 MUX" value="ADC3" />
         <ctl name="DEC4 Volume" value="84" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="anc-mic">
         <ctl name="DEC2 MUX" value="ADC5" />
         <ctl name="DEC2 Volume" value="84" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
 
@@ -762,7 +759,6 @@
         <ctl name="SLIM TX8 MUX" value="DEC3" />
         <ctl name="DEC3 MUX" value="ADC4" />
         <ctl name="DEC3 Volume" value="84" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="dmic-endfire">
@@ -789,7 +785,6 @@
         <ctl name="DEC2 Volume" value="84" />
         <ctl name="ADC3 Volume" value="19" />
         <ctl name="ADC5 Volume" value="19" />
-        <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
     <path name="handset-stereo-dmic-ef">
