@@ -249,13 +249,6 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
-    # The kernel currently requires an active composition to measure the current from
-    # a USB charger, or it'll be stuck at 100mA
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 05C6
-    write /sys/class/android_usb/android0/idProduct 6764
-    write /sys/class/android_usb/android0/functions mtp
-    write /sys/class/android_usb/android0/enable 1
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
