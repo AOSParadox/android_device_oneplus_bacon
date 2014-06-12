@@ -78,7 +78,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.gapless.enabled=false \
     qcom.hw.aac.encoder=true \
     tunnel.audio.encode=true \
-    media.aac_51_output_enabled=true
+    media.aac_51_output_enabled=true \
+    audio.offload.pcm.enable=true
 
 # Charger
 PRODUCT_PACKAGES += \
