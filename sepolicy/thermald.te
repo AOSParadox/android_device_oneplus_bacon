@@ -38,6 +38,7 @@ allow thermald sysfs:file write;
 # Create and access to /dev/socket/thermal-.*
 type_transition thermald socket_device:sock_file thermald_socket;
 allow thermald socket_device:dir w_dir_perms;
+allow thermald socket_device:sock_file create_file_perms;
 allow thermald thermald_socket:sock_file create_file_perms;
 
 # Connect to mpdecision.

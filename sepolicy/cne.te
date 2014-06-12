@@ -23,9 +23,14 @@ allow cne self:netlink_route_socket { create_socket_perms nlmsg_read };
 allow cne self:netlink_tcpdiag_socket { create_socket_perms nlmsg_read };
 allow cne self:udp_socket { create ioctl };
 allow cne system:tcp_socket { read write };
+allow cne release_app:tcp_socket { read write };
+allow cne untrusted_app:tcp_socket { read write };
+
 allow cne platform_app:fd use;
 allow cne release_app:fd use;
 allow cne untrusted_app:fd use;
+allow cne shared_app:fd use;
+allow cne mediaserver:fd use;
 
 allow cne diag_device:chr_file rw_file_perms;
 allow cne qmuxd_socket:dir search;
