@@ -47,7 +47,7 @@ vendor/lib/lib-sec-disp.so
 vendor/lib/libStDrvInt.so
 
 # GPS
-app/com.qualcomm.location.apk
+-app/com.qualcomm.location.apk
 bin/gsiff_daemon
 bin/quipc_igsn
 bin/quipc_main
