@@ -43,8 +43,5 @@ etc/firmware/cpp_firmware_v1_2_0.fw
 etc/sensor_def_qcomdev.conf
 vendor/lib/libAKM8963.so
 
-# Wifi
-bin/hwaddrs
-
 # Audio firmware
 etc/firmware/audience-es325-fw.bin
