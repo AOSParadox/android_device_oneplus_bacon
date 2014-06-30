@@ -180,7 +180,6 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 
 PRODUCT_PACKAGES += \\
     libHevcSwDecoder \\
-    liblisten \\
     libmm-abl \\
     libscale \\
     libtime_genoff
