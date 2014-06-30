@@ -162,7 +162,7 @@ TARGET_PROVIDES_GPS_LOC_API := true
 TARGET_HW_DISK_ENCRYPTION := true
 
 # Enable CNE
-BOARD_USES_QCNE := true
+#BOARD_USES_QCNE := true
 
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true

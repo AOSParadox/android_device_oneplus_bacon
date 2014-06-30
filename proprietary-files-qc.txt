@@ -173,20 +173,5 @@ bin/time_daemon
 # Fastcharge
 bin/hvdcp
 
-# CNE
-bin/cnd
-etc/cne/andsfCne.xml
-etc/cne/NsrmConfiguration.xml
-etc/cne/SwimConfig.xml
-etc/permissions/cneapiclient.xml
-framework/cneapiclient.jar
-framework/com.quicinc.cne.jar
-vendor/lib/libcneapiclient.so
-vendor/lib/libcneconn.so
-vendor/lib/libcneqmiutils.so
-vendor/lib/libcneutils.so
-vendor/lib/libNimsWrap.so
-vendor/lib/libxml.so
-
 # WiFi
 lib/libwcnss_qmi.so
