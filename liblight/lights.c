@@ -33,6 +33,13 @@
 
 #include <hardware/lights.h>
 
+#ifndef min
+#define min(a,b) ((a)<(b)?(a):(b))
+#endif
+#ifndef max
+#define max(a,b) ((a)<(b)?(b):(a))
+#endif
+
 /******************************************************************************/
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
@@ -40,6 +47,8 @@ static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
 static struct light_state_t g_attention;
+
+static int g_led_is_dt = 0;
 
 const char *const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
@@ -65,32 +74,65 @@ const char *const LED_PWM_FILE
 char const *const LED_BLINK_FILE
         = "/sys/class/leds/red/device/blink";
 
+char const *const LED_DT_RED_BRIGHTNESS
+        = "/sys/class/leds/led:rgb_red/brightness";
+
+char const *const LED_DT_GREEN_BRIGHTNESS
+        = "/sys/class/leds/led:rgb_green/brightness";
+
+char const *const LED_DT_BLUE_BRIGHTNESS
+        = "/sys/class/leds/led:rgb_blue/brightness";
+
+char const *const LED_DT_RAMP_STEP_FILE
+        = "/sys/class/leds/led:rgb_red/ramp_step_ms";
+
+char const *const LED_DT_DUTY_FILE
+        = "/sys/class/leds/led:rgb_red/duty_pcts";
+
+char const *const LED_DT_BLINK_FILE
+        = "/sys/class/leds/led:rgb_red/blink";
+
+// Number of steps to use in the duty array
+#define LED_DT_DUTY_STEPS       50
+
+// Brightness ramp up/down time for blinking
+#define LED_DT_RAMP_MS          500
+
 /**
  * device methods
  */
 
-void init_g_lock(void)
+void init_globals(void)
 {
     // init the mutex
     pthread_mutex_init(&g_lock, NULL);
+
+    /*
+     * Determine whether LED is DT based.
+     *
+     * Traditional LED drivers control blinking via grpfreq/grppwm.
+     * DT based LED drivers control blinking via ramp_step_ms/duty_pcts.
+     *
+     * Thus, if duty_pcts exists, the driver is DT based.
+     */
+    g_led_is_dt = (access(LED_DT_DUTY_FILE, R_OK) == 0);
 }
 
 static int
-write_int(const char *path, int value)
+write_string(const char *path, const char *buffer)
 {
     int fd;
     static int already_warned = 0;
 
     fd = open(path, O_RDWR);
     if (fd >= 0) {
-        char buffer[20];
-        int bytes = sprintf(buffer, "%d\n", value);
+        int bytes = strlen(buffer);
         int amt = write(fd, buffer, bytes);
         close(fd);
         return amt == -1 ? -errno : 0;
     } else {
         if (already_warned == 0) {
-            ALOGE("write_int failed to open %s\n", path);
+            ALOGE("write_string failed to open %s (%s)\n", path, strerror(errno));
             already_warned = 1;
         }
         return -errno;
@@ -98,20 +140,11 @@ write_int(const char *path, int value)
 }
 
 static int
-read_int(const char *path)
+write_int(const char *path, int value)
 {
-    int fd;
-    fd = open(path, O_RDONLY);
-    if (fd >= 0) {
-        char buffer[5] = {0};
-        read(fd, buffer, 5);
-        close(fd);
-
-        return atoi(buffer);
-    } else {
-        ALOGE("Error reading path %s", path);
-        return 0;
-    }
+    char buffer[20];
+    sprintf(buffer, "%d\n", value);
+    return write_string(path, buffer);
 }
 
 static int
@@ -129,7 +162,7 @@ is_lit(struct light_state_t const *state)
 }
 
 static int
-set_speaker_light_locked(struct light_device_t *dev,
+set_speaker_light_locked_drv(struct light_device_t *dev,
         struct light_state_t const *state)
 {
     int len;
@@ -138,13 +171,10 @@ set_speaker_light_locked(struct light_device_t *dev,
     unsigned int colorRGB;
 
     if (state == NULL) {
-        colorRGB = 0;
-        blink = 0;
-        pwm = 0;
-        write_int(RED_LED_FILE, (colorRGB >> 16) & 0xFF);
-        write_int(GREEN_LED_FILE, (colorRGB >> 8) & 0xFF);
-        write_int(BLUE_LED_FILE, colorRGB & 0xFF);
-        write_int(LED_BLINK_FILE, blink);
+        write_int(RED_LED_FILE, 0);
+        write_int(GREEN_LED_FILE, 0);
+        write_int(BLUE_LED_FILE, 0);
+        write_int(LED_BLINK_FILE, 0);
         return 0;
     }
 
@@ -161,11 +191,6 @@ set_speaker_light_locked(struct light_device_t *dev,
     }
 
     colorRGB = state->color;
-
-#if 0
-    ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
-            state->flashMode, colorRGB, onMS, offMS);
-#endif
 
     if (onMS > 0 && offMS > 0) {
         int totalMS = onMS + offMS;
@@ -200,6 +225,74 @@ set_speaker_light_locked(struct light_device_t *dev,
     write_int(LED_BLINK_FILE, blink);
 
     return 0;
+}
+
+static int
+set_speaker_light_locked_dt(struct light_device_t *dev,
+        struct light_state_t const *state)
+{
+    int len;
+    int onMS, offMS;
+    unsigned int colorRGB;
+
+    if (state == NULL) {
+        write_int(LED_DT_BLINK_FILE, 0);
+        write_int(LED_DT_RED_BRIGHTNESS, 0);
+        return 0;
+    }
+
+    switch (state->flashMode) {
+        case LIGHT_FLASH_TIMED:
+            onMS = state->flashOnMS;
+            offMS = state->flashOffMS;
+            break;
+        case LIGHT_FLASH_NONE:
+        default:
+            onMS = 0;
+            offMS = 0;
+            break;
+    }
+
+    colorRGB = state->color;
+
+    if (onMS > 0 && offMS > 0) {
+        char dutystr[(3+1)*LED_DT_DUTY_STEPS+1];
+        char* p = dutystr;
+        int stepMS;
+        int n;
+
+        onMS = max(onMS, LED_DT_RAMP_MS);
+        offMS = max(offMS, LED_DT_RAMP_MS);
+        stepMS = (onMS+offMS)/LED_DT_DUTY_STEPS;
+
+        p += sprintf(p, "0");
+        for (n = 1; n < (onMS/stepMS); ++n) {
+            p += sprintf(p, ",%d", min((100*n*stepMS)/LED_DT_RAMP_MS, 100));
+        }
+        for (n = 0; n < LED_DT_DUTY_STEPS-(onMS/stepMS); ++n) {
+            p += sprintf(p, ",%d", 100 - min((100*n*stepMS)/LED_DT_RAMP_MS, 100));
+        }
+        p += sprintf(p, "\n");
+
+        write_int(LED_DT_RAMP_STEP_FILE, stepMS);
+        write_string(LED_DT_DUTY_FILE, dutystr);
+        write_int(LED_DT_BLINK_FILE, 1);
+    }
+    else {
+        write_int(LED_DT_RED_BRIGHTNESS, colorRGB ? 255 : 0);
+    }
+
+    return 0;
+}
+
+static int
+set_speaker_light_locked(struct light_device_t *dev,
+        struct light_state_t const *state)
+{
+    if (g_led_is_dt)
+        return set_speaker_light_locked_dt(dev, state);
+
+    return set_speaker_light_locked_drv(dev, state);
 }
 
 static void
@@ -338,7 +431,7 @@ static int open_lights(const struct hw_module_t *module, const char *name,
     else
         return -EINVAL;
 
-    pthread_once(&g_init, init_g_lock);
+    pthread_once(&g_init, init_globals);
 
     struct light_device_t *dev = malloc(sizeof(struct light_device_t));
     memset(dev, 0, sizeof(*dev));
