@@ -20,7 +20,6 @@
       </AREA>
       <AREA name="AUDIO_POPP_RX" type="RX">
         <TOPOLOGY name="AUDPROC_OFFLOAD_EFFECTS" ID="0x1000FFFF" type="RX" NewAdded="true">
-          <Block name="AUDIO_RX_CODEC_GAIN" dataView_ID="0x00000024" ID="0x00010C37" type="RX" />
           <Block name="AUDIO_HIGH_THD_RESAMPLER" dataView_ID="0x00000079" ID="0x00010719" type="BOTH" />
           <Block name="AUDIO_SOFT_STEP_VOLUME" dataView_ID="0x00000020" ID="0x00010BFE" type="BOTH" />
           <Block name="AUDIO_VIRTUALIZER" dataView_ID="0x0000009A" ID="0x000108A5" type="RX" />
@@ -37,7 +36,6 @@
         <Block name="AUDIO_HIGH_THD_RESAMPLER" dataView_ID="0x00000079" ID="0x00010719" type="BOTH" />
       </TOPOLOGY>
       <TOPOLOGY name="AUDPROC_OFFLOAD_EFFECTS" ID="0x1000FFFF" type="RX" NewAdded="true">
-        <Block name="AUDIO_RX_CODEC_GAIN" dataView_ID="0x00000024" ID="0x00010C37" type="RX" />
         <Block name="AUDIO_HIGH_THD_RESAMPLER" dataView_ID="0x00000079" ID="0x00010719" type="BOTH" />
         <Block name="AUDIO_SOFT_STEP_VOLUME" dataView_ID="0x00000020" ID="0x00010BFE" type="BOTH" />
         <Block name="AUDIO_VIRTUALIZER" dataView_ID="0x0000009A" ID="0x000108A5" type="RX" />
