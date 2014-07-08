@@ -684,7 +684,7 @@
     <path name="handset-mic">
         <path name="main-mic" />
         <ctl name="SLIM_0_TX Channels" value="One" />
-        <ctl name="ADC3 Volume" value="8.55" />
+        <ctl name="ADC3 Volume" value="9" />
     </path>
 
     <path name="speaker-mic">
@@ -704,7 +704,9 @@
     </path>
 
     <path name="voice-rec-mic">
-        <path name="handset-mic" />
+        <path name="main-mic" />
+        <ctl name="SLIM_0_TX Channels" value="One" />
+        <ctl name="ADC3 Volume" value="19" />
     </path>
 
     <path name="voice-speaker-mic">
