@@ -79,7 +79,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     tunnel.audio.encode=true \
     media.aac_51_output_enabled=true \
     audio.offload.pcm.enable=true \
-    audio.offload.24bit.enable=1
+    audio.offload.24bit.enable=1 \
+    audio.offload.min.duration.secs=0
 
 # Charger
 PRODUCT_PACKAGES += \
