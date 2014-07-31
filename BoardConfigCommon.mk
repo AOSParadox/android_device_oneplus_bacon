@@ -172,6 +172,9 @@ PROTOBUF_SUPPORTED := true
 # Enable CPU boosting events in the power HAL
 TARGET_USES_CPU_BOOST_HINT := true
 
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
 # inherit from the proprietary version
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk

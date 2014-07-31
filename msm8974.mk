@@ -205,6 +205,11 @@ PRODUCT_PACKAGES += \
     libnl_2 \
     libbson
 
+# ANT+
+PRODUCT_PACKAGES += \
+    libantradio \
+    AntHalService
+
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
