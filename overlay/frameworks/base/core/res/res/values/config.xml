@@ -142,7 +142,7 @@
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
     <!-- bool value to for enabling motion accelerometer -->
-    <bool name="use_motion_accel">true</bool>
+    <bool name="use_motion_accel">false</bool>
 
     <!-- Enable overlay for all location components. -->
     <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
