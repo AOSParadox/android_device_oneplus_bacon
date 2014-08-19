@@ -165,12 +165,6 @@ vendor/lib/libthermalioctl.so
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
 
-# Listen service
-#vendor/lib/liblistenhardware.so
-#vendor/lib/liblistenjni.so
-#-vendor/lib/liblisten.so
-#vendor/lib/liblistensoundmodel.so
-
 # QuickBoot
 -app/QuickBoot.apk
 
