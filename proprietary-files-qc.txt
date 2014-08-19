@@ -45,6 +45,10 @@ vendor/lib/libssd.so
 vendor/lib/libsecureui.so
 vendor/lib/lib-sec-disp.so
 vendor/lib/libStDrvInt.so
+-vendor/lib/libwvdrm_L3.so
+-vendor/lib/libwvm.so
+-vendor/lib/libWVStreamControlAPI_L3.so
+-vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
 -app/com.qualcomm.location.apk
