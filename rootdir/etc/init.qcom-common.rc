@@ -223,6 +223,9 @@ on post-fs-data
     chown system system /sys/devices/virtual/graphics/fb0/sre
     chmod 0660 /sys/devices/virtual/graphics/fb0/sre
 
+    chown system system /sys/devices/virtual/graphics/fb0/color_enhance
+    chmod 0660 /sys/devices/virtual/graphics/fb0/color_enhance
+
     chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration
     chmod 0660 /sys/devices/virtual/graphics/fb0/panel_calibration
 
