@@ -162,6 +162,8 @@ vendor/lib/libthermalioctl.so
 # Time services
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
+-vendor/lib/libTimeService.so
+-app/TimeService.apk
 
 # QuickBoot
 -app/QuickBoot.apk
