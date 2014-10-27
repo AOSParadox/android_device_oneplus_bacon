@@ -291,8 +291,6 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
                 echo "85 1500000:90 1800000:70" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
                 echo 40000 > /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
-                echo 20 > /sys/module/cpu_boost/parameters/boost_ms
-                echo 1728000 > /sys/module/cpu_boost/parameters/sync_threshold
                 echo 100000 > /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
                 echo 1497600 > /sys/module/cpu_boost/parameters/input_boost_freq
                 echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
@@ -331,7 +329,7 @@ case "$target" in
         chmod -h 664 /sys/devices/system/cpu/cpu1/online
         chmod -h 664 /sys/devices/system/cpu/cpu2/online
         chmod -h 664 /sys/devices/system/cpu/cpu3/online
-        echo 1 > /dev/cpuctl/cpu.notify_on_migrate
+        echo 0 > /dev/cpuctl/cpu.notify_on_migrate
     ;;
 esac
 
