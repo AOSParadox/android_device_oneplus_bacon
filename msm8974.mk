@@ -23,10 +23,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
-
 # Config scripts
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
