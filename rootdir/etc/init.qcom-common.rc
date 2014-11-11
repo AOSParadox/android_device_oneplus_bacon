@@ -72,11 +72,11 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    #hsic
-    chown system system /sys/bus/platform/drivers/msm_hsic_host/bind
-    chown system system /sys/bus/platform/drivers/msm_hsic_host/unbind
-    chmod 0200 /sys/bus/platform/drivers/msm_hsic_host/bind
-    chmod 0200 /sys/bus/platform/drivers/msm_hsic_host/unbind
+    #Create PERFD deamon related dirs
+    mkdir /data/misc/perfd 0770 root system
+    chmod 2770 /data/misc/perfd
+    mkdir /data/system/perfd 0770 root system
+    chmod 2770 /data/system/perfd
 
     #charger
     chown root system /sys/module/qpnp_charger/parameters/charger_monitor

@@ -199,7 +199,7 @@
             channels="2" />
     </EncoderProfile>
 
-    <EncoderProfile quality="4kuhd" fileFormat="mp4" duration="30">
+    <EncoderProfile quality="fwvga" fileFormat="mp4" duration="30">
       <Video codec="h264"
             bitRate="60000000"
             width="3840"
@@ -433,7 +433,7 @@
             channels="2" />
     </EncoderProfile>
 
-    <EncoderProfile quality="timelapse4kuhd" fileFormat="mp4" duration="30">
+    <EncoderProfile quality="timelapsefwvga" fileFormat="mp4" duration="30">
       <Video codec="h264"
             bitRate="60000000"
             width="3840"
