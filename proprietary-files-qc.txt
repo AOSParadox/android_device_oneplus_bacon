@@ -6,7 +6,7 @@ vendor/lib/liboi_sbc_decoder.so
 
 # Perf
 bin/mpdecision
-vendor/lib/libqc-opt.so
+vendor/lib/libqti-perfd-client.so
 
 # ADSP
 bin/adsprpcd
