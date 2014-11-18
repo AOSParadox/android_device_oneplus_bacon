@@ -2,7 +2,6 @@
 bin/btnvtool
 bin/hci_qcomm_init
 vendor/lib/libbtnv.so
-vendor/lib/liboi_sbc_decoder.so
 
 # Perf
 bin/mpdecision
@@ -43,20 +42,20 @@ etc/firmware/venus.mdt
 # DRM
 bin/qseecomd
 lib/libQSEEComAPI.so:vendor/lib/libQSEEComAPI.so
-lib/libdrmdecrypt.so
+#lib/libdrmdecrypt.so
 vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
-vendor/lib/libwvdrm_L3.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/mediadrm/libwvdrmengine.so
+#vendor/lib/libwvdrm_L3.so
+#vendor/lib/libwvm.so
+#vendor/lib/libWVStreamControlAPI_L3.so
+#vendor/lib/drm/libdrmwvmplugin.so
+#vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
--priv-app/com.qualcomm.location.apk
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
 bin/gsiff_daemon
 bin/quipc_igsn
 bin/quipc_main
@@ -139,8 +138,8 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 
 # Radio
--app/qcrilmsgtunnel.apk
--app/shutdownlistener.apk
+-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+-app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
 bin/qmuxd
 bin/radish
@@ -169,17 +168,17 @@ vendor/lib/libthermalioctl.so
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
 -vendor/lib/libTimeService.so
--app/TimeService.apk
+-app/TimeService/TimeService.apk
 
 # Listen service
-vendor/lib/liblistenhardware.so
-vendor/lib/liblistenjni.so
--vendor/lib/liblisten.so
-vendor/lib/liblistensoundmodel.so
-vendor/lib/liblistensoundmodel2.so
+#vendor/lib/liblistenhardware.so
+#vendor/lib/liblistenjni.so
+#-vendor/lib/liblisten.so
+#vendor/lib/liblistensoundmodel.so
+#vendor/lib/liblistensoundmodel2.so
 
 # QuickBoot
--app/QuickBoot.apk
+-app/QuickBoot/QuickBoot.apk
 
 # Fastcharge
 bin/hvdcp
