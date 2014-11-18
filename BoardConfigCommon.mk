@@ -146,11 +146,6 @@ TARGET_PROVIDES_GPS_LOC_API := true
 # Use HW crypto for ODE
 TARGET_HW_DISK_ENCRYPTION := true
 
-# Enable CNE
-ifneq ($(QCPATH),)
-BOARD_USES_QCNE := true
-endif
-
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
