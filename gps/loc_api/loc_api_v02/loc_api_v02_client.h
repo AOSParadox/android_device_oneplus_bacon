@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012,2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -614,6 +614,8 @@ typedef union
     const qmiLocInjectTDSCDMACellInfoReqMsgT_v02 *pInjectTDSCDMACellInfoReq;
     const qmiLocInjectSubscriberIDReqMsgT_v02 *pInjectSubscriberIDReq;
     const qmiLocInjectWifiApDataReqMsgT_v02 *pInjectWifiApDataReq;
+    const qmiLocNotifyWifiAttachmentStatusReqMsgT_v02 *pNotifyWifiAttachmentStatusReq;
+    const qmiLocNotifyWifiEnabledStatusReqMsgT_v02 *pNotifyWifiEnabledStatusReq;
 
     const qmiLocReadFromBatchReqMsgT_v02 *pReadFromBatchReq;
     const qmiLocGetBatchSizeReqMsgT_v02 *pGetBatchSizeReq;
@@ -630,6 +632,14 @@ typedef union
 
          To send this request, set the reqId field in locClientSendReq() to
          QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 */
+
+    const qmiLocSetPremiumServicesCfgReqMsgT_v02 *pSetPremiumServicesCfgReq;
+    /*QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_REQ_V02*/
+
+    const qmiLocGetAvailWwanPositionReqMsgT_v02 *pGetAvailWwanPositionReq;
+    /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02*/
+
+    const qmiLocSetXtraVersionCheckReqMsgT_v02 *pSetXtraVersionCheckReq;
 }locClientReqUnionType;
 
 
@@ -780,6 +790,13 @@ typedef union
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_GEOFENCE_BREACH_NOTIFICATION_IND_V02. @newpagetable */
 
+   const qmiLocEventGeofenceBatchedBreachIndMsgT_v02* pGeofenceBatchedBreachEvent;
+   /**< Sent by the engine to notify the client about a geofence breach
+        event.
+
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02. @newpagetable */
+
    const qmiLocEventPedometerControlIndMsgT_v02* pPedometerControlEvent;
    /**< Sent by the engine to recommend how pedometer data is sent to the
         location engine.
@@ -814,6 +831,12 @@ typedef union
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02. @newpagetable */
 
+   const qmiLocEventGeofenceProximityIndMsgT_v02* pGeofenceProximityEvent;
+   /**< Sent by the engine to notify the client about a geofence proximity
+        event.
+
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02. @newpagetable */
 }locClientEventIndUnionType;
 
 
@@ -1198,6 +1221,8 @@ typedef union
     const qmiLocInjectTDSCDMACellInfoIndMsgT_v02 *pInjectTDSCDMACellInfoInd;
     const qmiLocInjectSubscriberIDIndMsgT_v02 *pInjectSubscriberIDInd;
     const qmiLocInjectWifiApDataIndMsgT_v02 *pInjectWifiApDataInd;
+    const qmiLocNotifyWifiAttachmentStatusIndMsgT_v02 *pNotifyWifiAttachmentStatusInd;
+    const qmiLocNotifyWifiEnabledStatusIndMsgT_v02 *pNotifyWifiEnabledStatusInd;
 
     const qmiLocInjectVehicleSensorDataIndMsgT_v02 *pInjectVehicleSensorDataInd;
 
@@ -1205,6 +1230,10 @@ typedef union
         The respIndId field in the response indication callback is set to
         QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02. */
 
+    const qmiLocGetAvailWwanPositionIndMsgT_v02 *pGetAvailWwanPositionInd;
+    /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02*/
+
+    const qmiLocSetXtraVersionCheckIndMsgT_v02 *pSetXtraVersionCheckInd;
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */
@@ -1444,35 +1473,30 @@ extern locClientStatusEnumType locClientSendReq(
 /*=============================================================================
     locClientSupportMsgCheck */
 /**
-  Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
-  location engine, and then recieves a list of all services supported
-  by the engine. This function will check if the input service form
-  the client is in the list or not. If the locClientSupportMsgCheck()
-  function is successful, the client should expect an bool result of
-  the service is supported or not.
-
-  @datatypes
-  #locClientStatusEnumType \n
-  #locClientHandleType \n
-  #locClientReqUnionType
-
+  @brief Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
+         location engine, and then receives a list of all services supported
+         by the engine. This function will check if the input service(s) form
+         the client is in the list or not. If the locClientSupportMsgCheck()
+         function is successful, the client should expect an result of
+         the service is supported or not recorded in supportedMsg.
   @param [in] handle Handle returned by the locClientOpen()
               function.
-  @param [in] reqId        message ID of the request
-  @param [in] reqPayload   Payload of the request, can be NULL
-                           if request has no payload
+  @param [in] supportedMsg   a integer used to record which
+                             message is supported
 
   @return
-  - true - On support.
-  - false - On dose not supprt or on failure.
+  One of the following error codes:
+  - 0 (eLOC_CLIENT_SUCCESS) -- On success.
+  - Non-zero error code (see \ref locClientStatusEnumType) -- On failure.
 
   @dependencies
   None. @newpage
 */
-extern bool locClientSupportMsgCheck(
+extern locClientStatusEnumType locClientSupportMsgCheck(
      locClientHandleType      handle,
-     uint32_t                 reqId,
-     locClientReqUnionType    reqPayload
+     const uint32_t*          msgArray,
+     uint32_t                 msgArrayLength,
+     uint64_t*                supportedMsg
 );
 
 /*=============================================================================

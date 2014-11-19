@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012,2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -60,10 +60,8 @@
 
 #endif //LOC_UTIL_TARGET_OFF_TARGET
 
-//timeout in ms that the service waits for qmi-fw notification
-#define LOC_CLIENT_SERVICE_TIMEOUT_UNIT  (4000)
-// total timeout for the service to come up
-#define LOC_CLIENT_SERVICE_TIMEOUT_TOTAL  (40000)
+#define LOC_CLIENT_MAX_OPEN_RETRIES (20)
+#define LOC_CLIENT_TIME_BETWEEN_OPEN_RETRIES (1)
 
 enum
 {
@@ -182,6 +180,11 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
     sizeof(qmiLocEventGeofenceBreachIndMsgT_v02),
     QMI_LOC_EVENT_MASK_GEOFENCE_BREACH_NOTIFICATION_V02},
 
+  //Geofence Batched Breach event
+  { QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02,
+    sizeof(qmiLocEventGeofenceBatchedBreachIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_BREACH_NOTIFICATION_V02},
+
   //Pedometer Control event
   { QMI_LOC_EVENT_PEDOMETER_CONTROL_IND_V02,
     sizeof(qmiLocEventPedometerControlIndMsgT_v02),
@@ -210,7 +213,13 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
    //Vehicle Data Readiness event
    { QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02,
      sizeof(qmiLocEventVehicleDataReadyIndMsgT_v02),
-     QMI_LOC_EVENT_MASK_VEHICLE_DATA_READY_STATUS_V02 }
+     QMI_LOC_EVENT_MASK_VEHICLE_DATA_READY_STATUS_V02 },
+
+  //Geofence Proximity event
+  { QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02,
+    sizeof(qmiLocEventGeofenceProximityIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION_V02}
+
 };
 
 /* table to relate the respInd Id with its size */
@@ -483,9 +492,24 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
    { QMI_LOC_RELEASE_BATCH_IND_V02,
      sizeof(qmiLocReleaseBatchIndMsgT_v02)},
 
+   { QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02,
+     sizeof(qmiLocSetXtraVersionCheckIndMsgT_v02)},
+
     //Vehicle Sensor Data
     { QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02,
-      sizeof(qmiLocInjectVehicleSensorDataIndMsgT_v02)}
+      sizeof(qmiLocInjectVehicleSensorDataIndMsgT_v02)},
+
+   { QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_IND_V02,
+     sizeof(qmiLocNotifyWifiAttachmentStatusIndMsgT_v02)},
+
+   { QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02,
+     sizeof(qmiLocNotifyWifiEnabledStatusIndMsgT_v02)},
+
+   { QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02,
+     sizeof(qmiLocSetPremiumServicesCfgReqMsgT_v02)},
+
+   { QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02,
+     sizeof(qmiLocGetAvailWwanPositionIndMsgT_v02)}
 };
 
 
@@ -603,40 +627,49 @@ static bool isClientRegisteredForEvent(
  @brief check the qmi service is supported or not.
  @param [in] pResponse  pointer to the response received from
         QMI_LOC service.
- @return bool value corresponding to the
-         service is supported or not.
 */
 
-static bool checkQmiMsgsSupported(
-  uint32_t                 reqId,
-  qmiLocGetSupportMsgT_v02 *pResponse)
+static void checkQmiMsgsSupported(
+  uint32_t*                reqIdArray,
+  int                      reqIdArrayLength,
+  qmiLocGetSupportMsgT_v02 *pResponse,
+  uint64_t*                supportedMsg)
 {
-    LOC_LOGV("%s:%d]: entering \n", __func__, __LINE__);
+    uint64_t result = 0;
+    if (pResponse->resp.supported_msgs_valid) {
 
-    /* For example, if a service supports exactly four messages with
-    IDs 0, 1, 30, and 31 (decimal), the array (in hexadecimal) is
-    4 bytes [03 00 00 c0]. */
+        /* For example, if a service supports exactly four messages with
+        IDs 0, 1, 30, and 31 (decimal), the array (in hexadecimal) is
+        4 bytes [03 00 00 c0]. */
 
-    int length = reqId/8 + 1;
-    LOC_LOGV("%s:%d]: length is %d ;\n", __func__, __LINE__, length);
+        size_t idx = 0;
+        uint32_t reqId = 0;
+        uint32_t length = 0;
+        uint32_t supportedMsgsLen = pResponse->resp.supported_msgs_len;
 
-    if(pResponse->resp.supported_msgs_len < length) {
-        LOC_LOGV("%s:%d]: pResponse->resp.supported_msgs_len < %d \n", __func__, __LINE__, length);
-        return false;
-    } else {
-        LOC_LOGV("%s:%d]: pResponse->resp.supported_msgs_len >= %d \n", __func__, __LINE__, length);
-        int bit = reqId%8;
-        LOC_LOGV("%s:%d]: the bit is %d\n", __func__, __LINE__, bit);
-        LOC_LOGV("%s:%d]: the pResponse->resp.supported_msgs[length] is %d\n",
-                 __func__, __LINE__, pResponse->resp.supported_msgs[length]);
-        if (pResponse->resp.supported_msgs[length-1] & (1<<bit)) {
-            LOC_LOGV("%s:%d]: this service %d is supported\n", __func__, __LINE__, reqId);
-            return true;
-        } else {
-            LOC_LOGV("%s:%d]: this service %d is not supported\n", __func__, __LINE__, reqId);
-            return false;
+        // every bit saves a checked message result
+        uint32_t maxCheckedMsgsSavedNum = sizeof(result)<<3;
+
+        uint32_t loopSize = reqIdArrayLength;
+        loopSize =
+            loopSize < supportedMsgsLen ? loopSize : supportedMsgsLen;
+        loopSize =
+            loopSize < maxCheckedMsgsSavedNum ? loopSize : maxCheckedMsgsSavedNum;
+
+        for (idx = 0; idx < loopSize; idx++) {
+            reqId = reqIdArray[idx];
+            length = reqId >> 3;
+            if(supportedMsgsLen > length) {
+                uint32_t bit = reqId & ((uint32_t)7);
+                if (pResponse->resp.supported_msgs[length] & (1<<bit)) {
+                    result |= ( 1 << idx ) ;
+                }
+            }
         }
+    } else {
+        LOC_LOGE("%s:%d] Invalid supported message list.\n", __func__, __LINE__);
     }
+    *supportedMsg = result;
 }
 
 /** convertQmiResponseToLocStatus
@@ -957,6 +990,13 @@ static bool locClientHandleIndication(
       break;
     }
 
+    case QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02:
+    {
+      //locClientHandleGeofenceBatchedBreachInd(user_handle, msg_id, ind_buf, ind_buf_len);
+      status = true;
+      break;
+    }
+
     case QMI_LOC_EVENT_PEDOMETER_CONTROL_IND_V02 :
     {
       //locClientHandlePedometerControlInd(user_handle, msg_id, ind_buf, ind_buf_len);
@@ -989,6 +1029,11 @@ static bool locClientHandleIndication(
       break;
     }
 
+    case QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02:
+    {
+      status = true;
+      break;
+    }
     //-------------------------------------------------------------------------
 
     // handle the response indications
@@ -1239,6 +1284,12 @@ static bool locClientHandleIndication(
     case QMI_LOC_INJECT_TDSCDMA_CELL_INFO_IND_V02:
     case QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02:
     case QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02:
+    case QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_IND_V02:
+    case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02:
+    case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02:
+    case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02:
+    case QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02:
+    case QMI_LOC_GET_REGISTERED_EVENTS_IND_V02:
     {
       status = true;
       break;
@@ -1841,10 +1892,40 @@ static bool validateRequest(
       break;
     }
 
+    case QMI_LOC_SET_XTRA_VERSION_CHECK_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocSetXtraVersionCheckReqMsgT_v02);
+        break;
+    }
+
     case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02:
     {
       *pOutLen = sizeof(qmiLocInjectVehicleSensorDataReqMsgT_v02);
       break;
+    }
+
+    case QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocNotifyWifiAttachmentStatusReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocNotifyWifiEnabledStatusReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocSetPremiumServicesCfgReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGetAvailWwanPositionReqMsgT_v02);
+        break;
     }
 
     // ALL requests with no payload
@@ -1906,15 +1987,17 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
   qmi_client_type clnt, notifier;
   bool notifierInitFlag = false;
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
+  // os_params must stay in the same scope as notifier
+  // because when notifier is initialized, the pointer
+  // of os_params is retained in QMI framework, and it
+  // used when notifier is released.
+  qmi_client_os_params os_params;
   // instances of this service
   qmi_service_info serviceInfo;
 
   do
   {
     qmi_client_error_type rc = QMI_NO_ERR;
-    bool nosignal = false;
-    qmi_client_os_params os_params;
-    int timeout = 0;
 
     // Get the service object for the qmiLoc Service
     qmi_idl_service_object_type locClientServiceObject =
@@ -1940,7 +2023,7 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
         break;
     }
 
-    do {
+    while (1) {
         QMI_CCI_OS_SIGNAL_CLEAR(&os_params);
 
         if (instanceId >= 0) {
@@ -1952,33 +2035,12 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
         }
 
         // get the service addressing information
-        LOC_LOGV("%s:%d]: qmi_client_get_service() rc: %d "
-                 "total timeout: %d", __func__, __LINE__, rc, timeout);
+        LOC_LOGV("%s:%d]: qmi_client_get_service() rc: %d ", __func__, __LINE__, rc);
 
         if(rc == QMI_NO_ERR)
             break;
 
-        /* Service is not up. Wait on a signal until the service is up
-           or a timeout occurs. */
-        LOC_LOGD("%s:%d]: Service not up. Starting delay timer\n", __func__, __LINE__);
-        QMI_CCI_OS_SIGNAL_WAIT(&os_params, LOC_CLIENT_SERVICE_TIMEOUT_UNIT);
-        nosignal = QMI_CCI_OS_SIGNAL_TIMED_OUT(&os_params);
-        if(nosignal)
-            timeout += LOC_CLIENT_SERVICE_TIMEOUT_UNIT;
-
-    } while (timeout < LOC_CLIENT_SERVICE_TIMEOUT_TOTAL);
-
-    if (rc != QMI_NO_ERR) {
-        if (!nosignal) {
-            LOC_LOGE("%s:%d]: qmi_client_get_service_list failed even though"
-                     "service is up !!!  Error %d \n", __func__, __LINE__, rc);
-            status = eLOC_CLIENT_FAILURE_INTERNAL;
-        } else {
-            LOC_LOGE("%s:%d]: qmi_client_get_service_list failed after retries,"
-                     " final Err %d", __func__, __LINE__, rc);
-            status = eLOC_CLIENT_FAILURE_TIMEOUT;
-        }
-        break;
+        QMI_CCI_OS_SIGNAL_WAIT(&os_params, 0);
     }
 
     LOC_LOGV("%s:%d]: passing the pointer %p to qmi_client_init \n",
@@ -2191,7 +2253,8 @@ locClientStatusEnumType locClientOpen (
   const void*                    pClientCookie)
 {
   int instanceId;
-
+  locClientStatusEnumType status;
+  int tries = 1;
 #ifdef _ANDROID_
   switch (getTargetGnssType(loc_get_target()))
   {
@@ -2218,8 +2281,21 @@ locClientStatusEnumType locClientOpen (
   instanceId = eLOC_CLIENT_INSTANCE_ID_ANY;
 #endif
 
-  return locClientOpenInstance(eventRegMask, instanceId, pLocClientCallbacks,
-          pLocClientHandle, pClientCookie);
+  while ((status = locClientOpenInstance(eventRegMask, instanceId, pLocClientCallbacks,
+          pLocClientHandle, pClientCookie)) != eLOC_CLIENT_SUCCESS) {
+    if (tries <= LOC_CLIENT_MAX_OPEN_RETRIES) {
+      LOC_LOGE("%s:%d]: failed with status=%d on try %d",
+               __func__, __LINE__, status, tries);
+      tries++;
+      sleep(LOC_CLIENT_TIME_BETWEEN_OPEN_RETRIES);
+    } else {
+      LOC_LOGE("%s:%d]: failed with status=%d Aborting...",
+               __func__, __LINE__, status);
+      break;
+    }
+  }
+
+  return status;
 }
 
 /** locClientClose
@@ -2370,7 +2446,12 @@ locClientStatusEnumType locClientSendReq(
   LOC_LOGV("%s:%d] qmi_client_send_msg_sync returned %d\n", __func__,
                 __LINE__, rc);
 
-  if (rc != QMI_NO_ERR)
+  if (QMI_SERVICE_ERR == rc)
+  {
+    LOC_LOGE("%s:%d]: send_msg_sync error: QMI_SERVICE_ERR\n",__func__, __LINE__);
+    return(eLOC_CLIENT_FAILURE_PHONE_OFFLINE);
+  }
+  else if (rc != QMI_NO_ERR)
   {
     LOC_LOGE("%s:%d]: send_msg_sync error: %d\n",__func__, __LINE__, rc);
     return(eLOC_CLIENT_FAILURE_INTERNAL);
@@ -2395,28 +2476,49 @@ locClientStatusEnumType locClientSendReq(
 
 /** locClientSupportMsgCheck
   @brief Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
-         location engine, and then recieves a list of all services supported
-         by the engine. This function will check if the input service form
+         location engine, and then receives a list of all services supported
+         by the engine. This function will check if the input service(s) form
          the client is in the list or not. If the locClientSupportMsgCheck()
-         function is successful, the client should expect an bool result of
-         the service is supported or not.
+         function is successful, the client should expect an result of
+         the service is supported or not recorded in supportedMsg.
   @param [in] handle Handle returned by the locClientOpen()
               function.
-  @param [in] reqId        message ID of the request
-  @param [in] reqPayload   Payload of the request, can be NULL
-                            if request has no payload
+  @param [in] supportedMsg   an integer used to record which
+                             message is supported
 
   @return
-  - true - On support.
-  - false - On dose not supprt or on failure.
+  One of the following error codes:
+  - 0 (eLOC_CLIENT_SUCCESS) -- On success.
+  - Non-zero error code (see \ref locClientStatusEnumType) -- On failure.
 */
 
-bool locClientSupportMsgCheck(
-  locClientHandleType      handle,
-  uint32_t                 reqId,
-  locClientReqUnionType    reqPayload )
+locClientStatusEnumType locClientSupportMsgCheck(
+     locClientHandleType      handle,
+     const uint32_t*          msgArray,
+     uint32_t                 msgArrayLength,
+     uint64_t*                supportedMsg)
 {
-  bool result = false; // by default is false
+
+  // set to true if one client has checked the modem capability.
+  static bool isCheckedAlready = false;
+  /*
+  The 1st bit in supportedMsgChecked indicates if
+      QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02
+      is supported or not;
+  The 2ed bit in supportedMsgChecked indicates if
+      QMI_LOC_GET_BATCH_SIZE_REQ_V02
+      is supported or not;
+  */
+  static uint64_t supportedMsgChecked = 0;
+
+  if (isCheckedAlready) {
+    // already checked modem
+    LOC_LOGV("%s:%d]: Already checked. The supportedMsgChecked is %lld\n",
+             __func__, __LINE__, supportedMsgChecked);
+    *supportedMsg = supportedMsgChecked;
+    return eLOC_CLIENT_SUCCESS;
+  }
+
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
   qmi_client_error_type rc = QMI_NO_ERR; //No error
   qmiLocGetSupportMsgT_v02 resp;
@@ -2426,21 +2528,6 @@ bool locClientSupportMsgCheck(
   locClientCallbackDataType *pCallbackData =
         (locClientCallbackDataType *)handle;
 
-   if(NULL == pCallbackData) {
-       LOC_LOGE("%s:%d]: invalid handle -- handle is NULL \n",
-                   __func__, __LINE__);
-       return result;
-   }
-   if( NULL == pCallbackData->userHandle ) {
-        LOC_LOGE("%s:%d]: invalid handle -- NULL == pCallbackData->userHandle \n",
-                   __func__, __LINE__);
-       return result;
-   }
-   if (pCallbackData != pCallbackData->pMe) {
-        LOC_LOGE("%s:%d]: invalid handle -- pCallbackData != pCallbackData->pMe \n",
-                   __func__, __LINE__);
-        return result;
-   }
   // check the input handle for sanity
    if( NULL == pCallbackData ||
        NULL == pCallbackData->userHandle ||
@@ -2449,7 +2536,7 @@ bool locClientSupportMsgCheck(
      LOC_LOGE("%s:%d]: invalid handle \n",
                    __func__, __LINE__);
 
-     return result;
+     return eLOC_CLIENT_FAILURE_GENERAL;
    }
 
   // NEXT call goes out to modem. We log the callflow before it
@@ -2473,29 +2560,30 @@ bool locClientSupportMsgCheck(
   if (rc != QMI_NO_ERR)
   {
     LOC_LOGE("%s:%d]: send_msg_sync error: %d\n",__func__, __LINE__, rc);
-    return result;
+    return eLOC_CLIENT_FAILURE_GENERAL;
   }
 
   // map the QCCI response to Loc API v02 status
   status = convertQmiResponseToLocStatus(&resp);
 
-  // if the request is to change registered events, update the
-  // loc api copy of that
   if(eLOC_CLIENT_SUCCESS == status)
   {
     LOC_LOGV("%s:%d]eLOC_CLIENT_SUCCESS == status\n", __func__, __LINE__);
-    if(NULL != reqPayload.pRegEventsReq )
-    {
-      LOC_LOGV("%s:%d]NULL != reqPayload.pRegEventsReq\n", __func__, __LINE__);
-      pCallbackData->eventRegMask =
-        (locClientEventMaskType)(reqPayload.pRegEventsReq->eventRegMask);
-    }
 
-    result = checkQmiMsgsSupported(reqId, &resp);
+    // check every message listed in msgArray supported by modem or not
+    checkQmiMsgsSupported(msgArray, msgArrayLength, &resp, &supportedMsgChecked);
+
+    LOC_LOGV("%s:%d]: supportedMsgChecked is %lld\n",
+             __func__, __LINE__, supportedMsgChecked);
+    *supportedMsg = supportedMsgChecked;
+    isCheckedAlready = true;
+    return status;
+  } else {
+
+    LOC_LOGE("%s:%d]: convertQmiResponseToLocStatus error: %d\n",
+            __func__, __LINE__, status);
+    return eLOC_CLIENT_FAILURE_GENERAL;
   }
-
-  LOC_LOGV("%s:%d] return value is %d\n", __func__, __LINE__, result);
-  return result;
 }
 
 /** locClientGetSizeByRespIndId
