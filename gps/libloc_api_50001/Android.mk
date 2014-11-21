@@ -96,6 +96,7 @@ LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils \
     $(TARGET_OUT_HEADERS)/libloc_core
 
+ifneq ($(QCPATH),)
 ifeq ($(filter $(TARGET_DEVICE), apq8064 msm8960),)
 $(call print-vars, $(TARGET_DEVICE))
 LOCAL_SHARED_LIBRARIES += \
@@ -107,6 +108,7 @@ LOCAL_C_INCLUDES += \
     $(TARGET_OUT_HEADERS)/libperipheralclient/inc
 LOCAL_CFLAGS += \
     -DMODEM_POWER_VOTE
+endif
 endif
 
 LOCAL_PRELINK_MODULE := false
