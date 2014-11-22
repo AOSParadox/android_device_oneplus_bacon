@@ -265,10 +265,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
-# Default to AwesomePlayer
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.use-awesome=true
-
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oppo/msm8974-common/msm8974-common-vendor.mk)
 
