@@ -69,6 +69,9 @@ lib/libloc_api_v02.so
 lib/libloc_ds_api.so
 vendor/lib/hw/activity_recognition.msm8974.so
 vendor/lib/hw/flp.default.so
+vendor/lib/libasn1crt.so
+vendor/lib/libasn1crtx.so
+vendor/lib/libasn1cper.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
@@ -79,6 +82,7 @@ vendor/lib/libxtadapter.so
 vendor/lib/libquipc_os_api.so
 vendor/lib/libquipc_ulp_adapter.so
 vendor/lib/libwifiscanner.so
+vendor/lib/libxtwifi_ulp_adaptor.so
 vendor/lib/libxtwifi_zpp_adaptor.so
 vendor/lib/libulp2.so
 
@@ -160,10 +164,14 @@ etc/permissions/qcrilhook.xml
 framework/qcnvitems.jar
 framework/qcrilhook.jar
 lib/libmdmdetect.so
+vendor/lib/libconfigdb.so
+vendor/lib/libcneapiclient.so
 vendor/lib/libnetmgr.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libvendorconn.so
+vendor/lib/libxml.so
 
 # Sensors
 bin/sensors.qcom
