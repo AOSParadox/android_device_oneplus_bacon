@@ -60,7 +60,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
-    mm.enable.qcom_parser=3314291 \
+    mm.enable.qcom_parser=3315315 \
     ro.qc.sdk.audio.fluencetype=fluence \
     persist.audio.fluence.voicecall=true \
     audio.offload.buffer.size.kb=32 \
@@ -73,8 +73,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     tunnel.audio.encode=true \
     media.aac_51_output_enabled=true \
     audio.offload.pcm.enable=true \
-    audio.offload.24bit.enable=1 \
-    media.aaccodectype=1
+    audio.offload.24bit.enable=1
 
 # Charger
 PRODUCT_PACKAGES += \
