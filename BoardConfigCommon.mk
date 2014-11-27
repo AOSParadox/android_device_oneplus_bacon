@@ -17,6 +17,9 @@
 # inherit from Oppo common
 -include device/oppo/common/BoardConfigCommon.mk
 
+# qcom sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/oppo/msm8974-common/include
 
