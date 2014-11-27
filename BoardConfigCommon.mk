@@ -17,9 +17,6 @@
 # inherit from Oppo common
 -include device/oppo/common/BoardConfigCommon.mk
 
-# qcom sepolicy
-include device/qcom/sepolicy/sepolicy.mk
-
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/oppo/msm8974-common/include
 
@@ -165,5 +162,12 @@ EXTENDED_FONT_FOOTPRINT := true
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
 endif
+
+# SELinux policies
+# qcom sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += \
+        device/oppo/msm8974-common/sepolicy
 
 -include vendor/oppo/msm8974-common/BoardConfigVendor.mk
