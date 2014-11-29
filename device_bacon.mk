@@ -20,6 +20,16 @@ endif
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+#CONFIGS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+
+$(call inherit-product, device/qcom/msm8974/msm8974.mk)
+
+-include device/qcom/msm8974/msm8974.mk
+
+LOCAL_PATH := device/oneplus/bacon
+
 # overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay vendor/extra/overlays/phone-1080p
 
@@ -52,19 +62,21 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     ueventd.bacon.rc
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/acdb/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/MTP_General_cal.acdb:system/etc/acdbdata/MTP/MTP_General_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/MTP_Global_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/MTP_Handset_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MTP_Headset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+    $(LOCAL_PATH)/audio/acdb/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 
 PRODUCT_PACKAGES += \
     audiod \
@@ -145,9 +157,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
 
 # Media
 PRODUCT_PACKAGES += \
@@ -178,17 +188,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    $(LOCAL_PATH)/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-    $(LOCAL_PATH)/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf
-
-ifeq ($(TARGET_BUILD_VARIANT),user)
-    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access.xml
-else
-    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access_debug.xml
-endif
-PRODUCT_COPY_FILES += \
-    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
 # Power
 PRODUCT_PACKAGES += \
