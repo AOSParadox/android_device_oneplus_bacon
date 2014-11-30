@@ -63,10 +63,10 @@ PRODUCT_PACKAGES += \
     ueventd.bacon.rc
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
-    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.target.rc:root/init.target.rc \
+    $(LOCAL_PATH)/rootdir/etc/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
 
 # Audio
 PRODUCT_COPY_FILES += \
