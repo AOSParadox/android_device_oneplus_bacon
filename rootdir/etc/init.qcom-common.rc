@@ -77,8 +77,8 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     #Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0770 root system
-    chmod 2770 /data/misc/perfd
+    mkdir /data/misc/perfd 0755 root system
+    chmod 2775 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
@@ -99,9 +99,6 @@ on boot
 
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
-
-    #For bridgemgr daemon to inform the USB driver of the correct transport
-    chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
 
     # For setting tcp delayed ack
     chown system system /sys/kernel/ipv4/tcp_delack_seg
@@ -195,6 +192,9 @@ on post-fs-data
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
     restorecon_recursive /data/nfc
+
+    # Create directory for TZ Apps
+    mkdir /data/misc/qsee 0770 system system
 
     #  bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
@@ -563,7 +563,10 @@ service mpdecision /system/bin/mpdecision --avg_comp
 service thermal-engine /system/bin/thermal-engine
    class main
    user root
-   group radio system
+   group root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
 
 service time_daemon /system/bin/time_daemon
     class late_start
@@ -619,25 +622,23 @@ service audiod /system/bin/audiod
    group system
 
 service wcnss-service /system/bin/wcnss_service
-    class late_start
+    class main
     user system
     group system wifi qcom_diag radio
     oneshot
 
-# GPS
-service gsiff_daemon /system/bin/gsiff_daemon
-    class late_start
-    user system
-    group gps net_raw
-
 service ppd /system/bin/mm-pp-daemon
     class late_start
+    disabled
     user system
     socket pps stream 0660 system system
     group system graphics
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
+
+on property:init.svc.surfaceflinger=running
+    start ppd
 
 # diag logging
 service diag_mdlog_start /system/bin/diag_mdlog
@@ -667,3 +668,8 @@ service ssr_diag /system/bin/ssr_diag
     disabled
     user system
     group system
+
+service pfm /system/bin/pfm
+    class late_start
+    user system
+    group system drmrpc mount

@@ -116,7 +116,7 @@
     <bool name="config_enableWifiDisplay">true</bool>
 
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
-    <bool name="config_speed_up_audio_on_mt_calls">false</bool>
+    <bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
@@ -182,10 +182,9 @@
 
     <!-- Enable the option to check proximity sensor when deciding whether to
          turn the screen on
-         NOTE ! - Enable for devices that have a fast response proximity sensor
+         NOTE ! - Enable for devices that have a fast response proximity sensor -->
     <bool name="config_proximityCheckOnWake">true</bool>
     <integer name="config_proximityCheckTimeout">400</integer>
-    -->
 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
