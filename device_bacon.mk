@@ -53,7 +53,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.qcom-common.rc \
+    init.qcom.rc \
     init.recovery.qcom.rc \
     ueventd.qcom.rc \
     libinit_bacon \
