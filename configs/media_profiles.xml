@@ -111,9 +111,9 @@
     <EncoderProfile quality="high" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="65000000"
-             width="4096"
+             width="3840"
              height="2160"
-             frameRate="24" />
+             frameRate="30" />
 
       <Audio codec="aac"
              bitRate="320000"
@@ -253,7 +253,7 @@
 
     <EncoderProfile quality="2160p" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="60000000"
+             bitRate="65000000"
              width="3840"
              height="2160"
              frameRate="30" />
@@ -293,14 +293,14 @@
 
     <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="42000000"
+             bitRate="65000000"
              width="3840"
              height="2160"
              frameRate="30" />
 
       <!-- audio setting is ignored -->
       <Audio codec="aac"
-             bitRate="256000"
+             bitRate="320000"
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
@@ -448,7 +448,7 @@
 
     <EncoderProfile quality="timelapse2160p" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="60000000"
+             bitRate="65000000"
              width="3840"
              height="2160"
              frameRate="30" />
