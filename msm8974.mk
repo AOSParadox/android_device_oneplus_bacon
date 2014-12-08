@@ -69,12 +69,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true \
     audio.offload.multiple.enabled=false \
     audio.offload.gapless.enabled=true \
-    qcom.hw.aac.encoder=true \
     tunnel.audio.encode=true \
     media.aac_51_output_enabled=true \
     audio.offload.pcm.enable=true
-
-#    audio.offload.24bit.enable=1
 
 # Charger
 PRODUCT_PACKAGES += \
