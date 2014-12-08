@@ -165,10 +165,9 @@
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">true</bool>
 
-    <!-- Performance profiles
+    <!-- Performance profiles -->
     <string name="config_perf_profile_prop">powerhal</string>
     <string name="config_perf_profile_default_entry">1</string>
-    -->
 
     <!-- Traffic stats -->
     <string name="config_datause_iface">rmnet0</string>
