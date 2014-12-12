@@ -185,6 +185,11 @@ on boot
     # Set the default message loglevel to KERN_INFO
     write /proc/sys/kernel/printk "6 6 1 7"
 
+    # touchscreen
+    chown system system /sys/kernel/touchscreen/camera_enable
+    chown system system /sys/kernel/touchscreen/flashlight_enable
+    chown system system /sys/kernel/touchscreen/double_tap_enable
+
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create directory for TZ Apps
