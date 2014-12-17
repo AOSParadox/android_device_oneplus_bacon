@@ -291,6 +291,11 @@ on fs
     mkdir /dev/bus 0755 root root
     mkdir /dev/bus/usb 0755 root root
 
+    restorecon_recursive   /persist
+    mkdir /persist/data 0700 system system
+    mkdir /persist/data/sfs 0700 system system
+    mkdir /persist/data/tz 0700 system system
+
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/lpm_levels/enable_low_power/l2 2
