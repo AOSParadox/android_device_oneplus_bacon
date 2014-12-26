@@ -14,21 +14,22 @@
 # limitations under the License.
 #
 
+
 ifneq ($(QCPATH),)
 $(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
 endif
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-#CONFIGS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-
 $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
 -include device/qcom/msm8974/msm8974.mk
 
 LOCAL_PATH := device/oneplus/bacon
+
+# WiFi
+#PRODUCT_COPY_FILES += \
+#    device/oneplus/bacon/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -163,6 +164,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
 
+# WiFi
+PRODUCT_COPY_FILES += \
+    device/oneplus/bacon/configs/media_codecs.xml:system/etc/media_codecs.xml
+
 # Media
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -205,10 +210,6 @@ PRODUCT_COPY_FILES += \
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# WiFi
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     libwpa_client \
