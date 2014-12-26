@@ -219,8 +219,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     wcnss_service
 
-TARGET_USES_QCOM_WCNSS_QMI := false
-
 # Misc dependency packages
 PRODUCT_PACKAGES += \
     ebtables \
