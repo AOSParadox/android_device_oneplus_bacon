@@ -180,13 +180,6 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     qcmediaplayer
 
-# NFC
-PRODUCT_PACKAGES += \
-    NfcNci \
-    Tag \
-    nfc_nci.pn54x.default \
-    com.android.nfc_extras
-
 # NFC access control + feature files + configuration
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
@@ -201,11 +194,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     qrngd \
     qrngp
-
-# Keyhandler
-PRODUCT_PACKAGES += \
-    ConfigPanel \
-    com.cyanogenmod.keyhandler
 
 # Keystore
 PRODUCT_PACKAGES += \
