@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-import /init.qcom-common.rc
-
 on fs
     mount_all ./fstab.bacon
     restorecon_recursive /persist

@@ -5,6 +5,10 @@ LOCAL_PATH := $(call my-dir)
 #
 KERNEL_DEFCONFIG := cyanogenmod_bacon_defconfig
 
+include $(CLEAR_VARS)
+
+ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
+
 include device/qcom/msm8974/AndroidBoard.mk
 
 #Create symbolic links
