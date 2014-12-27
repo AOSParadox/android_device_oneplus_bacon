@@ -58,7 +58,6 @@ vendor/lib/mediadrm/libwvdrmengine.so
 bin/loc_launcher
 bin/location-mq
 bin/lowi-server
-bin/gsiff_daemon
 bin/quipc_igsn
 bin/quipc_main
 bin/xtwifi-client
