@@ -121,7 +121,7 @@ TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 
 # QCRIL
-TARGET_RIL_VARIANT := ril-caf
+TARGET_RIL_VARIANT := caf
 
 # Use HW crypto for ODE
 TARGET_HW_DISK_ENCRYPTION := true
