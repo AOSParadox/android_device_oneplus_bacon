@@ -1,0 +1,111 @@
+##################################################################################
+### VENDOR_EDIT, OPPO All rights reserved.
+### 
+### File: - init.oppo.debug.nosd.rc
+### Author: Jason.Lee@OnlineRd.Framework
+### 
+### ------------------------------- Revision History: ----------------------------
+### <author>                        <data>       <version>   <desc>
+### ------------------------------------------------------------------------------
+### Jason.Lee@OnlineRd.Framework   2014-03-18               Create this file
+##################################################################################
+
+#ifdef VENDOR_EDIT
+#Jason.Lee@OnlineRd.Framework.oppo_debug, 2013/10/15, add for oppo Assert 
+on boot
+    # oppo_trace
+    chmod 0640 /dev/otracer
+    # raw partition
+    chmod 0660 /dev/block/mmcblk0p26
+    chown root system /dev/block/mmcblk0p26
+    chmod 0711 /sbin/self-init
+	mkdir /system/etc/param 0644 root root 
+
+#init native service
+service backup_log_nosd /system/xbin/backup_log_nosd
+    user root
+    group log
+    disabled
+    oneshot
+	
+service klogd_strict /system/xbin/klogd -f /cache/admin/kernel/kinfox.txt -n -x -l 6
+    user root
+    group log
+    disabled
+    oneshot
+
+service klogd_loose /system/xbin/klogd -f /cache/admin/kernel/kinfox.txt -n -x -l 7
+    user root
+    group log
+    disabled
+    oneshot
+
+service logcat_strict /system/bin/logcat  -f /cache/admin/apps/android.txt -r2048 -n 10 -v time *:D
+    user root
+    group log
+    disabled
+    oneshot
+
+service logcat_loose /system/bin/logcat  -f /cache/admin/apps/android.txt -r4096 -n 10  -v time *:V
+    user root
+    group log
+    disabled
+    oneshot
+
+service logcat_radio /system/bin/logcat -b radio -f /cache/admin/apps/radio.txt -r8192 -n 10  -v time *:V
+    user root
+    group log
+    disabled
+    oneshot
+
+#peirs add logcat_event
+service logcat_event /system/bin/logcat -b events -f /cache/admin/apps/events.txt -r8192 -n 10  -v threadtime *:V
+    user root
+    disabled
+    oneshot
+
+service dumplog /system/bin/dumpstate -t feedback
+    class main
+    socket dumpstate stream 0660 shell log
+    disabled
+    oneshot
+
+on property:persist.sys.assert.enable=true
+    start backup_log_nosd
+    write /proc/otrace_on 7978
+on property:persist.sys.assert.panic=true
+    start backup_log_nosd
+    write /proc/otrace_on 0
+    write /sys/module/msm_show_resume_irq/parameters/debug_mask 0xff
+
+on property:persist.sys.assert.panic=false
+write /sys/module/msm_show_resume_irq/parameters/debug_mask 0x0
+
+#Peirs add logcat_event to save event log:
+on property:init.svc.backup_log_nosd=stopped
+   mkdir /cache/admin 0777 system system
+   mkdir /cache/admin/apps 0777 system system
+   mkdir /cache/admin/kernel 0777 system system
+   mkdir /cache/admin/assertlog 0777 system system
+   start logcat_loose
+   start logcat_radio
+   start logcat_event
+   start klogd_loose
+#endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT
+#wangjw@OnLineRD.framework.oppo_debug, 2013/10/22, add for setting dump mode
+on property:sys.oppo.dump=1
+	write /sys/module/restart/parameters/download_mode  1
+	write /proc/otrace_on 7978
+	write /proc/restart_level_all 1
+	write /proc/sys/kernel/printk "7 6 1 7"
+
+on property:sys.oppo.dump=0
+	write /sys/module/restart/parameters/download_mode  0
+	write /proc/otrace_on 0
+	write /proc/restart_level_all 0
+	write /proc/sys/kernel/printk "1 6 1 7"
+    
+#endif /* VENDOR_EDIT */
+

@@ -79,14 +79,20 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.qcom.rc \
-    init.recovery.qcom.rc \
-    ueventd.qcom.rc \
-    libinit_bacon \
-    fstab.bacon \
-    init.bacon.rc \
-    init.qcom.usb.rc \
-    ueventd.bacon.rc
+	init.at.rc \
+	init.mos.rc \
+	init.oppo.block.sh \
+	init.oppo.debug.rc \
+	init.oppo.engineermode.sh \
+	init.oppo.init.rc \
+	init.oppo.rc \
+	init.oppo.rf.sh \
+	init.oppo.rootdetect.sh \
+	init.qcom.wcnss3660.sh \
+	init.rf.modem.test.sh \
+	init.rf.rc \
+	init.wlan.rc \
+	ueventd.qcom.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:root/fstab.qcom \
@@ -124,8 +130,8 @@ PRODUCT_PACKAGES += \
 
 # Audio configuration file
 PRODUCT_COPY_FILES += \
-    device/oneplus/bacon/audio_policy.conf:system/etc/audio_policy.conf \
-    device/oneplus/bacon/mixer_paths.xml:system/etc/mixer_paths.xml
+    device/oneplus/bacon/mixer_paths.xml:system/etc/mixer_paths.xml \
+    device/oneplus/bacon/mixer_paths.xml:system/etc/mixer_paths_140001.xml
 
 # Charger
 PRODUCT_PACKAGES += \
