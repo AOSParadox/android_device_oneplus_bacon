@@ -219,6 +219,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
 
+#Configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
+    $(LOCAL_PATH)/configs/qca6234-service.sh:system/etc/qca6234-service.sh
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
