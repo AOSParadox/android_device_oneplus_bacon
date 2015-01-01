@@ -151,11 +151,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8974
 
-# QRNGD
-PRODUCT_PACKAGES += \
-    qrngd \
-    qrngp
-
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8974
