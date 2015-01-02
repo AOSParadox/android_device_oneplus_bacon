@@ -67,6 +67,7 @@ bin/xtwifi-inet-agent
 etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
+vendor/bin/slim_ap_daemon
 vendor/lib/hw/activity_recognition.msm8974.so
 vendor/lib/hw/flp.default.so
 vendor/lib/libalarmservice_jni.so
