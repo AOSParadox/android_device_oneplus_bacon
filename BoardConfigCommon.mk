@@ -65,6 +65,7 @@ QCOM_BT_USE_SMD_TTY := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # Charger
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_RES := device/oppo/msm8974-common/charger/images
 
 # CM Hardware
