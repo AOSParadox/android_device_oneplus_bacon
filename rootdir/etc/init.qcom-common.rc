@@ -63,9 +63,6 @@ on boot
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
 
-    #Create OPPO NV item directory
-    mkdir /data/opponvitems 0771 radio radio
-
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
@@ -75,12 +72,6 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
-
-    #Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2775 /data/misc/perfd
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
 
     #charger
     chown root system /sys/module/qpnp_charger/parameters/charger_monitor
@@ -106,8 +97,8 @@ on boot
 
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.lte     524288,1048576,2097152,262144,524288,1048576
+    setprop net.tcp.buffersize.default 4096,87380,524288,4096,16384,110208
+    setprop net.tcp.buffersize.lte     2097152,4194304,8388608,262144,524288,1048576
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
     setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
@@ -115,7 +106,7 @@ on boot
     setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
     setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
     setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
+    setprop net.tcp.buffersize.evdo    4094,87380,524288,4096,16384,262144
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
 
 # Define TCP delayed ack settings for WiFi & LTE
@@ -128,8 +119,8 @@ on boot
 
 #   Assign TCP buffer thresholds to be ceiling value of technology maximums
 #   Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  2097152
-    write /proc/sys/net/core/wmem_max  2097152
+    write /proc/sys/net/core/rmem_max  8388608
+    write /proc/sys/net/core/wmem_max  8388608
 
     #To allow interfaces to get v6 address when tethering is enabled
     write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
@@ -186,12 +177,13 @@ on boot
 
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
-    restorecon_recursive /data/media
 
     # NFC: create data/nfc for nv storage
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
-    restorecon_recursive /data/nfc
+
+    #Create OPPO NV item directory
+    mkdir /data/opponvitems 0771 radio radio
 
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
@@ -201,7 +193,6 @@ on post-fs-data
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
-    restorecon_recursive /data/misc/audio
 
     # Create directory used by sensor subsystem
     mkdir /persist/sensors 0775 system root
@@ -229,6 +220,15 @@ on post-fs-data
     mkdir /data/dpm/nsrm 0771 system system
     chown system system /data/dpm/nsrm
 
+    # Create directory used by the DASH client
+    mkdir /data/misc/dash 0770 media audio
+
+    # Create directory used by display clients
+    mkdir /data/misc/display 0770 root system
+
+    # We chown/chmod /persist again so because mount is run as root + defaults
+    chown system system /persist
+    chmod 0771 /persist
 
     #Create directories for Location services
     mkdir /data/misc/location 0770 gps gps
@@ -244,7 +244,8 @@ on post-fs-data
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
-    restorecon_recursive /data/time
+
+    mkdir /data/audio/ 0770 media audio
 
     # Touchscreen
     chown root system /proc/touchpanel/double_tap_enable
@@ -282,6 +283,15 @@ on post-fs-data
     chmod 0644 /sys/class/timed_output/vibrator/vtg_min
 
     setprop vold.post_fs_data_done 1
+
+    #Create folder for mm-qcamera-daemon
+    mkdir /data/camera 0770 media camera
+
+    #Create PERFD deamon related dirs
+    mkdir /data/misc/perfd 0755 root system
+    chmod 2755 /data/misc/perfd
+    mkdir /data/system/perfd 0770 root system
+    chmod 2770 /data/system/perfd
 
 on fs
     mkdir /dev/usb-ffs 0770 shell shell
@@ -420,6 +430,9 @@ service sensors /system/bin/sensors.qcom
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
+on property:persist.env.fastdorm.enabled=true
+    setprop persist.radio.data_no_toggle 1
+
 service cnd /system/bin/cnd
     class late_start
     socket cnd stream 660 root inet
@@ -428,7 +441,7 @@ service dpmd /system/bin/dpmd
     class late_start
     socket dpmd stream 660 root system
 
-service irsc_util /system/bin/irsc_util "/etc/sec_config"
+service irsc_util /system/bin/logwrapper /system/bin/irsc_util "/etc/sec_config"
     class main
     user root
     oneshot
@@ -583,6 +596,7 @@ on property:sys.boot_completed=1
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
+    start wcnss-service
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -635,14 +649,14 @@ on property:init.svc.surfaceflinger=running
 # diag logging
 service diag_mdlog_start /system/bin/diag_mdlog
     class late_start
-    user sdcard_rw
+    user shell
     group system qcom_diag sdcard_rw sdcard_r media_rw
     disabled
     oneshot
 
 service diag_mdlog_stop /system/bin/diag_mdlog -k
     class late_start
-    user sdcard_rw
+    user shell
     group system qcom_diag sdcard_rw sdcard_r media_rw
     disabled
     oneshot

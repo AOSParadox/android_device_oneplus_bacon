@@ -26,6 +26,9 @@
          when there's no network connection. If the scan doesn't timeout, use zero -->
     <integer name="config_radioScanningTimeout">0</integer>
 
+    <!-- Boolean indicating if current platform supports BLE peripheral mode -->
+    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
+
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 
@@ -56,6 +59,7 @@
         <item>"mobile_cbs,12,0,2,60000,true"</item>
         <item>"mobile_ia,14,0,2,-1,true"</item>
         <item>"bluetooth,7,7,2,-1,true"</item>
+        <item>"ethernet,9,9,9,-1,true"</item>
     </string-array>
 
     <!-- This string array should be overridden by the device to present a list of radio
@@ -169,15 +173,27 @@
     <string name="config_perf_profile_prop">powerhal</string>
     <string name="config_perf_profile_default_entry">1</string>
 
-    <!-- Traffic stats -->
-    <string name="config_datause_iface">rmnet0</string>
-
-    <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
-    on the headphone/microphone jack. When false use the older uevent framework -->
+    <!-- Setting this true forces the headset jack switches to use the/dev/input/event subsystem
+         rather than the uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
+
+    <!-- Indicate whether closing the lid causes the device to go to sleep and opening
+         it causes the device to wake up.
+         The default is false. -->
+    <bool name="config_lidControlsSleep">true</bool>
+
+    <!-- Indicate whether to allow the device to suspend when the screen is off
+         due to the proximity sensor.  This resource should only be set to true
+         if the sensor HAL correctly handles the proximity sensor as a wake-up source.
+         Otherwise, the device may fail to wake out of suspend reliably.
+         The default is false. -->
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
 
     <!-- Is the device capable of hot swapping an ICC Card -->
     <bool name="config_hotswapCapable">true</bool>
+
+    <!-- Flag specifying whether VoLTE & VT is availasble on device -->
+    <bool name="config_device_volte_vt_available">false</bool>
 
     <!-- Enable the option to check proximity sensor when deciding whether to
          turn the screen on
