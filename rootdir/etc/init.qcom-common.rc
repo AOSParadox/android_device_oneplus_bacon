@@ -248,7 +248,7 @@ on post-fs-data
     mkdir /data/audio/ 0770 media audio
 
     # Touchscreen
-    chown root system /proc/touchpanel/double_tap_enable
+    chown system radio /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
 
     chown root system /proc/touchpanel/camera_enable
