@@ -293,6 +293,9 @@ on post-fs-data
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
+    # camera sockets
+    mkdir /data/misc/camera 0770 camera camera
+
 on fs
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
