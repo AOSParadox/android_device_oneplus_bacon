@@ -147,6 +147,10 @@ EXTENDED_FONT_FOOTPRINT := true
 # inherit from the proprietary version
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
+
+ifeq ($(BOARD_USES_QCNE),true)
+TARGET_LDPRELOAD := libNimsWrap.so
+endif
 endif
 
 # SELinux policies
