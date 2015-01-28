@@ -79,7 +79,7 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_RES := device/oneplus/bacon/charger/images
 
 # Graphics
-BOARD_EGL_CFG := device/oneplus/bacon/configs/egl.cfg
+BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := trueI
