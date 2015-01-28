@@ -16,7 +16,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_BOARD_PLATFORM),msm8974)
+ifeq ($(BOARD_VENDOR),oppo)
+ifeq ($(TARGET_DEVICE),bacon)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
@@ -167,4 +168,12 @@ $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wcd9320; \
 		$(TARGET_OUT)/etc/firmware/wcd9320/wcd9320_mbhc.bin; \
 	ln -sf /data/misc/audio/wcd9320_mad_audio.bin \
 		$(TARGET_OUT)/etc/firmware/wcd9320/wcd9320_mad_audio.bin)
+
+# Create a link for the WCNSS config file, which ends up as a writable
+# version in /data/misc/wifi
+$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
+    ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
+	    $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
+
+endif
 endif

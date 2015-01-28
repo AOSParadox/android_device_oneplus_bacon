@@ -1,1 +1,1 @@
-add_lunch_combo full_bacon-userdebug
+add_lunch_combo par_bacon-userdebug
