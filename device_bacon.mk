@@ -60,11 +60,11 @@ PRODUCT_PACKAGES += \
     init.qcom-common.rc \
     init.recovery.qcom.rc \
     ueventd.qcom.rc \
-    libinit_bacon \
     fstab.bacon \
     init.bacon.rc \
     init.qcom.usb.rc \
     ueventd.bacon.rc
+#    libinit_bacon \
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -112,7 +112,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/configs/mixer_paths_14001.xml:system/etc/mixer_paths_14001.xml
 # NFC
@@ -220,6 +219,3 @@ PRODUCT_COPY_FILES += \
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oppo/msm8974-common/msm8974-common-vendor.mk)
-
-# Inherit from oppo-common
-$(call inherit-product, device/oppo/common/common.mk)

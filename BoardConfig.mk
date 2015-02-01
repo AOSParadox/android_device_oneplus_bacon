@@ -42,15 +42,17 @@ TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_bacon_defconfig
+KERNEL_DEFCONFIG := cyanogenmod_bacon_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_ARCH := arm
 
-# MSM Init
+# BACON Init
+-include device/oneplus/bacon/init/Android.mk
 TARGET_INIT_VENDOR_LIB := libinit_bacon
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_bacon.c
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
@@ -169,9 +171,6 @@ ifneq ($(QCPATH),)
 endif
 
 # SELinux policies
-# qcom sepolicy
-include device/qcom/sepolicy/sepolicy.mk
-
 BOARD_SEPOLICY_DIRS += \
         device/oneplus/bacon/sepolicy
 
