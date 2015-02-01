@@ -16,8 +16,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(BOARD_VENDOR),oppo)
-ifeq ($(TARGET_DEVICE),bacon)
+#ifeq ($(BOARD_VENDOR),oppo)
+#ifeq ($(TARGET_DEVICE),bacon)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
@@ -169,5 +169,5 @@ $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wcd9320; \
 	ln -sf /data/misc/audio/wcd9320_mad_audio.bin \
 		$(TARGET_OUT)/etc/firmware/wcd9320/wcd9320_mad_audio.bin)
 
-endif
-endif
+#endif
+#endif

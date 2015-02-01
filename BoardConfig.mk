@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+LOCAL_PATH := $(call my-dir)
+
 # inherit CodeAurora MSM8974 Board Config
 -include device/qcom/msm8974/BoardConfig.mk
 
@@ -50,9 +52,7 @@ BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_ARCH := arm
 
 # BACON Init
--include device/oneplus/bacon/init/Android.mk
 TARGET_INIT_VENDOR_LIB := libinit_bacon
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_bacon.c
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD

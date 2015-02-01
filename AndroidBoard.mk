@@ -1,13 +1,5 @@
 LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE_TAGS := optional
-LOCAL_C_INCLUDES := system/core/init
-LOCAL_CFLAGS := -Wall
-LOCAL_SRC_FILES := init/init_bacon.c
-LOCAL_MODULE := libinit_bacon
-include $(BUILD_STATIC_LIBRARY)
-
 include device/qcom/msm8974/AndroidBoard.mk
 
 # Create a link for the WCNSS config file, which ends up as a writable

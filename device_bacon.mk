@@ -51,6 +51,8 @@ PRODUCT_CHARACTERISTICS := nosdcard
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
+LOCAL_PATH := device/oneplus/bacon
+
 # Config scripts
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
@@ -63,8 +65,8 @@ PRODUCT_PACKAGES += \
     fstab.bacon \
     init.bacon.rc \
     init.qcom.usb.rc \
-    ueventd.bacon.rc
-#    libinit_bacon \
+    ueventd.bacon.rc \
+    libinit_bacon
 
 # Audio
 PRODUCT_COPY_FILES += \
