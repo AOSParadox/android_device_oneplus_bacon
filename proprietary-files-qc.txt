@@ -168,12 +168,10 @@ framework/qcnvitems.jar
 framework/qcrilhook.jar
 lib/libmdmdetect.so
 vendor/lib/libconfigdb.so
-vendor/lib/libcneapiclient.so
 vendor/lib/libnetmgr.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qcril-hook-oem.so
-vendor/lib/libvendorconn.so
 vendor/lib/libxml.so
 
 # Sensors
