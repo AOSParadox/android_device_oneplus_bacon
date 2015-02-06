@@ -192,11 +192,10 @@ bin/time_daemon
 -app/TimeService/TimeService.apk
 
 # Listen service
-#vendor/lib/liblistenhardware.so
-#vendor/lib/liblistenjni.so
-#-vendor/lib/liblisten.so
-#vendor/lib/liblistensoundmodel.so
-#vendor/lib/liblistensoundmodel2.so
+vendor/lib/liblistenhardware.so
+vendor/lib/liblistenjni.so
+-vendor/lib/liblisten.so
+vendor/lib/liblistensoundmodel.so
 
 # QuickBoot
 -app/QuickBoot/QuickBoot.apk
