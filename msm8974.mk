@@ -60,8 +60,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
     persist.audio.fluence.voicecall=true \
     audio.offload.buffer.size.kb=32 \
-    av.offload.enable=true \
-    av.streaming.offload.enable=true \
     use.voice.path.for.pcm.voip=true \
     audio.offload.multiple.enabled=false \
     audio.offload.gapless.enabled=true \
@@ -69,6 +67,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.aac_51_output_enabled=true \
     audio.offload.pcm.16bit.enable=true \
     audio.offload.pcm.24bit.enable=true
+
+# FIXME: Disabled due to AV sync issues in firmware
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    av.offload.enable=true \
+#    av.streaming.offload.enable=true \
 
 # Charger
 PRODUCT_PACKAGES += \
