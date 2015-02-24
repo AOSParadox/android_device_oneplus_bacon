@@ -44,6 +44,8 @@ TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
 
 # Kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_bacon_defconfig
+TARGET_KERNEL_SOURCE := kernel
 KERNEL_DEFCONFIG := cyanogenmod_bacon_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_BASE := 0x00000000
