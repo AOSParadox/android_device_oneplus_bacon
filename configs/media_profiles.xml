@@ -812,7 +812,7 @@
         maxHFRMode="0"  />
 
     <VideoEncoderCap name="m4v" enabled="true"
-        minBitRate="64000" maxBitRate="20000000"
+        minBitRate="64000" maxBitRate="65000000"
         minFrameWidth="176" maxFrameWidth="1920"
         minFrameHeight="144" maxFrameHeight="1088"
         minFrameRate="15" maxFrameRate="30"
