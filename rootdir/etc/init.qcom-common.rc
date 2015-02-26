@@ -272,8 +272,8 @@ on post-fs-data
     chown system system /sys/devices/virtual/graphics/fb0/color_enhance
     chmod 0660 /sys/devices/virtual/graphics/fb0/color_enhance
 
-    chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration
-    chmod 0660 /sys/devices/virtual/graphics/fb0/panel_calibration
+    chown system system /sys/devices/virtual/graphics/fb0/rgb
+    chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
 
     chown system system /sys/devices/virtual/graphics/fb0/dyn_pu
     chmod 0660 /sys/devices/virtual/graphics/fb0/dyn_pu
@@ -600,9 +600,6 @@ service time_daemon /system/bin/time_daemon
     class late_start
     user root
     group root
-
-on property:sys.boot_completed=1
-    write /sys/devices/virtual/graphics/fb0/panel_calibration 1
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
