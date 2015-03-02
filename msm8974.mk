@@ -237,10 +237,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.ir_proximity=true
 
-# HACK for QC errata issue
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwui.render_dirty_regions=false
-
 # Permissions
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
