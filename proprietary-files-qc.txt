@@ -130,7 +130,6 @@ vendor/lib/libSHIMDivxDrm.so
 # Postprocessing
 -app/PPPreference/PPPreference.apk
 bin/mm-pp-daemon
-lib/libtinyxml.so
 vendor/lib/libdisp-aba.so
 -vendor/lib/libmm-abl.so
 vendor/lib/libmm-abl-oem.so
