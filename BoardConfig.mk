@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2015 The AOSParadox Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,17 +28,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Platform
-TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
-
-# Architecture
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := krait
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
@@ -64,7 +54,20 @@ BOARD_USES_QCOM_HARDWARE := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_EXTN_POST_PROC := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_INCALL_MUSIC := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
+AUDIO_FEATURE_DISABLED_FM := true
 AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 
 # Bluetooth
@@ -80,7 +83,6 @@ COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_RES := device/oneplus/bacon/charger/images
 
 # Graphics
 BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg
@@ -94,23 +96,7 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
-BOARD_CACHEIMAGE_PARTITION_SIZE    := 536870912
-BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1388314624
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 13271448576
-BOARD_USERDATAEXTRAIMAGE_PARTITION_SIZE := 59914792960
-BOARD_USERDATAEXTRAIMAGE_PARTITION_NAME := 64G
-
-# Shader cache config options
-# Maximum size of the  GLES Shaders that can be cached for reuse.
-# Increase the size if shaders of size greater than 12KB are used.
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-
-# Maximum GLES shader cache size for each app to store the compiled shader
-# binaries. Decrease the size if RAM or Flash Storage size is a limitation
-# of the device.
-MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -134,6 +120,7 @@ TARGET_USES_WCNSS_MAC_ADDR_REV   := true
 TARGET_NO_RPC := true
 
 # GPS HAL lives here
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := false
 TARGET_GPS_HAL_PATH := device/oneplus/bacon/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 
@@ -160,9 +147,6 @@ BOARD_NFC_CHIPSET := pn547
 
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
-
-# Enable Minikin text layout engine (will be the default soon)
-USE_MINIKIN := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
