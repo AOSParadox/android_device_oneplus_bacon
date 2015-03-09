@@ -49,6 +49,11 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
 TARGET_KERNEL_ARCH := arm
 
+# Enable DIAG on debug builds
+ifneq ($(TARGET_BUILD_TYPE),user)
+TARGET_KERNEL_ADDITIONAL_CONFIG:= cyanogenmod_debug_config
+endif
+
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
