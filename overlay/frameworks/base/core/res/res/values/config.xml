@@ -193,7 +193,7 @@
     <bool name="config_hotswapCapable">true</bool>
 
     <!-- Flag specifying whether VoLTE & VT is availasble on device -->
-    <bool name="config_device_volte_vt_available">false</bool>
+    <bool name="config_device_volte_available">false</bool>
 
     <!-- Enable the option to check proximity sensor when deciding whether to
          turn the screen on
