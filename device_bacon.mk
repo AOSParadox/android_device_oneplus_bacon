@@ -42,6 +42,8 @@ PRODUCT_COPY_FILES += \
 # Inherit CodeAurora MSM9874 Device Tree
 $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
+LOCAL_PATH := device/oneplus/bacon
+
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -53,15 +55,29 @@ DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay vendor/extra/overlays/ph
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
 
+# ANT+
+PRODUCT_PACKAGES += \
+    com.dsi.ant.antradio_library
+
+#Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    use.voice.path.for.pcm.voip=true \
+    audio.offload.multiple.enabled=false
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-LOCAL_PATH := device/oneplus/bacon
+# Enable USB OTG interface
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.isUsbOtgEnabled=true
 
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qti.sensors.ir_proximity=true
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -79,6 +95,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     keystore.msm8974
 
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=adb
+
+# System properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.data.tcpackprio.enable=true \
+    telephony.lteOnGsmDevice=1 \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=15 \
+    ro.qualcomm.perf.cores_online=2 \
+    ro.vendor.extension_library=libqti-perfd-client.so \
+    ro.telephony.call_ring.multiple=0
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -89,36 +119,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     wcnss_service
-
-# ANT+
-PRODUCT_PACKAGES += \
-    com.dsi.ant.antradio_library
-
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=adb
-
-# Enable Bluetooth HFP service
-PRODUCT_PROPERTY_OVERRIDES +=
-    bluetooth.hfp.client=1
-
-# System properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hwc.mdpcomp.enable=true \
-    ro.qualcomm.bt.hci_transport=smd \
-    persist.data.tcpackprio.enable=true \
-    telephony.lteOnGsmDevice=1 \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15 \
-    ro.qualcomm.perf.cores_online=2 \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.telephony.call_ring.multiple=0 \
-    ro.qti.sensors.ir_proximity=true \
-    ro.qc.sdk.audio.fluencetype=fluence \
-    av.streaming.offload.enable=true \
-    audio.offload.multiple.enabled=false \
-    tunnel.audio.encode=true \
-    persist.sys.isUsbOtgEnabled=true
 
 # Permissions
 PRODUCT_COPY_FILES += \
