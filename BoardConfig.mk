@@ -134,7 +134,7 @@ PROTOBUF_SUPPORTED := true
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/oneplus/bacon/rootdir/etc/fstab.bacon
+TARGET_RECOVERY_FSTAB := device/oneplus/bacon/ramdisk/fstab.bacon
 
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
