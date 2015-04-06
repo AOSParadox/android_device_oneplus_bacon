@@ -1,0 +1,2 @@
+# For text relocations in /system/vendor/lib/libmmjpeg.so
+allow mediaserver system_file:file execmod;
