@@ -1,0 +1,114 @@
+##################################################################################
+### VENDOR_EDIT, OPPO All rights reserved.
+### 
+### File: - init.oppo.rc
+### Author: jiangyg@PM
+### 
+### ------------------------------- Revision History: ----------------------------
+### <author>                        <data>       <version>   <desc>
+### ------------------------------------------------------------------------------
+### jiangyg@PM                     2013-10-21                Create this file
+##################################################################################
+#ifdef VENDOR_EDIT
+#Zhengpeng@OnLineRD.AirService.RIL, 2013/11/4, Add for create opponvitems dir
+on boot
+	mkdir /data/opponvitems  0771 radio radio
+#endif
+  
+#ifdef VENDOR_EDIT
+#wangw@OnLineRD.DeviceService, 2014/03/06, Modify for adb can create file(.android/adbkey and .android/adbkey.pub)
+on boot
+	mkdir /data/.android 0700 root root
+#endif
+
+#ifdef VENDOR_EDIT  
+#Jevons@OnlineRd.DeviceService.version, 2013/8/15 , add for property self-adaptive
+service self-init /sbin/self-init
+    class main
+    user root
+    oneshot
+
+#endif
+
+#ifdef VENDOR_EDIT
+#JianRong.Zheng@Swdp.Android.Power, 2014/07/21, Add for 
+service engineermode-sh /system/bin/sh /init.oppo.engineermode.sh
+    class late_start
+    user root
+    oneshot	    
+#endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT
+#Roshan@OnLineRD.DeviceService, 2012/10/20, add for oppo animation, author mwalker
+#service bootanim /system/bin/bootanimation
+#    class main
+#    user root
+#    group graphics
+#    disabled
+#    oneshot   
+#service rbootanim /system/bin/bootanimation -r
+#    class main
+#    user graphics
+#    group graphics audio media
+#    disabled
+#    oneshot
+#endif /* VENDOR_EDIT */
+
+#please add to init.oppo.rc
+#ifdef VENDOR_EDIT 
+#Horn@Swdp.Android.Boot_Charger  2014-7-30, Add for [oppo systme daemon]
+######
+service keydaemon /system/bin/keydaemon
+class core
+user root
+group system
+######
+#endif /* VENDOR_EDIT */
+#end
+
+#ifdef VENDOR_EDIT 
+#oppo liuhd add to start init.qcom.wifi.sh
+service wifiserver /system/bin/sh /system/etc/init.qcom.wifi.sh
+    class core
+    user root
+    oneshot
+#endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT // tanggeliang@Swdp.Android.FrameworkUi, 2014/08/18, add provide a function to indentify the usage of the phone.
+service block-mode /system/bin/sh /init.oppo.block.sh
+    class core
+    user root
+    oneshot
+#endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT // LiuPing@BSP.Sensor, 2014/04/19, add for rotor_server. 
+on property:ro.product.name=N5207
+    service rotorsrv /system/bin/rotorsrv 
+        class late_start
+        user root
+        group root    
+#endif //VENDOR_EDIT
+
+#ifdef VENDOR_EDIT
+#wangw@OnLineRD.DeviceService, 2014/02/07,Add for not reset usb config by oppousbselection when at allcommode
+on property:persist.sys.allcommode=true
+	setprop persist.allcommode true
+on property:persist.sys.allcommode=false
+	setprop persist.allcommode false
+#endif /*VENDOR_EDIT*/
+
+#ifdef VENDOR_EDIT
+#wangw@OnLineRD.DeviceService, 2014/04/01,Add for OnePlus open fastcharger mode by EngineeringMode
+on property:persist.sys.fastcharger=true
+	 write /proc/charger 1
+on property:persist.sys.fastcharger=false
+	 write /proc/charger 0
+#endif
+
+#ifdef VENDOR_EDIT
+#JianRong.Zheng@Swdp.Android.Power, 2014/10/14, Add for root detect
+service rootdetect-sh /system/bin/sh /init.oppo.rootdetect.sh
+    class main
+    user root
+    oneshot
+#endif /* VENDOR_EDIT */
