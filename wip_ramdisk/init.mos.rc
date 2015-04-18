@@ -26,7 +26,7 @@
 #
 
 #liuhd add for wlan in at mode
-import init.oppo.usb.rc
+import init.oneplus.usb.rc
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB

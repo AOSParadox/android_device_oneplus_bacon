@@ -23,6 +23,10 @@ on early-init
     mkdir /mnt 0775 root system
 
 on init
+    #ifdef VENDOR_EDIT
+    #taokai@oneplus.bsp, 2015/01/31, Add for file system mount
+    trigger fs
+    #endif /* VENDOR_EDIT */
 
 sysclktz 0
 
@@ -135,6 +139,11 @@ loglevel 3
 # Allow everybody to read the xt_qtaguid resource tracking misc dev.
 # This is needed by any process that uses socket tagging.
     chmod 0644 /dev/xt_qtaguid
+
+    #ifdef VENDOR_EDIT
+    #taokai@oneplus.bsp, 2015/01/31, Add for open adb, diag port
+    setprop persist.sys.usb.config diag,adb
+    #endif /* VENDOR_EDIT */
 
 on fs
 # mount mtd partitions
@@ -510,7 +519,7 @@ service rf-modem-test /system/bin/sh /init.rf.modem.test.sh
 
 #ifdef VENDOR_EDIT  
 # OPPO zhanglong add 2013-12-17 for rf mode to enter powersave mode 
-service governor-mode /system/bin/sh /init.oppo.rf.sh
+service governor-mode /system/bin/sh /init.oneplus.rf.sh
     class main
     user root
     oneshot

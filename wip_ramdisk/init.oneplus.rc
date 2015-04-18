@@ -1,7 +1,7 @@
 ##################################################################################
 ### VENDOR_EDIT, OPPO All rights reserved.
 ### 
-### File: - init.oppo.rc
+### File: - init.oneplus.rc
 ### Author: jiangyg@PM
 ### 
 ### ------------------------------- Revision History: ----------------------------
@@ -32,7 +32,7 @@ service self-init /sbin/self-init
 
 #ifdef VENDOR_EDIT
 #JianRong.Zheng@Swdp.Android.Power, 2014/07/21, Add for 
-service engineermode-sh /system/bin/sh /init.oppo.engineermode.sh
+service engineermode-sh /system/bin/sh /init.oneplus.engineermode.sh
     class late_start
     user root
     oneshot	    
@@ -54,7 +54,7 @@ service engineermode-sh /system/bin/sh /init.oppo.engineermode.sh
 #    oneshot
 #endif /* VENDOR_EDIT */
 
-#please add to init.oppo.rc
+#please add to init.oneplus.rc
 #ifdef VENDOR_EDIT 
 #Horn@Swdp.Android.Boot_Charger  2014-7-30, Add for [oppo systme daemon]
 ######
@@ -75,7 +75,7 @@ service wifiserver /system/bin/sh /system/etc/init.qcom.wifi.sh
 #endif /* VENDOR_EDIT */
 
 #ifdef VENDOR_EDIT // tanggeliang@Swdp.Android.FrameworkUi, 2014/08/18, add provide a function to indentify the usage of the phone.
-service block-mode /system/bin/sh /init.oppo.block.sh
+service block-mode /system/bin/sh /init.oneplus.block.sh
     class core
     user root
     oneshot
@@ -107,7 +107,7 @@ on property:persist.sys.fastcharger=false
 
 #ifdef VENDOR_EDIT
 #JianRong.Zheng@Swdp.Android.Power, 2014/10/14, Add for root detect
-service rootdetect-sh /system/bin/sh /init.oppo.rootdetect.sh
+service rootdetect-sh /system/bin/sh /init.oneplus.rootdetect.sh
     class main
     user root
     oneshot

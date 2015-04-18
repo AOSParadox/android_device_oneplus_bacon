@@ -27,8 +27,11 @@
 #
 #
 
+import init.bacon.power.rc
+
 on early-init
     mkdir /firmware 0771 system system
+    mkdir /cache 0771 system system
     symlink /data/tombstones /tombstones
 
 on init
@@ -36,6 +39,11 @@ on init
     # 0 indicates that virtual display is not a Wifi display and that the
     # session is not exercised through RemoteDisplay in the android framework
     setprop persist.sys.wfd.virtual 0
+
+    # USB OTG support
+    chmod 0701 /mnt/media_rw
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 root root
 
 on fs
     mount_all fstab.qcom
@@ -57,6 +65,12 @@ on fs
     wait /dev/block/platform/msm_sdcc.1/by-name/modem
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
+    #cpufreq selinux
+    restorecon_recursive /sys/devices/system/cpu/cpufreq
+
+    #cpufreq selinux
+    restorecon_recursive /sys/devices/system/cpu/cpufreq
+
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
@@ -65,7 +79,25 @@ on post-fs-data
     mkdir /tombstones/dsps 0771 system system
     mkdir /data/usf 0700 system system
 
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chown system system /sys/class/timed_output/vibrator/vtg_max
+    chown system system /sys/class/timed_output/vibrator/vtg_min
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_level
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_max
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_min
+
+    # color calibration
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+
 on boot
+    #Create OPPO NV item directory
+    mkdir /data/opponvitems 0771 radio radio
+
     insmod /system/lib/modules/adsprpc.ko
 # access permission for secure touch
     chmod 0660 /sys/devices/f9923000.i2c/i2c-1/1-004a/secure_touch_enable
@@ -130,6 +162,7 @@ service qseecomd /system/bin/qseecomd
 service mpdecision /system/bin/mpdecision --avg_comp
    class main
    user root
+   group system
    disabled
 
 service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
@@ -144,6 +177,17 @@ service thermal-engine /system/bin/thermal-engine
    socket thermal-recv-client stream 0660 system system
    socket thermal-recv-passive-client stream 0666 system system
    group root
+
+#ifdef VENDOR_EDIT
+#tanggeliang@Swdp.Android.Kernel, 2014/07/27
+#service security-check1 /sbin/security_boot_check system
+#    class core
+#    oneshot
+
+#service security-check2 /sbin/security_boot_check recovery
+#    class core
+#    oneshot
+#endif /* VENDOR_EDIT */
 
 service time_daemon /system/bin/time_daemon
    class late_start
@@ -264,24 +308,33 @@ service ppd /system/bin/mm-pp-daemon
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
+# Separate external storage
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
+    disabled
+
 on property:init.svc.surfaceflinger=running
     start ppd
+#modify for cts
+#service nqs /system/bin/nqs
+#    class late_start
+#    socket nqs_qsb_comm stream 660 system system
+#    user system
+#    group drmrpc
 
-service nqs /system/bin/nqs
-    class late_start
-    socket nqs_qsb_comm stream 660 system system
-    user system
-    group drmrpc
+#service pfm /system/bin/pfm
+#    class late_start
+#    user system
+#    group system drmrpc mount
 
-service pfm /system/bin/pfm
-    class late_start
-    user system
-    group system drmrpc mount
-
-service ml_daemon /system/bin/ml_daemon
-    class core
-    user root
-    group root
+#service ml_daemon /system/bin/ml_daemon
+#    class core
+#    user root
+#    group root
 
 write /sys/class/leds/button-backlight/brightness 255
 

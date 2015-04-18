@@ -2,7 +2,7 @@
 
 #Copyright (C), 2008-2012, OPPO Mobile Comm Corp., Ltd
 #VENDOR_EDIT
-#file: init.oppo.rf.sh
+#file: init.oneplus.rf.sh
 #Description: to enter powersave mode in rf mode for 13077.
 #Date: 2013-12-17
 #Author: zhanglong@drv

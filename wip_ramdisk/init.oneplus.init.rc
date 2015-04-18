@@ -31,7 +31,7 @@ on init
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
-
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 #Fangfang.Hui@Prd.Android, 2014/06/24, Modify for support OTG device
     mkdir /mnt/media_rw/UDiskA 0700 media_rw media_rw

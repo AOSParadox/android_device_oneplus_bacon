@@ -8,7 +8,7 @@
 #Zhilong.Zhang@OnlineRd.Driver, 2013/11/09, Add for support OTG device 
 #<src>                                                <mnt_point>  <type>  <mnt_flags and options>                     <fs_mgr_flags>
 /dev/block/platform/msm_sdcc.1/by-name/system         /system      ext4    ro,barrier=1,discard                                wait
-/dev/block/platform/msm_sdcc.1/by-name/userdata       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard      wait,check,encryptable=footer
+/dev/block/platform/msm_sdcc.1/by-name/userdata     /data           ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,errors=panic wait,check,encryptable=/dev/block/platform/msm_sdcc.1/by-name/reserve4
 /devices/msm_sdcc.2/mmc_host                          /storage/sdcard1   vfat    nosuid,nodev         wait,voldmanaged=sdcard1:auto
 /devices/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0         /storage/sdcard0   ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard        wait,noemulatedsd,voldmanaged=sdcard0:29
 /devices/platform/xhci-hcd/usb1                       /storage/UDiskA    vfat    nosuid,nodev         wait,voldmanaged=UDiskA:auto

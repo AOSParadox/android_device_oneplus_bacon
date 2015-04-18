@@ -24,19 +24,25 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
+#deleted by songxh for oneplus USB devices 
+#ifndef VENDOR_EDIT 
 #Xinhua.Song@OnlineRd.Driver, 2014/04/08, Modify for define OPPO USB devices 
 import init.qcom.usb.rc
-
+#else /* VENDOR_EDIT */
+#import init.oppo.usb.rc
+#endif /* VENDOR_EDIT */
+#ifdef VENDOR_EDIT 
 #jiangyg@PM, 2013/10/21, add for OPPO devices 
-import init.oppo.rc
-
+import init.oneplus.rc
+#endif /* VENDOR_EDIT */
+#ifdef VENDOR_EDIT 
 #Zhilong.Zhang@OnlineRd.Driver, 2014/03/12, add for init rc
-import init.oppo.init.rc
-
+import init.oneplus.init.rc
+#endif /* VENDOR_EDIT */
+#ifdef VENDOR_EDIT
 #Jason.Lee@OnlineRd.Framework.oppo_debug, 2014/03/18, Add for oppo Assert
-import init.oppo.debug.rc
-
+import init.oneplus.debug.rc
+#endif /* VENDOR_EDIT */
 import init.target.rc
 
 on early-init
@@ -44,23 +50,26 @@ on early-init
 
 on init
     # Set permissions for persist partition
-    mkdir /persist 0771 system system
+    #mkdir /persist 0771 system system
     # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
+    #mkdir /mnt/shell/emulated 0700 shell shell
+    #mkdir /storage/emulated 0555 root root
+    #mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    #mkdir /storage/sdcard1 0700 root root
 
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
+    #export EXTERNAL_STORAGE /storage/emulated/legacy
+    #ifdef VENDOR_EDIT
+    #delete by yangdechang for cts storager test fail 2015.1.1
+    #export SECONDARY_STORAGE /storage/sdcard1
+    #endif VENDOR_EDIT
+    #export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    #export EMULATED_STORAGE_TARGET /storage/emulated
 
     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    #symlink /storage/emulated/legacy /sdcard
+    #symlink /storage/emulated/legacy /mnt/sdcard
+    #symlink /storage/emulated/legacy /storage/sdcard0
+    #symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -88,57 +97,60 @@ on boot
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
-
 #Add begin for flash led test by liujinshui
     chown system system /sys/devices/qcom,camera-led-flash.1/test
     chown system system /sys/class/leds/led:flash_torch/flash_blink
     chown system system /proc/qcom_flash
-
+#Add end
 #oppo zhangzhilong 2014-06-04 add begin for PMIC RGB_led
-    chown root system sys/class/leds/rgb_red/brightness
-    chmod 0660 sys/class/leds//rgb_red/brightness
-    chown root system sys/class/leds/rgb_green/brightness
-    chmod 0660 sys/class/leds/rgb_green/brightness
-    chown root system sys/class/leds/rgb_blue/brightness
-    chmod 0660 sys/class/leds/rgb_blue/brightness
-    chown root system sys/class/leds/rgb_red/step_ramp_ms
-    chmod 0660 sys/class/leds/rgb_red/step_ramp_ms
-    chown root system sys/class/leds/rgb_green/step_ramp_ms
-    chmod 0660 sys/class/leds/rgb_green/step_ramp_ms
-    chown root system sys/class/leds/rgb_blue/step_ramp_ms
-    chmod 0660 sys/class/leds/rgb_blue/step_ramp_ms
-    chown root system sys/class/leds/rgb_red/blink
-    chmod 0660 sys/class/leds/rgb_red/blink
-    chown root system sys/class/leds/rgb_green/blink
-    chmod 0660 sys/class/leds/rgb_green/blink
-    chown root system sys/class/leds/rgb_blue/blink
-    chmod 0660 sys/class/leds/rgb_blue/blink
+#ifdef VENDOR_EDIT
+	chown root system sys/class/leds/rgb_red/brightness
+	chmod 0660 sys/class/leds//rgb_red/brightness
+	chown root system sys/class/leds/rgb_green/brightness
+	chmod 0660 sys/class/leds/rgb_green/brightness
+	chown root system sys/class/leds/rgb_blue/brightness
+	chmod 0660 sys/class/leds/rgb_blue/brightness
+	chown root system sys/class/leds/rgb_red/step_ramp_ms
+	chmod 0660 sys/class/leds/rgb_red/step_ramp_ms
+	chown root system sys/class/leds/rgb_green/step_ramp_ms
+	chmod 0660 sys/class/leds/rgb_green/step_ramp_ms
+	chown root system sys/class/leds/rgb_blue/step_ramp_ms
+	chmod 0660 sys/class/leds/rgb_blue/step_ramp_ms
+	chown root system sys/class/leds/rgb_red/blink
+	chmod 0660 sys/class/leds/rgb_red/blink
+	chown root system sys/class/leds/rgb_green/blink
+	chmod 0660 sys/class/leds/rgb_green/blink
+	chown root system sys/class/leds/rgb_blue/blink
+	chmod 0660 sys/class/leds/rgb_blue/blink
+#endif//VENDOR_EDIT
 
 #oppo song.xinhua 2014-07-02 add begin for camera motor engineer mode test
+#ifdef VENDOR_EDIT
 chown system system /sys/class/motor/cameramotor/pwm_enable
 chown system system /sys/class/motor/cameramotor/mdspeed
 chown system system /sys/class/motor/cameramotor/mddir
 chown system system /sys/class/motor/cameramotor/mdangel
 chown system system /sys/class/motor/cameramotor/mdmode
-
-
+#endif//VENDOR_EDIT
+#ifdef VENDOR_EDIT
 #SheTao@Swdp.Android.Engineer Mode, 2014/07/02, Add for hall calibration
 chown system system /dev/m1120
-
+#endif /* VENDOR_EDIT */
 #oppo zhangzhilong 2014-06-04 add end for PMIC RGB_led
+#ifdef VENDOR_EDIT
 #Add for wifi ftm by qiulei
-    chown system system /system/bin/wifi_ftm
-    chmod 0777  /system/bin/wifi_ftm
-    chown system system /system/bin/wifi_single
-    chmod 0777  /system/bin/wifi_single
-    chown system system /system/bin/iwpriv
-    chmod 0777  /system/bin/iwpriv
-    chown system system /system/bin/iwlist
-    chmod 0777  /system/bin/iwlist
-    chown system system /system/bin/tcpdump
-    chmod 0777  /system/bin/tcpdump
-    chown system system /sys/devices/fb000000.qcom,wcnss-wlan/wcnss_build_version
-
+   chown system system /system/bin/wifi_ftm
+   chmod 0777  /system/bin/wifi_ftm
+   chown system system /system/bin/wifi_single
+   chmod 0777  /system/bin/wifi_single
+   chown system system /system/bin/iwpriv
+   chmod 0777  /system/bin/iwpriv
+   chown system system /system/bin/iwlist
+   chmod 0777  /system/bin/iwlist
+   chown system system /system/bin/tcpdump
+   chmod 0777  /system/bin/tcpdump
+   chown system system /sys/devices/fb000000.qcom,wcnss-wlan/wcnss_build_version
+#endif /* VENDOR_EDIT */
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
 
@@ -265,9 +277,10 @@ on post-fs-data
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-    #Hedong.Liu@OnlineRd.Driver, 2014/04/22, Add for softap client
-    mkdir /data/misc/wifi/hostapd 0770 wifi wifi
-
+#ifdef VENDOR_EDIT 
+#Hedong.Liu@OnlineRd.Driver, 2014/04/22, Add for softap client
+	mkdir /data/misc/wifi/hostapd 0770 wifi wifi
+#endif /* VENDOR_EDIT */
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
     chown system system /data/connectivity
@@ -287,6 +300,8 @@ on post-fs-data
 
     # Create directory used by display clients
     mkdir /data/misc/display 0770 root system
+
+
 
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
@@ -356,6 +371,21 @@ on property:persist.sys.ssr.restart_level=*
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
+	# Touchscreen
+    chown system radio /proc/touchpanel/double_tap_enable
+    chmod 0660 /proc/touchpanel/double_tap_enable
+
+    chown root system /proc/touchpanel/camera_enable
+    chmod 0660 /proc/touchpanel/camera_enable
+
+    chown root system /proc/touchpanel/music_enable
+    chmod 0660 /proc/touchpanel/music_enable
+
+    chown root system /proc/touchpanel/flashlight_enable
+    chmod 0660 /proc/touchpanel/flashlight_enable
+
+    chown root system /proc/touchpanel/keypad_enable
+    chmod 0660 /proc/touchpanel/keypad_enable
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
@@ -392,18 +422,18 @@ on property:init.svc.wpa_supplicant=stopped
 on property:bluetooth.isEnabled=true
     start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
-
+#modify by zoufeng for cts
 on property:bluetooth.sap.status=running
-    start bt-sap
+#   start bt-sap
 
 on property:bluetooth.sap.status=stopped
-    stop bt-sap
+#   stop bt-sap
 
 on property:bluetooth.dun.status=running
-    start bt-dun
+#    start bt-dun
 
 on property:bluetooth.dun.status=stopped
-    stop bt-dun
+#    stop bt-dun
 
 on property:ro.bluetooth.ftm_enabled=true
     start ftmd
@@ -439,7 +469,7 @@ service dpmd /system/bin/dpmd
     class late_start
     socket dpmd stream 660 root system
 
-service irsc_util /system/bin/logwrapper /system/bin/irsc_util "/etc/sec_config"
+service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
     user root
     oneshot
@@ -625,12 +655,15 @@ service iprenew_p2p /system/bin/dhcpcd -n
     class late_start
     disabled
     oneshot
-
-service ptt_socket_app /system/bin/ptt_socket_app -d
-    class main
-    user root
-    group root
-    oneshot
+	
+#ifdef VENDOR_EDIT
+#qiulei, 2014/05/30, Remove for wifi ftm  
+#service ptt_socket_app /system/bin/ptt_socket_app -d
+#    class main
+#    user root
+#    group root
+#    oneshot
+#endif  VENDOR_EDIT
 
 service ptt_ffbm /system/bin/ptt_socket_app -f -d
     user root
@@ -791,30 +824,84 @@ service profiler_daemon /system/bin/profiler_daemon
     user root
     group root
     disabled
+    
 
+#ifdef VENDOR_EDIT
+#Fangfang.Hui@Prd.Android, 2014/06/24, Remove for identify single and double sdcard partion, this will remove to vendor/oppo/common/rootdir/init.oppo.init(.nosd).rc
 # virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
+#service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
 
+#    class late_start
+#endif
+
+    
+#ifdef VENDOR_EDIT   
+#Add for wifi ftm by qiulei
+service wififtmserver /system/bin/sh system/bin/wifi_ftm
+    class late_start
+    user root
+    group root
+    disabled
+   # oneshot
+
+on property:WFtmUp=1
+	start wififtmserver
+
+service wifisingle /system/bin/sh system/bin/wifi_single
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+   
+on property:wlan.WifiSgle=1
+    start wifisingle
+
+on property:wlan.WifiSgle=0
+    write /sys/devices/virtual/diag/diag/uevent remove
+#endif    
+
+
+
+#ifdef VENDOR_EDIT
+#Fangfang.Hui@Prd.Android, 2014/05/07, Modify for not start fuse when the volume is not mounted
+#service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+#    class late_start
+#else
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
+#endif
 
+#ifdef VENDOR_EDIT
+#Fangfang.Hui@Prd.Android, 2014/05/07, Add for mount otg UDiskA
+service fuse_UDiskA /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/UDiskA /storage/UDiskA
+    class late_start
+    disabled
+#endif
 service fuse_uicc0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc0 /storage/uicc0
     class late_start
     disabled
 
-service fuse_uicc1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc1 /storage/uicc1
+#ifdef VENDOR_EDIT
+#minglei.liu@Prd.Android, 2015/01/03, remove for sysn with 4.4
+#service fuse_uicc1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc1 /storage/uicc1
+#else
+service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbotg /storage/usbotg
+#endif
     class late_start
     disabled
 
 on property:ro.fuse_sdcard=true
     start sdcard
 
+#ifdef VENDOR_EDIT
+#Fangfang.Hui@Prd.Android, 2014/06/24, Remove for identify single and double sdcard partion, this will remove to vendor/oppo/common/rootdir/init.oppo.init(.nosd).rc
 # Binding fuse mount point to /storage/emulated/legacy
-on property:init.svc.sdcard=running
-    wait /mnt/shell/emulated/0
-    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
+#on property:init.svc.sdcard=running
+#    wait /mnt/shell/emulated/0
+#    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
+#endif
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
@@ -822,8 +909,18 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
     disabled
     oneshot
 
-service charger /charger
-    class charger
+#ifndef VENDOR_EDIT 
+#service charger /charger
+#    class charger
+#else
+#Jevons@OnLineRD.DeviceService, 2013-03-20, Add for quickboot
+service charger /system/bin/quickboot
+    class core
+    user root
+    oneshot
+    seclabel u:r:quickboot:s0
+#endif
+
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -871,6 +968,22 @@ on property:sys.qbcharger.enable=true
 on property:sys.qbcharger.enable=false
     stop qbcharger
 
+#ifndef VENDOR_EDIT
+#Fangfang.Hui@Swdp.Android.Usb&Storage, 2014/08/26, Modify for catch modem log
+#service diag_mdlog_start /system/bin/diag_mdlog
+#    class late_start
+#    user sdcard_rw
+#    group system qcom_diag sdcard_rw sdcard_r media_rw
+#    disabled
+#    oneshot
+
+#service diag_mdlog_stop /system/bin/diag_mdlog -k
+#    class late_start
+#    user sdcard_rw
+#    group system qcom_diag sdcard_rw sdcard_r media_rw
+#    disabled
+#    oneshot
+#else /* VENDOR_EDIT */
 service diag_mdlog_start /system/bin/diag_mdlog
     class late_start
     user shell
@@ -883,7 +996,9 @@ service diag_mdlog_stop /system/bin/diag_mdlog -k
     user shell
     group system qcom_diag sdcard_rw sdcard_r media_rw
     disabled
-    oneshot
+    oneshot  
+#endif /* VENDOR_EDIT */
+
 
 service qlogd /system/xbin/qlogd
     class main

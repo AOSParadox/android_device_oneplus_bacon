@@ -1,0 +1,177 @@
+##################################################################################
+### VENDOR_EDIT, OPPO All rights reserved.
+###
+### File: - init.oneplus.debug.rc
+### Author: Jason.Lee@OnlineRd.Framework
+### 
+### ------------------------------- Revision History: ----------------------------
+### <author>                        <data>       <version>   <desc>
+### ------------------------------------------------------------------------------
+### Jason.Lee@OnlineRd.Framework   2014-03-18               Create this file
+##################################################################################
+
+
+##################################  Trigger Point Begin ###########################################
+
+on boot
+    # oppo_trace
+    chmod 0640 /dev/otracer
+    # raw partition
+    chmod 0660 /dev/block/mmcblk0p26
+    chown root system /dev/block/mmcblk0p26
+    chmod 0711 /sbin/self-init
+    mkdir /system/etc/param 0644 root root
+#Zhaoan.Xu add for OppoLogkit Begin
+    chown system system /sys/kernel/debug/dynamic_debug/control
+
+on property:persist.sys.assert.enable=true
+    start backup_log
+    start oneplusasserttip
+
+on property:persist.sys.assert.panic=true
+write /sys/module/msm_show_resume_irq/parameters/debug_mask 0xff
+    start backup_log
+on property:persist.sys.assert.panic=false
+write /sys/module/msm_show_resume_irq/parameters/debug_mask 0x0
+
+on property:sys.oneplus.collectlog=true
+   start logcatsdcard
+   start logcatradio
+   start logcatevent
+   start logcatkernel
+
+on property:persist.sys.net=yes
+   start tcpdumplog
+
+# There are some duplicate codes
+
+on property:sys.oneplus.dump=1
+        write /sys/devices/virtual/diag/diag/uevent add
+	write /sys/module/restart/parameters/download_mode  1
+	write /proc/otrace_on 7978
+	write /proc/restart_level_all 1
+	write /proc/sys/kernel/printk "7 6 1 7"
+on property:sys.oneplus.dump=0
+        write /sys/devices/virtual/diag/diag/uevent remove
+	write /sys/module/restart/parameters/download_mode  0
+	write /proc/otrace_on 0
+	write /proc/restart_level_all 0
+	write /proc/sys/kernel/printk "1 6 1 7" 
+
+
+##################################  Trigger Point End ###########################################
+
+
+service backup_log /system/xbin/backup_log
+    user root
+    disabled
+    oneshot 
+
+service savelog /system/xbin/savelog
+    user root
+    group log
+    disabled
+    oneshot	
+
+service dumplog /system/bin/dumpstate -t feedback
+    class main
+    socket dumpstate stream 0660 shell log
+    disabled
+    oneshot
+
+service logcat_loose /system/bin/logcat  -f /cache/admin/apps/android.txt -r10240 -n 20  -v time *:V
+    user root
+    disabled
+    oneshot
+
+service logcat_event /system/bin/logcat -b events -f /cache/admin/apps/events.txt -r4096 -n 10  -v threadtime *:V
+    user root
+    disabled
+    oneshot
+
+service logcat_radio /system/bin/logcat -b radio -f /cache/admin/apps/radio.txt -r8192 -n 10  -v time *:V
+    user root
+    disabled
+    oneshot
+
+service  grab_netlog /system/xbin/tcpdump -i any -p -s 0 -W 5 -C 10 -w /cache/admin/netlog/tcpdump.pcap -Z root
+    user root
+    disabled
+    oneshot
+
+service klogd_loose /system/xbin/klogd -f /cache/admin/kernel/kinfox.txt -n -x -l 7
+    user root
+    group log
+    disabled
+    oneshot
+
+
+##################################  Definitions fo autochmod.sh Begin ###########################################   	
+service ps /system/bin/sh /autochmod.sh "ps"
+    class main
+    user root
+    disabled
+    oneshot
+service top /system/bin/sh /autochmod.sh "top"
+    class main
+    user root
+    disabled
+    oneshot
+service server_list /system/bin/sh /autochmod.sh "server"
+    class main
+    user root
+    disabled
+    oneshot
+service dump_sys /system/bin/sh /autochmod.sh "dump"
+    class main
+    user root
+    disabled
+    oneshot
+service dump_state /system/bin/sh /autochmod.sh "dumpstate"
+    class main
+    user root
+    disabled
+    oneshot
+service tranfer /system/bin/sh /autochmod.sh "tranfer"
+    class main
+    user root
+    disabled
+    oneshot
+service asserttransfer /system/bin/sh /autochmod.sh "asserttransfer"
+    class main
+    user root
+    disabled
+    oneshot
+service logcatsdcard /system/bin/sh /autochmod.sh "main"
+    class main
+    user root
+    disabled
+    oneshot
+service logcatradio /system/bin/sh /autochmod.sh "radio"
+    class main
+    user root
+    disabled
+    oneshot
+service logcatevent /system/bin/sh /autochmod.sh "event"
+    class main
+    user root
+    disabled
+    oneshot
+service logcatkernel /system/bin/sh /autochmod.sh "kernel"
+    class main
+    user root
+    disabled
+    oneshot
+service cleanlog /system/bin/sh /autochmod.sh "clean"
+    class main
+    user root
+    disabled
+    oneshot
+
+service  tcpdumplog /system/bin/sh /autochmod.sh "tcpdump"
+    class main
+    user root
+    disabled
+    oneshot
+
+##################################  Definitions of autochmod.sh End ###########################################
