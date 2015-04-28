@@ -288,6 +288,9 @@ service ssr_setup /system/bin/ssr_setup
     oneshot
     disabled
 
+on property:wifi.change_nv_owner=1
+    chown wifi wifi /persist/WCNSS_qcom_wlan_nv.bin
+
 on property:persist.sys.ssr.restart_level=*
     start ssr_setup
 
