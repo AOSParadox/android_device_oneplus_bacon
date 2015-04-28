@@ -322,6 +322,9 @@ on post-fs-data
     # camera sockets
     mkdir /data/misc/camera 0770 camera camera
 
+on property:wifi.change_nv_owner=1
+    chown wifi wifi /persist/WCNSS_qcom_wlan_nv.bin
+
 on fs
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
