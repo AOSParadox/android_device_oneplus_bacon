@@ -82,9 +82,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.multiple.enabled=false
 
-# Fuuuuu
-PRODUCT_PACKAGES += camera.bacon
-
 # Enable USB OTG interface
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.isUsbOtgEnabled=true
