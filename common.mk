@@ -739,7 +739,8 @@ PRODUCT_AAPT_CONFIG += hdpi mdpi
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
-    persist.radio.apm_sim_not_pwdn=1
+    persist.radio.apm_sim_not_pwdn=1 \
+    ro.frp.pst=/dev/block/bootdevice/by-name/config
 
 PRODUCT_PRIVATE_KEY := device/qcom/common/qcom.key
 
