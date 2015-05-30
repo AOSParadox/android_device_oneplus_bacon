@@ -133,7 +133,8 @@ PRODUCT_PACKAGES += \
 
 # WiFi
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8974/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+    device/qcom/msm8974/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
+    device/qcom/msm8974/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
     wcnss_service
