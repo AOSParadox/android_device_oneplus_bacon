@@ -94,9 +94,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     gps.msm8974
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qti.sensors.ir_proximity=true
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8974
