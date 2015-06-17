@@ -58,10 +58,11 @@ $(INSTALLED_DTIMAGE_TARGET): $(DTBTOOL) $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/u
 		
 endif
 
+include device/qcom/msm8974/AndroidBoard.mk
+
 #Create symbolic links
 $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
         mkdir -p $(TARGET_OUT_VENDOR)/lib; \
-        rm $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin; \)
-
-include device/qcom/msm8974/AndroidBoard.mk
-
+        rm $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin; \
+        ln -sf /persist/WCNSS_qcom_wlan_factory_nv.bin \
+        $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin;)

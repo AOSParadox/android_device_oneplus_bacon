@@ -31,9 +31,12 @@ ifneq ($(QCPATH),)
 $(call inherit-product-if-exists, $(QCPATH)/prebuilt_HY11/target/product/msm8974/prebuilt.mk)
 endif
 
+PRODUCT_COPY_FILES += \
+    device/qcom/msm8974/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/oneplus/bacon/wip_ramdisk,root)
+    $(call find-copy-subdir-files,*,device/oneplus/bacon/wip_cm_ramdisk,root)
 
 # Prebuilt
 PRODUCT_COPY_FILES += \
@@ -128,11 +131,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-# WiFi
-PRODUCT_COPY_FILES += \
-    device/qcom/msm8974/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-    device/qcom/msm8974/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
-
+# Wi-Fi
 PRODUCT_PACKAGES += \
     wcnss_service
 
