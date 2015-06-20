@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := $(call my-dir)
-
 # inherit CodeAurora MSM8974 Board Config
 -include device/qcom/msm8974/BoardConfig.mk
 
