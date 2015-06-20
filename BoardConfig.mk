@@ -134,6 +134,9 @@ PROTOBUF_SUPPORTED := true
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Ramdisk
+BOARD_USE_CM_RAMDISK := true
+
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oneplus/bacon/ramdisk/fstab.bacon
 
