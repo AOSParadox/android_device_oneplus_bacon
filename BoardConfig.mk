@@ -28,7 +28,9 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Platform
+TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
+BOARD_VENDOR := oppo
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
@@ -121,7 +123,6 @@ TARGET_USES_WCNSS_MAC_ADDR_REV   := true
 TARGET_NO_RPC := true
 
 # GPS HAL lives here
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := false
 TARGET_GPS_HAL_PATH := device/oneplus/bacon/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 

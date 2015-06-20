@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The AOSParadox Project
+# Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,6 @@
 #
 
 LOCAL_PATH := $(call my-dir)
-
-#ifeq ($(BOARD_VENDOR),oppo)
-#ifeq ($(TARGET_DEVICE),bacon)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
@@ -168,6 +165,3 @@ $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wcd9320; \
 		$(TARGET_OUT)/etc/firmware/wcd9320/wcd9320_mbhc.bin; \
 	ln -sf /data/misc/audio/wcd9320_mad_audio.bin \
 		$(TARGET_OUT)/etc/firmware/wcd9320/wcd9320_mad_audio.bin)
-
-#endif
-#endif
