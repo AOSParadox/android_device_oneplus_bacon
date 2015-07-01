@@ -74,18 +74,6 @@ $(MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(MBA_SYMLINKS)
 
-WCD_IMAGES := \
-    wcd9320_anc.bin wcd9320_mbhc.bin
-
-WCD_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/wcd9320,$(notdir $(WCD_IMAGES)))
-$(WCD_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "WCD9320 firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /data/misc/audio/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(MBA_SYMLINKS)
-
 CMN_IMAGES := \
     cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.mdt
 
