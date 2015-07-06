@@ -71,7 +71,7 @@ on enable-low-power
     write /sys/kernel/msm_thermal/sampling_ms 10000
     write /sys/kernel/msm_thermal/enabled 1
 
-    write /sys/class/devfreq/qcom,cpubw.40/governor "cpubw_hwmon"
+    write /sys/class/devfreq/qcom,cpubw.40/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
 
     write /dev/cpuctl/cpu.notify_on_migrate 1
