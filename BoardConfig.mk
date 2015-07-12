@@ -111,6 +111,7 @@ WIFI_DRIVER_MODULE_NAME          := "wlan"
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
+CONFIG_EAP_PROXY                 := qmi
 WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
 
 # GPS HAL lives here
