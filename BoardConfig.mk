@@ -45,6 +45,7 @@ TARGET_KERNEL_ARCH := arm
 
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/pronto
+	mkdir -p $(KERNEL_MODULES_OUT)/prima
 	mv $(KERNEL_MODULES_OUT)/pronto_wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
 	mv $(KERNEL_MODULES_OUT)/prima_wlan.ko $(KERNEL_MODULES_OUT)/prima/prima_wlan.ko
 	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/pronto_wlan.ko
