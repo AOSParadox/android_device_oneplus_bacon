@@ -51,9 +51,11 @@ LOCAL_PATH := device/oneplus/bacon
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# overlays
+# Overlays
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay vendor/extra/overlays/phone-1080p
+PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay vendor/extra/overlays/phone-108
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
