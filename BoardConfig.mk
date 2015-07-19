@@ -43,6 +43,15 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_ARCH := arm
 
+WLAN_MODULES:
+	mkdir -p $(KERNEL_MODULES_OUT)/pronto
+	mv $(KERNEL_MODULES_OUT)/pronto_wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
+	mv $(KERNEL_MODULES_OUT)/prima_wlan.ko $(KERNEL_MODULES_OUT)/prima/prima_wlan.ko
+	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/pronto_wlan.ko
+	ln -sf /system/lib/modules/prima/prima_wlan.ko $(TARGET_OUT)/lib/modules/prima_wlan.ko
+
+TARGET_KERNEL_MODULES += WLAN_MODULES
+
 # BACON Init
 TARGET_INIT_VENDOR_LIB := libinit_bacon
 
@@ -111,11 +120,16 @@ BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_qcwcn
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
+WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/pronto_wlan.ko"
+WIFI_DRIVER_MODULE_PATH          += "/system/lib/modules/prima_wlan.ko"
+WIFI_DRIVER_MODULE_NAME          := "pronto_wlan"
+WIFI_DRIVER_MODULE_NAME          += "prima_wlan"
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
+WLAN_CHIPSET                     := prima
+WLAN_SELECT                      := CONFIG_PRIMA_WLAN=m
+WLAN_SELECT                      += CONFIG_PRONTO_WLAN=m
 
 # No old RPC for prop
 TARGET_NO_RPC := true
