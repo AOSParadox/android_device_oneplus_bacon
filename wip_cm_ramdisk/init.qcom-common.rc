@@ -375,29 +375,28 @@ on property:service.bootanim.exit=1
     chmod 664 /sys/devices/system/cpu/cpu2/online
     chmod 664 /sys/devices/system/cpu/cpu3/online
 
-on property:init.svc.bootanim=stopped
-    # Switch to FIOPS and balanced mode after boot for better UX
-    write /sys/class/devfreq/qcom,cpubw.40/governor "cpubw_hwmon"
+on property:sys.boot_completed=1
+    # Switch to Deadline and balanced mode after boot for better UX
+    write /sys/class/devfreq/qcom,cpubw.40/governor "msm_cpufreq"
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1400000:40000 1700000:20000"
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 75
     write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1190400
     write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
     write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
     write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
-
-    write /sys/module/cpu_boost/parameters/boost_ms 20
-    write /sys/module/cpu_boost/parameters/sync_threshold 1728000
-    write /sys/module/cpu_boost/parameters/input_boost_freq 1497600
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
-
-    write /sys/block/mmcblk0/queue/scheduler fiops
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "smartmax"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "smartmax"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "smartmax"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "smartmax"
+    write /sys/kernel/cpu_input_boost/boost_freqs "960000 883200 729600"
+    write /sys/kernel/cpu_input_boost/enabled 1
+    write /sys/block/mmcblk0/queue/scheduler deadline
     start mpdecision
 
 on property:init.svc.bootanim=running
@@ -454,8 +453,7 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -N \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf -N \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf \
     -puse_p2p_group_interface=1 -e/data/misc/wifi/entropy.bin \
@@ -472,7 +470,6 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
