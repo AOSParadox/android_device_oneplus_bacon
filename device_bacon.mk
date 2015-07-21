@@ -47,6 +47,10 @@ $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
 LOCAL_PATH := device/oneplus/bacon
 
+# ADB Workaround
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.secure=0
+
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
