@@ -41,7 +41,7 @@ on init
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on post-fs
-    export_rc /system/etc/init.cne.rc
+    export LD_PRELOAD /vendor/lib/libNimsWrap.so
 
 on post-fs-data
     # Torch
