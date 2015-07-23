@@ -121,8 +121,7 @@ WIFI_DRIVER_MODULE_NAME          := "wlan"
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
-WLAN_SELECT                      := CONFIG_PRIMA_WLAN=m
-WLAN_SELECT                      += CONFIG_PRONTO_WLAN=m
+WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
 
 # No old RPC for prop
 TARGET_NO_RPC := true
