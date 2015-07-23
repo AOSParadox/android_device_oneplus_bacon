@@ -147,6 +147,8 @@ ifneq ($(QCPATH),)
 endif
 
 # SELinux policies
+-include device/qcom/sepolicy/sepolicy.mk
+
 BOARD_SEPOLICY_DIRS += \
         device/oneplus/bacon/sepolicy
 
