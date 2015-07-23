@@ -72,16 +72,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing \
-    tinymix
+    libqcomvoiceprocessing
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    use.voice.path.for.pcm.voip=true \
     audio.offload.multiple.enabled=false
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
 
 # Fuuuuu
 PRODUCT_PACKAGES += camera.bacon
@@ -108,20 +102,21 @@ PRODUCT_PACKAGES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.msm8974
+    keystore.msm8974 \
+    keystore.qcom
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=adb
+    persist.sys.usb.config=adb,mtp
 
 # System properties
+# TODO: wifi.interface=wlan0 / ro.qualcomm.perf.cores_online / ro.telephony.call_ring.multiple need to go on the CAF ramdisk
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.tcpackprio.enable=true \
     telephony.lteOnGsmDevice=1 \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
     ro.qualcomm.perf.cores_online=2 \
-    ro.vendor.extension_library=libqti-perfd-client.so \
     ro.telephony.call_ring.multiple=0
 
 # USB

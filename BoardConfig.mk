@@ -34,16 +34,10 @@ BOARD_VENDOR := oppo
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_bacon_defconfig
-TARGET_KERNEL_SOURCE := kernel
-KERNEL_DEFCONFIG := cyanogenmod_bacon_defconfig
+TARGET_KERNEL_CONFIG := bacon_defconfig
+KERNEL_DEFCONFIG := bacon_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
-BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_SEPARATED_DT := true
-TARGET_KERNEL_ARCH := arm
 TARGET_USE_CM_RAMDISK := true
 
 # BACON Init
@@ -57,7 +51,6 @@ COMMON_GLOBAL_CPPFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
 BOARD_USES_QCOM_HARDWARE := false
 
 # Audio
-BOARD_USES_ALSA_AUDIO := true
 BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := true
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
@@ -78,7 +71,6 @@ AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oneplus/bacon/bluetooth
-BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_SMD_TTY := true
 BLUETOOTH_HCI_USE_MCT := true
@@ -92,10 +84,8 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 # Graphics
 BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg
-USE_OPENGL_RENDERER := true
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
-TARGET_USES_C2D_COMPOSITION := trueI
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+TARGET_USES_C2D_COMPOSITION := true
 HAVE_ADRENO_SOURCE:= false
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
@@ -107,7 +97,6 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Wifi
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
 BOARD_HAS_QCOM_WLAN_SDK          := true
@@ -124,9 +113,6 @@ TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
 WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
 
-# No old RPC for prop
-TARGET_NO_RPC := true
-
 # GPS HAL lives here
 TARGET_GPS_HAL_PATH := device/oneplus/bacon/gps
 TARGET_PROVIDES_GPS_LOC_API := true
@@ -139,9 +125,6 @@ PROTOBUF_SUPPORTED := true
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
-
-# Ramdisk
-BOARD_USE_CM_RAMDISK := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oneplus/bacon/ramdisk/fstab.bacon

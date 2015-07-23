@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 #
-# Copyright (C) 2015 The Android Open-Source Project
+# Copyright (C) 2015 The AOSParadox Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ LOCAL_PATH := $(call my-dir)
 #
 
 BOARD_KERNEL_SEPARATED_DT := true
-KERNEL_DEFCONFIG := cyanogenmod_bacon_defconfig
+KERNEL_DEFCONFIG := bacon_defconfig
 KERNEL_DIR := kernel
 
 -include $(TOP)/$(KERNEL_DIR)/AndroidKernel.mk
