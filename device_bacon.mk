@@ -36,7 +36,7 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/oneplus/bacon/wip_cm_ramdisk,root)
+    $(call find-copy-subdir-files,*,device/oneplus/bacon/ramdisk,root)
 
 # Prebuilt
 PRODUCT_COPY_FILES += \
