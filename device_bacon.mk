@@ -59,7 +59,7 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay vendor/extra/overlays/phone-1080p
 PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay vendor/extra/overlays/phone-108
+PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay vendor/extra/overlays/phone-1080p
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
@@ -69,15 +69,6 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library
 
 #Audio
-PRODUCT_COPY_FILES += \
-    device/oneplus/bacon/audio/acdb/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb \
-    device/oneplus/bacon/audio/acdb/MTP_General_cal.acdb:system/etc/acdbdata/MTP/MTP_General_cal.acdb \
-    device/oneplus/bacon/audio/acdb/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/MTP_Global_cal.acdb \
-    device/oneplus/bacon/audio/acdb/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/MTP_Handset_cal.acdb \
-    device/oneplus/bacon/audio/acdb/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb \
-    device/oneplus/bacon/audio/acdb/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MTP_Headset_cal.acdb \
-    device/oneplus/bacon/audio/acdb/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
-
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
