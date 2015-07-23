@@ -38,7 +38,7 @@ TARGET_KERNEL_CONFIG := bacon_defconfig
 KERNEL_DEFCONFIG := bacon_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
-#TARGET_USE_CM_RAMDISK := true
+TARGET_USE_CM_RAMDISK := true
 
 # BACON Init
 TARGET_INIT_VENDOR_LIB := libinit_bacon
