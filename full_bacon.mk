@@ -18,6 +18,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from bacon device
 $(call inherit-product, device/oneplus/bacon/device_bacon.mk)
 
+# Inherit AOSParadox vendor
+$(call inherit-product, vendor/aosparadox/common.mk)
+
 PRODUCT_NAME := full_bacon
 PRODUCT_DEVICE := bacon
 PRODUCT_MANUFACTURER := OnePlus
