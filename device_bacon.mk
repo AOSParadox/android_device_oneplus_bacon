@@ -69,6 +69,15 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library
 
 #Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.audio.calfile0=/etc/acdbdata/MTP/Bluetooth_cal.acdb \
+    persist.audio.calfile1=/etc/acdbdata/MTP/General_cal.acdb \
+    persist.audio.calfile2=/etc/acdbdata/MTP/Global_cal.acdb \
+    persist.audio.calfile3=/etc/acdbdata/MTP//Handset_cal.acdb \
+    persist.audio.calfile4=/etc/acdbdata/MTP/Hdmi_cal.acdb \
+    persist.audio.calfile5=/etc/acdbdata/MTP/Headset_cal.acdb \
+    persist.audio.calfile6=/etc/acdbdata/MTP/Speaker_cal.acdb
+
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
