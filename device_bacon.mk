@@ -47,10 +47,6 @@ $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
 LOCAL_PATH := device/oneplus/bacon
 
-# ADB Workaround
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.secure=0
-
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -116,7 +112,7 @@ PRODUCT_PACKAGES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=adb,mtp
+    persist.sys.usb.config=mtp,adb
 
 # System properties
 # TODO: wifi.interface=wlan0 / ro.qualcomm.perf.cores_online / ro.telephony.call_ring.multiple need to go on the CAF ramdisk
