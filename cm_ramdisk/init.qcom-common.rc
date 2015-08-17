@@ -411,9 +411,10 @@ on property:sys.boot_completed=1
     write /sys/kernel/cpu_input_boost/enabled 1
     write /sys/block/mmcblk0/queue/scheduler deadline
     write /sys/kernel/msm_thermal/enabled 0
-    write /sys/kernel/msm_thermal/low_thresh "1574400 44 41"
-    write /sys/kernel/msm_thermal/mid_thresh "1190400 49 46"
-    write /sys/kernel/msm_thermal/high_thresh "960000 53 50"
+    write /sys/kernel/msm_thermal/low_thresh "1574400 40 37"
+    write /sys/kernel/msm_thermal/mid_thresh "1267200 46 43"
+    write /sys/kernel/msm_thermal/high_thresh "1190400 52 48"
+    write /sys/kernel/msm_thermal/sampling_ms 10000
     write /sys/kernel/msm_thermal/enabled 1
     start mpdecision
 
