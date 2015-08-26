@@ -28,7 +28,6 @@ TARGET_NO_RADIOIMAGE := true
 # Platform
 TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
-BOARD_VENDOR := oppo
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
@@ -148,5 +147,4 @@ BOARD_SEPOLICY_DIRS += \
         device/oneplus/bacon/sepolicy
 
 # inherit from the proprietary version
--include vendor/oppo/msm8974-common/BoardConfigVendor.mk
 -include vendor/oneplus/bacon/BoardConfigVendor.mk
