@@ -138,4 +138,4 @@ PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
 
 # call the proprietary setup
-$(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor-blobs.mk)
