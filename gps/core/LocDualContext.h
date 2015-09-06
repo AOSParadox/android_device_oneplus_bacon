@@ -45,7 +45,6 @@ class LocDualContext : public ContextBase {
                                      const char* name);
     static const MsgTask* getMsgTask(MsgTask::tAssociate tAssociate,
                                      const char* name);
-    static pthread_mutex_t mGetLocContextMutex;
 
 protected:
     LocDualContext(const MsgTask* msgTask,
