@@ -395,7 +395,7 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 70
     write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1190400
     write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1400000:75 1700000:90"
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "99 1300000:45 1500000:65 1700000:80 1800000:98"
     write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
     write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
@@ -403,7 +403,7 @@ on property:sys.boot_completed=1
     write /sys/kernel/cpu_input_boost/ib_freqs "1190400 883200 729600"
     write /sys/kernel/cpu_input_boost/load_based_syncs 1
     write /sys/kernel/cpu_input_boost/migration_boost_ms 20
-    write /sys/kernel/cpu_input_boost/migration_load_threshold 25
+    write /sys/kernel/cpu_input_boost/migration_load_threshold 35
     write /sys/kernel/cpu_input_boost/sync_threshold 1574400
     write /sys/kernel/cpu_input_boost/enabled 1
     write /dev/cpuctl/cpu.notify_on_migrate 1
