@@ -92,7 +92,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8974
+    gps.msm8974 \
+    gps.utils
 
 # Lights
 PRODUCT_PACKAGES += \
