@@ -161,3 +161,6 @@ ro.hwui.text_large_cache_height=1024
 
 #disable dsp gapless mode by default
 audio.offload.gapless.enabled=false
+
+# msm8974: Disable strict mode
+persist.sys.strictmode.disable=true
