@@ -295,7 +295,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
     ro.telephony.call_ring.multiple=0 \
-    ro.telephony.default_network=9
+    ro.telephony.default_network=9 \
+    persist.sys.strictmode.disable=true
 
 # Call the proprietary setup
 $(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor.mk)
