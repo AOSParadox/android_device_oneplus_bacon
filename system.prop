@@ -58,8 +58,12 @@ media.stagefright.enable-qcp=true
 media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
 mmp.enable.3g2=true
-mm.enable.smoothstreaming=true
+
+av.streaming.offload.enable=false
+audio.offload.pcm.16bit.enable=true
+audio.offload.multiple.enabled=false
 media.aac_51_output_enabled=true
+
 #37491 is decimal sum of supported codecs in AAL
 #codecs: AVI AC3 ASF AAC QCP DTS 3G2 MP2TS
 mm.enable.qcom_parser=37491
@@ -113,9 +117,8 @@ persist.fuse_sdcard=true
 #
 ro.qc.sdk.audio.ssr=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
-ro.qc.sdk.audio.fluencetype=none
+ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
 
 ro.qc.sdk.camera.facialproc=true

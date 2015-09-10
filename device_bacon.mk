@@ -83,8 +83,6 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio.offload.multiple.enabled=false
 
 # Enable USB OTG interface
 PRODUCT_PROPERTY_OVERRIDES += \
