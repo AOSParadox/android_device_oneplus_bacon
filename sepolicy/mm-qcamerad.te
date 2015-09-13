@@ -1,0 +1,2 @@
+allow mm-qcamerad apk_data_file:sock_file { create unlink write };
+allow mm-qcamerad system_data_file:sock_file { create unlink write };
