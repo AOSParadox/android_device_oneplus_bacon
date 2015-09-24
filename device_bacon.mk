@@ -69,24 +69,10 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library
 
 #Audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.calfile0=/etc/acdbdata/MTP/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/acdbdata/MTP/General_cal.acdb \
-    persist.audio.calfile2=/etc/acdbdata/MTP/Global_cal.acdb \
-    persist.audio.calfile3=/etc/acdbdata/MTP//Handset_cal.acdb \
-    persist.audio.calfile4=/etc/acdbdata/MTP/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/acdbdata/MTP/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/acdbdata/MTP/Speaker_cal.acdb
-
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing
-
-
-# Enable USB OTG interface
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=true
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -112,16 +98,6 @@ PRODUCT_PACKAGES += \
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
-
-# System properties
-# TODO: wifi.interface=wlan0 / ro.qualcomm.perf.cores_online / ro.telephony.call_ring.multiple need to go on the CAF ramdisk
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.data.tcpackprio.enable=true \
-    telephony.lteOnGsmDevice=1 \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15 \
-    ro.qualcomm.perf.cores_online=2 \
-    ro.telephony.call_ring.multiple=0
 
 # USB
 PRODUCT_PACKAGES += \
