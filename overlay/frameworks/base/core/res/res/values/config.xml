@@ -318,4 +318,14 @@
     <integer name="config_screenBrightnessDoze">5</integer>
     <bool name="config_dozeAfterScreenOff">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+
+    <!-- Control the behavior when the user long presses the home button.
+        0 - Nothing
+        1 - Recent apps view in SystemUI
+        2 - Launch assist intent
+        This needs to match the constants in
+        policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnHomeBehavior">1</integer>
+
 </resources>
