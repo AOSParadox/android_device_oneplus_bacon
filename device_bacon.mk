@@ -74,6 +74,10 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing
 
+# Device settings
+PRODUCT_PACKAGES += \
+    Find7Parts
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974

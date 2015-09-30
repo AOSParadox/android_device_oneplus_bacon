@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Find 7</string>
+    <string name="category_gestures_title">Gesture da schermo spento</string>
+    <string name="double_tap_wake_title_head">Doppio tocco</string>
+    <string name="double_tap_wake_summary_head">Effettua un doppio tocco sullo schermo per attivare il device</string>
+    <string name="camera_title_head">Fotocamera</string>
+    <string name="camera_summary_head">Disegna un \"O\" per attivare la fotocamera</string>
+    <string name="torch_title_head">Torcia</string>
+    <string name="torch_summary_head">Disegna una  \"V\" per attivare la torcia</string>
+<!--
+    <string name="music_title_head">Musica</string>
+    <string name="music_summary_head">Disegna un \"II\" per attivare la musica</string>
+    <string name="category_vibrator">Vibrazione</string>
+    <string name="vib_strength_title_head">Lunghezza</string>
+    <string name="vib_strength_summary_head">Definisci la lunghezza della vibrazione</string>
+    <string name="vib_test">Prova</string>
+    <string name="category_suspend_cap">Sospendere limiti</string>
+    <string name="suspend_cap_freq">Limite frequenza CPU</string>
+    <string name="suspend_cap_core">Limite numero CPU</string>
+-->
+</resources>
