@@ -271,6 +271,9 @@ on post-fs-data
     chmod 0644 /sys/class/timed_output/vibrator/vtg_max
     chmod 0644 /sys/class/timed_output/vibrator/vtg_min
 
+    # init.d Support
+    /system/xbin/busybox run-parts /system/etc/init.d
+
     setprop vold.post_fs_data_done 1
 
     #Create folder for mm-qcamera-daemon
