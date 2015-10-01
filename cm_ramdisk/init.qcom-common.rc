@@ -74,6 +74,15 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+    #Light Permissions
+    #below are additions to the AOSP init.rc. Entries for button-backlight are located there.
+    chown system system /sys/class/leds/rgb_red/blink
+    chown system system /sys/class/leds/rgb_red/duty_pcts
+    chown system system /sys/class/leds/rgb_red/ramp_step_ms
+    chown system system /sys/class/leds/rgb_red/brightness
+    chown system system /sys/class/leds/rgb_blue/brightness
+    chown system system /sys/class/leds/rgb_green/brightness
+
     #charger
     chown root system /sys/module/qpnp_charger/parameters/charger_monitor
     chown root system /sys/class/power_supply/battery/input_current_max

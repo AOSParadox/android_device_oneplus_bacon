@@ -25,7 +25,7 @@ import android.preference.PreferenceManager;
 
 public class DoubleTapSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/kernel/touchscreen/double_tap_enable";
+    private static final String FILE = "/proc/touchpanel/double_tap_enable";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);

@@ -25,7 +25,7 @@ import android.preference.PreferenceManager;
 
 public class TorchGestureSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/kernel/touchscreen/flashlight_enable";
+    private static final String FILE = "/proc/touchpanel/flashlight_enable";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);
