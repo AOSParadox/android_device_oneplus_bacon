@@ -82,6 +82,10 @@ on boot
     chown system system /sys/class/leds/rgb_red/brightness
     chown system system /sys/class/leds/rgb_blue/brightness
     chown system system /sys/class/leds/rgb_green/brightness
+    chown system system /sys/class/leds/button-backlight/brightness
+
+    # Turn on backlights at boot
+    write /sys/class/leds/button-backlight/brightness 50
 
     #charger
     chown root system /sys/module/qpnp_charger/parameters/charger_monitor
@@ -260,18 +264,15 @@ on post-fs-data
     # Touchscreen
     chown system radio /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
-
     chown root system /proc/touchpanel/camera_enable
     chmod 0660 /proc/touchpanel/camera_enable
-
-    chown root system /proc/touchpanel/music_enable
-    chmod 0660 /proc/touchpanel/music_enable
-
     chown root system /proc/touchpanel/flashlight_enable
     chmod 0660 /proc/touchpanel/flashlight_enable
-
     chown root system /proc/touchpanel/keypad_enable
     chmod 0660 /proc/touchpanel/keypad_enable
+
+    # Disable HW Keys by default
+    write /proc/touchpanel/keypad_enable 0
 
     chown system system /sys/devices/virtual/graphics/fb0/cabc
     chmod 0660 /sys/devices/virtual/graphics/fb0/cabc

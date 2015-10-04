@@ -21,25 +21,16 @@
 TARGET_SPECIFIC_HEADER_PATH := device/oneplus/bacon/include
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
 
 # Platform
-TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 
-# Assertions
+# Asserts
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
+TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
-# Kernel
-TARGET_KERNEL_CONFIG := bacon_defconfig
-KERNEL_DEFCONFIG := bacon_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
-BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
-TARGET_USE_CM_RAMDISK := true
-
-# BACON Init
+# Init
 TARGET_INIT_VENDOR_LIB := libinit_bacon
 
 # Flags
@@ -65,6 +56,9 @@ AUDIO_FEATURE_PCM_IOCTL_ENABLED := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 TARGET_USES_QCOM_MM_AUDIO := true
 
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oneplus/bacon/bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -73,17 +67,14 @@ BLUETOOTH_HCI_USE_MCT := true
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
-COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
-# Charger
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
 
 # Graphics
 BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := true
-HAVE_ADRENO_SOURCE:= false
 
 # Filesystem
 TARGET_USERIMAGES_USE_F2FS := true
@@ -95,8 +86,18 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1388314624
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13271448576
 
+# Kernel
+TARGET_KERNEL_CONFIG := bacon_defconfig
+KERNEL_DEFCONFIG := bacon_defconfig
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
+TARGET_USE_CM_RAMDISK := true
+
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
+
+# NFC
+BOARD_NFC_CHIPSET := pn547
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
@@ -112,46 +113,15 @@ WIFI_DRIVER_MODULE_NAME          := "wlan"
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
+TARGET_WCNSS_MAC_PREFIX          := e8bba8
 WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
-
-# GPS HAL lives here
-TARGET_GPS_HAL_PATH := device/oneplus/bacon/gps
-TARGET_PROVIDES_GPS_LOC_API := true
-
-# Use HW crypto for ODE
-TARGET_HW_DISK_ENCRYPTION := true
-
-# Added to indicate that protobuf-c is supported in this build
-PROTOBUF_SUPPORTED := true
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oneplus/bacon/ramdisk/fstab.bacon
-
-TARGET_OTA_ASSERT_DEVICE := bacon,A0001
-
-TARGET_WCNSS_MAC_PREFIX := e8bba8
-
-# Workaround for factory issue
 BOARD_VOLD_CRYPTFS_MIGRATE := true
 
-BOARD_NFC_CHIPSET := pn547
-
-# Include an expanded selection of fonts
-EXTENDED_FONT_FOOTPRINT := true
-
-# inherit from the proprietary version
-ifneq ($(QCPATH),)
--include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
-endif
-
-# SELinux policies
+# Sepolicy
 -include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
         device/oneplus/bacon/sepolicy
-
-# inherit from the proprietary version
--include vendor/oneplus/bacon/BoardConfigVendor.mk

@@ -24,21 +24,13 @@ import android.view.MenuItem;
 
 public class DeviceSettings extends PreferenceActivity  {
 
+    public static final String KEY_DISABLER = "key_disabler";
     public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
-    public static final String KEY_TORCH_SWITCH = "torch";
 
-/* Commented out until reimplemented on F7
-    public static final String KEY_MUSIC_SWITCH = "music";
-
-    public static final String KEY_VIBSTRENGTH = "vib_strength";
-*/
     private TwoStatePreference mDoubleTapSwitch;
-    private TwoStatePreference mTorchSwitch;
     private TwoStatePreference mCameraSwitch;
-
-/*  private TwoStatePreference mMusicSwitch;
-*/
+    private TwoStatePreference mKeyDisabler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,36 +39,21 @@ public class DeviceSettings extends PreferenceActivity  {
 
         addPreferencesFromResource(R.xml.main);
 
+        mKeyDisabler = (TwoStatePreference) findPreference(KEY_DISABLER);
+        mKeyDisabler.setEnabled(KeyDisabler.isSupported());
+        mKeyDisabler.setChecked(KeyDisabler.isEnabled(this));
+        mKeyDisabler.setOnPreferenceChangeListener(new KeyDisabler());
+
         mDoubleTapSwitch = (TwoStatePreference) findPreference(KEY_DOUBLE_TAP_SWITCH);
         mDoubleTapSwitch.setEnabled(DoubleTapSwitch.isSupported());
         mDoubleTapSwitch.setChecked(DoubleTapSwitch.isEnabled(this));
         mDoubleTapSwitch.setOnPreferenceChangeListener(new DoubleTapSwitch());
-
-        mTorchSwitch = (TwoStatePreference) findPreference(KEY_TORCH_SWITCH);
-        mTorchSwitch.setEnabled(TorchGestureSwitch.isSupported());
-        mTorchSwitch.setChecked(TorchGestureSwitch.isEnabled(this));
-        mTorchSwitch.setOnPreferenceChangeListener(new TorchGestureSwitch());
 
         mCameraSwitch = (TwoStatePreference) findPreference(KEY_CAMERA_SWITCH);
         mCameraSwitch.setEnabled(CameraGestureSwitch.isSupported());
         mCameraSwitch.setChecked(CameraGestureSwitch.isEnabled(this));
         mCameraSwitch.setOnPreferenceChangeListener(new CameraGestureSwitch());
 
-        /*mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
-        mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
-        mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
-        mMusicSwitch.setOnPreferenceChangeListener(new MusicGestureSwitch());
-
-        mSuspendFreqCap = (SuspendFreqCap) findPreference(KEY_SUSPEND_CAP_FREQ);
-        mSuspendFreqCap.setEnabled(SuspendFreqCap.isSupported());
-        mSuspendFreqCap.setValue(SuspendFreqCap.getValue(this));
-        mSuspendFreqCap.setOnPreferenceChangeListener(mSuspendFreqCap);
-
-        mSuspendCoreCap = (SuspendCoreCap) findPreference(KEY_SUSPEND_CAP_CORE);
-        mSuspendCoreCap.setEnabled(SuspendCoreCap.isSupported());
-        mSuspendCoreCap.setValue(SuspendCoreCap.getValue(this));
-        mSuspendCoreCap.setOnPreferenceChangeListener(mSuspendCoreCap);
-*/
     }
 
     @Override

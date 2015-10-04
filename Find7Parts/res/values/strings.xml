@@ -20,22 +20,7 @@
     <string name="double_tap_wake_summary_head">Double tap on screen will wake the device</string>
     <string name="camera_title_head">Camera</string>
     <string name="camera_summary_head">Draw a circle to start camera</string>
-    <string name="torch_title_head">Torch</string>
-    <string name="torch_summary_head">Draw a V to toggle torch</string>
-<!--
-    <string name="music_title_head">Music</string>
-    <string name="music_summary_head">Draw II, &lt; or &gt; to control music playback</string>
-    <string name="category_vibrator">Vibrator</string>
-    <string name="vib_strength_title_head">Strength</string>
-    <string name="vib_strength_summary_head">Define the strength of the vibrator</string>
-    <string name="vib_test">Test</string>
-    <string name="category_suspend_cap">Screen off limits</string>
-    <string name="suspend_cap_freq">Core frequency</string>
-    <string name="suspend_cap_core">Core number</string>
-    <string name="disabled">Disabled</string>
-    <string name="core">core</string>
-    <string name="cores">cores</string>
-    <string name="mhz">MHz</string>
--->
+    <string name="key_disabler_title_head">Enable software keys</string>
+    <string name="key_disabler_summary_head">Will use the software keys instead of hardware keys</string>
     <string name="advanced_settings">Advanced</string>
 </resources>

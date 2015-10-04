@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2013 The OmniROM Project
+* Copyright (C) 2015 The AOSParadox Project
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,10 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class TorchGestureSwitch implements OnPreferenceChangeListener {
+public class KeyDisabler implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/proc/touchpanel/flashlight_enable";
+    private static final String FILE = "/proc/touchpanel/keypad_enable";
+    private static final String HW_BRIGHTNESS = "/sys/class/leds/button-backlight/brightness";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);
@@ -34,7 +35,7 @@ public class TorchGestureSwitch implements OnPreferenceChangeListener {
     public static boolean isEnabled(Context context) {
         boolean enabled = Utils.getFileValueAsBoolean(FILE, false);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getBoolean(DeviceSettings.KEY_TORCH_SWITCH, enabled);
+        return sharedPrefs.getBoolean(DeviceSettings.KEY_DISABLER, enabled);
     }
 
     /**
@@ -47,19 +48,25 @@ public class TorchGestureSwitch implements OnPreferenceChangeListener {
         }
 
         boolean enabled = isEnabled(context);
-        if(enabled)
-            Utils.writeValue(FILE, "1");
-        else
+        if(enabled) {
             Utils.writeValue(FILE, "0");
+            Utils.writeValue(HW_BRIGHTNESS, "0");
+        } else {
+            Utils.writeValue(FILE, "1");
+            Utils.writeValue(HW_BRIGHTNESS, "50");
+	}
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         Boolean enabled = (Boolean) newValue;
-        if(enabled)
-            Utils.writeValue(FILE, "1");
-        else
+        if(enabled) {
             Utils.writeValue(FILE, "0");
+            Utils.writeValue(HW_BRIGHTNESS, "0");
+        } else {
+            Utils.writeValue(FILE, "1");
+            Utils.writeValue(HW_BRIGHTNESS, "50");
+	}
         return true;
     }
 

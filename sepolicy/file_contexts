@@ -1,6 +1,8 @@
-# touchscreen gestures - /sys/kernel/touchscreen might be depreceated but I keep it
-/sys/kernel/touchscreen(/.*)?	u:object_r:sysfs_touchscreen:s0
-/proc/touchpanel/	        u:object_r:sysfs_touchscreen:s0
+# touchscreen gestures
+/proc/touchpanel(/.*)?	                        u:object_r:sysfs_touchscreen:s0
+
+# HW Keys brightness
+/sys/class/leds/button-backlight/brightness	u:object_r:sysfs_touchscreen:s0
 
 /data/cam_socket.*  u:object_r:camera_socket:s0
 /persist/sns.reg    u:object_r:sensors_persist_file:s0

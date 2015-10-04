@@ -20,22 +20,7 @@
     <string name="double_tap_wake_summary_head">Un double appui sur l\'écran réveille l\'appareil</string>
     <string name="camera_title_head">Appareil photo</string>
     <string name="camera_summary_head">Dessiner un cercle pour démarrer l\'appareil photo</string>
-    <string name="torch_title_head">Torche</string>
-    <string name="torch_summary_head">Dessiner un V pour afficher la torche</string>
-<!--
-    <string name="music_title_head">Musique</string>
-    <string name="music_summary_head">Dessiner un II, &lt; ou &gt; pour contrôler le lecteur de musique</string>
-    <string name="category_vibrator">Vibreur</string>
-    <string name="vib_strength_title_head">Intensité</string>
-    <string name="vib_strength_summary_head">Définir l\'intensité du vibreur</string>
-    <string name="vib_test">Tester</string>
-    <string name="category_suspend_cap">Limitations</string>
-    <string name="suspend_cap_freq">Limite de fréquence des cœurs</string>
-    <string name="suspend_cap_core">Limite du nombre de cœur</string>
-    <string name="disabled">Désactivé</string>
-    <string name="core">cœur</string>
-    <string name="cores">cœurs</string>
-    <string name="mhz">MHz</string>
--->
+    <string name="key_disabler_title_head">Utiliser la barre de navigation</string>
+    <string name="key_disabler_summary_head">Utilise la barre de navigation au lieu des buttons physiques</string>
     <string name="advanced_settings">Avancés</string>
 </resources>
