@@ -138,7 +138,7 @@
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
     <!-- bool value to for enabling motion accelerometer -->
-    <bool name="use_motion_accel">false</bool>
+    <!-- <bool name="use_motion_accel">false</bool> -->
 
     <!-- Enable overlay for all location components. -->
     <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
@@ -189,10 +189,10 @@
 
     <!-- The list absolute paths of jar/apk files containing the device specific handlers,
         delimited by File.pathSeparator, which defaults to ":" on Android -->
-    <string name="config_deviceKeyHandlerLib" translatable="false">/system/app/Find7Parts/Find7Parts.apk</string>
+    <!-- <string name="config_deviceKeyHandlerLib" translatable="false">/system/app/Find7Parts/Find7Parts.apk</string> -->
     <!-- Full qualified name of the class that implements
         com.android.internal.os.DeviceKeyHandler interface. -->
-    <string name="config_deviceKeyHandlerClass" translatable="false">org.omnirom.device.KeyHandler</string>
+    <!-- <string name="config_deviceKeyHandlerClass" translatable="false">org.omnirom.device.KeyHandler</string> -->
 
 
     <!--  Maximum number of supported users -->

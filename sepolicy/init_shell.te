@@ -1,2 +1,0 @@
-allow init_shell sdcardd_exec:file execute_no_trans;
-allow init_shell fuse:filesystem mount;
