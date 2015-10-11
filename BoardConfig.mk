@@ -68,7 +68,7 @@ BLUETOOTH_HCI_USE_MCT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Crypto
-TARGET_HW_DISK_ENCRYPTION := true
+TARGET_HW_DISK_ENCRYPTION := false
 
 # Graphics
 BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg

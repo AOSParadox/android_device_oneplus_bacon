@@ -63,8 +63,8 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalv
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Device settings
-PRODUCT_PACKAGES += \
-    Find7Parts
+#PRODUCT_PACKAGES += \
+#    Find7Parts
 
 # GPS
 PRODUCT_PACKAGES += \
