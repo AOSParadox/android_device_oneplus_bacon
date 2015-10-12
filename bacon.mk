@@ -104,11 +104,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
-PRODUCT_BOOT_JARS += qcmediaplayer \
-                     org.codeaurora.Performance \
-                     vcard \
-                     tcmiface
-
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
@@ -122,4 +117,3 @@ PRODUCT_PACKAGES += \
 # Dalvik and HWUI configurations
 $(call inherit-product, device/qcom/common/configs/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/configs/phone-xxhdpi-2048-hwui-memory.mk)
-

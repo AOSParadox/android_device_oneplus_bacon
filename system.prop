@@ -27,6 +27,7 @@ debug.mdpcomp.4k2kSplit=1
 debug.mdpcomp.logs=0
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
+ro.sf.lcd_density=320
 
 ro.hdmi.enable=true
 persist.speaker.prot.enable=false

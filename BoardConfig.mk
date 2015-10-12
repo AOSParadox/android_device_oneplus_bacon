@@ -8,6 +8,8 @@ TARGET_ARCH := arm
 # Currently unused, but may want to move some things into platform later
 TARGET_KERNEL_ARCH := arm
 
+TARGET_KERNEL_APPEND_DTB := true
+
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
 
 #TODO: Fix-me: Setting TARGET_HAVE_HDMI_OUT to false
@@ -35,7 +37,7 @@ TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
 TARGET_KERNEL_CONFIG := bacon_defconfig
 
 # Enables Adreno RS driver
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+#OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
@@ -115,3 +117,5 @@ BOARD_SEPOLICY_DIRS += \
      device/oneplus/bacon/sepolicy
 
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
+
+FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
