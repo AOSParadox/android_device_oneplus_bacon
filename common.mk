@@ -4,6 +4,8 @@ QCOM_BOARD_PLATFORMS += msm8974
 
 TARGET_USE_VENDOR_CAMERA_EXT := true
 
+ANDROID_COMPILE_WITH_JACK := false
+
 # Below projects/packages with LOCAL_MODULEs will be used by
 # PRODUCT_PACKAGES to build LOCAL_MODULEs that are tagged with
 # optional tag, which will not be available on target unless
@@ -66,7 +68,9 @@ CURL += curl
 
 #DASH
 DASH := libdashplayer
+DASH += libqcmediaplayer
 DASH += qcmediaplayer
+DASH += libextmedia_jni
 
 #DATA_OS
 DATA_OS := librmnetctl
@@ -151,6 +155,7 @@ LIBCAMERA += libmmcamera_interface2
 LIBCAMERA += libmmjpeg_interface
 LIBCAMERA += libqomx_core
 LIBCAMERA += mm-qcamera-app
+LIBCAMERA += org.codeaurora.camera
 
 #LIBCOPYBIT
 LIBCOPYBIT += copybit.msm8974
@@ -219,6 +224,7 @@ MM_CORE += libOmxCore
 
 #MM_VIDEO
 MM_VIDEO := ast-mm-vdec-omx-test
+MM_VIDEO += libavenhancements
 MM_VIDEO += libdivxdrmdecrypt
 MM_VIDEO += liblasic
 MM_VIDEO += libOmxVdec
@@ -320,6 +326,9 @@ VT_JNI += libimscamera_jni
 #VT QTI permissions
 VT_QTI_PERMISSIONS := qti_permissions.xml
 
+#IMS SETTINGS
+IMS_SETTINGS := imssettings
+
 #CRDA
 CRDA := crda
 CRDA += regdbdump
@@ -392,6 +401,7 @@ PRODUCT_PACKAGES += $(WPA)
 PRODUCT_PACKAGES += $(ZLIB)
 PRODUCT_PACKAGES += $(VT_JNI)
 PRODUCT_PACKAGES += $(VT_QTI_PERMISSIONS)
+PRODUCT_PACKAGES += $(IMS_SETTINGS)
 PRODUCT_PACKAGES += $(CRDA)
 
 # Filesystem management tools
@@ -454,9 +464,7 @@ PRODUCT_COPY_FILES += \
 -include frameworks/base/data/videos/VideoPackage1.mk
 
 #skip boot jars check if QCPATH not available
-ifeq ($(strip $(QCPATH)),)
 SKIP_BOOT_JARS_CHECK := true
-endif
 
 # For PRODUCT_COPY_FILES, the first instance takes precedence.
 # Since we want use QC specific files, we should inherit

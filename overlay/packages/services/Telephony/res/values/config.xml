@@ -41,4 +41,7 @@
     <bool name="csp_enabled">true</bool>
     <!-- Disable data before manual PLMN scan if true-->
     <bool name="config_disable_data_manual_plmn">true</bool>
+
+    <!-- Show Preferred Network Type options in No SIM case -->
+    <bool name="config_no_sim_display_network_modes">true</bool>
 </resources>
