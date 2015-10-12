@@ -8,8 +8,6 @@ TARGET_ARCH := arm
 # Currently unused, but may want to move some things into platform later
 TARGET_KERNEL_ARCH := arm
 
-TARGET_KERNEL_APPEND_DTB := true
-
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
 
 #TODO: Fix-me: Setting TARGET_HAVE_HDMI_OUT to false
