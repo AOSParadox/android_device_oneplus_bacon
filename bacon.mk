@@ -74,9 +74,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
 
-# Miscellaneous Configs
+# Thermal engine configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
     $(LOCAL_PATH)/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
