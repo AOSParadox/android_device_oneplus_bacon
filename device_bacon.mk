@@ -66,10 +66,6 @@ PRODUCT_PACKAGES += \
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
-# Device settings
-#PRODUCT_PACKAGES += \
-#    Find7Parts
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974
