@@ -1,3 +1,6 @@
+# touchscreen gestures
+/proc/touchpanel(/.*)?	                        u:object_r:sysfs_touchscreen:s0
+
 # HW Keys brightness
 /sys/class/leds/button-backlight/brightness	u:object_r:sysfs_touchscreen:s0
 
