@@ -326,6 +326,9 @@
     <bool name="config_dozeAfterScreenOff">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
+    <!-- Whether device supports double tap to wake -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+
     <!-- Control the behavior when the user long presses the home button.
         0 - Nothing
         1 - Recent apps view in SystemUI
