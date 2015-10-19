@@ -17,6 +17,11 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
+
+ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
+LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
+endif
+
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_SRC_FILES := power_bacon.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils
