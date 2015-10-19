@@ -14,4 +14,4 @@
 /dev/block/bootdevice/by-name/config                /frp            emmc    defaults                                                        defaults
 
 
-/devices/platform/xhci-hcd*                         auto            auto    defaults voldmanaged=usbdisk:auto
+/devices/platform/xhci-hcd*                         auto            auto    defaults voldmanaged=usb:auto

@@ -190,7 +190,6 @@ on boot
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
 
 on post-fs-data
-    mkdir /data/media 0770 media_rw media_rw
 
     # NFC: create data/nfc for nv storage
     mkdir /data/nfc 0770 nfc nfc
@@ -447,7 +446,7 @@ service rfs_access /system/bin/rfs_access
 service qmuxd /system/bin/qmuxd
     class main
     user radio
-    group radio audio bluetooth gps qcom_diag
+    group radio audio bluetooth gps
 
 service netmgrd /system/bin/netmgrd
     class main
@@ -636,13 +635,13 @@ on property:vold.decrypt=trigger_restart_framework
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
     user root
-    group bluetooth net_bt_admin qcom_diag radio
+    group bluetooth net_bt_admin radio
     oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
     user bluetooth
-    group bluetooth net_bt_admin qcom_diag radio
+    group bluetooth net_bt_admin radio
     disabled
     oneshot
 

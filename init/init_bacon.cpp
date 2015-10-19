@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+   Copyright (c) 2014, The CyanogenMod Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -27,21 +27,32 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __INIT_MSM__H__
-#define __INIT_MSM__H__
+#include <stdlib.h>
 
-#include <sys/system_properties.h>
+#include "vendor_init.h"
+#include "property_service.h"
+#include "log.h"
+#include "util.h"
 
-#define PROP_HWROTATE    "ro.sf.hwrotation"
-#define PROP_LCDDENSITY  "ro.sf.lcd_density"
-#define PROP_QEMU_NAVKEY "qemu.hw.mainkeys"
-#define PROP_BOOT_BASEBAND "ro.boot.baseband"
-#define PROP_BLUETOOTH_SOC "qcom.bluetooth.soc"
+static void import_kernel_nv(char *name, int for_emulator)
+{
+    char *value = strchr(name, '=');
+    int name_len = strlen(name);
 
-#define UNUSED(a)       ((void)(a))
-#define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
+    if (value == 0) return;
+    *value++ = 0;
+    if (name_len == 0) return;
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type);
-int read_file2(const char *fname, char *data, int max_size);
+    if (!strcmp(name,"oppo.rf_version")) {
+        property_set("ro.oppo.rf_version", value);
+    }
+    else if (!strcmp(name,"oppo.pcb_version")) {
+        property_set("ro.oppo.pcb_version", value);
+    }
+}
 
-#endif /* __INIT_MSM__H__ */
+void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+{
+    import_kernel_cmdline(0, import_kernel_nv);
+}
+

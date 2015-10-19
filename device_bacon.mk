@@ -34,6 +34,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/oneplus/bacon/prebuilt/system,system)
 
+# Set ro.hardware for boot
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.hardware=bacon
+
 # CodeAurora MSM9874 Device Tree
 $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
@@ -63,8 +67,8 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalv
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Device settings
-PRODUCT_PACKAGES += \
-    Find7Parts
+#PRODUCT_PACKAGES += \
+#    Find7Parts
 
 # GPS
 PRODUCT_PACKAGES += \

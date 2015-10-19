@@ -31,7 +31,8 @@ TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_bacon
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_LIBINIT_DEFINES_FILE := device/oneplus/bacon/init/init_bacon.cpp
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
@@ -49,10 +50,8 @@ AUDIO_FEATURE_ENABLED_EXTN_POST_PROC := true
 AUDIO_FEATURE_ENABLED_FLUENCE := true
 AUDIO_FEATURE_ENABLED_HFP := true
 AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
-AUDIO_FEATURE_ENABLED_INCALL_MUSIC := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-AUDIO_FEATURE_PCM_IOCTL_ENABLED := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 TARGET_USES_QCOM_MM_AUDIO := true
 
@@ -69,7 +68,7 @@ BLUETOOTH_HCI_USE_MCT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Crypto
-TARGET_HW_DISK_ENCRYPTION := true
+TARGET_HW_DISK_ENCRYPTION := false
 
 # Graphics
 BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg
@@ -89,8 +88,11 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 13271448576
 # Kernel
 TARGET_KERNEL_CONFIG := bacon_defconfig
 KERNEL_DEFCONFIG := bacon_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
+BOARD_RAMDISK_OFFSET     := 0x02000000
+BOARD_KERNEL_BASE        := 0x00000000
+BOARD_KERNEL_PAGESIZE    := 2048
 TARGET_USE_CM_RAMDISK := true
 
 # Lights
