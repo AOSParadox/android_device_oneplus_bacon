@@ -20,7 +20,8 @@
     <string name="double_tap_wake_summary_head">Un double appui sur l\'écran réveille l\'appareil</string>
     <string name="camera_title_head">Appareil photo</string>
     <string name="camera_summary_head">Dessiner un cercle pour démarrer l\'appareil photo</string>
-    <string name="key_disabler_title_head">Utiliser la barre de navigation</string>
-    <string name="key_disabler_summary_head">Utilise la barre de navigation au lieu des buttons physiques</string>
-    <string name="advanced_settings">Avancés</string>
+    <string name="torch_title_head">Torche</string>
+    <string name="torch_summary_head">Dessiner un V pour afficher la torche</string>
+
+    <string name="offscreen_gestures_settings">hors gestes d écran</string>
 </resources>

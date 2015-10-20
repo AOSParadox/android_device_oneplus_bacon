@@ -1,6 +1,5 @@
 allow system_server time_daemon:unix_stream_socket connectto;
 allow system_server apk_data_file:sock_file { read write getattr };
 allow system_server cache_file:file { execute };
-
 allow system_server sysfs_touchscreen:file rw_file_perms;
 allow system_server sysfs_touchscreen:dir { search };
