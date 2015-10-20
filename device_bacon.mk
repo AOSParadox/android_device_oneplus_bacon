@@ -17,6 +17,7 @@
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor.mk)
 
 # WCNSS
 PRODUCT_COPY_FILES += \
