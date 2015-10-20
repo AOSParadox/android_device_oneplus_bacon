@@ -24,12 +24,13 @@ import android.view.MenuItem;
 
 public class DeviceSettings extends PreferenceActivity  {
 
+    public static final String KEY_DISABLER = "key_disabler";
     public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
 
     private TwoStatePreference mDoubleTapSwitch;
     private TwoStatePreference mCameraSwitch;
-
+    private TwoStatePreference mKeyDisabler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,11 @@ public class DeviceSettings extends PreferenceActivity  {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         addPreferencesFromResource(R.xml.main);
+
+        mKeyDisabler = (TwoStatePreference) findPreference(KEY_DISABLER);
+        mKeyDisabler.setEnabled(KeyDisabler.isSupported());
+        mKeyDisabler.setChecked(KeyDisabler.isEnabled(this));
+        mKeyDisabler.setOnPreferenceChangeListener(new KeyDisabler());
 
         mDoubleTapSwitch = (TwoStatePreference) findPreference(KEY_DOUBLE_TAP_SWITCH);
         mDoubleTapSwitch.setEnabled(DoubleTapSwitch.isSupported());

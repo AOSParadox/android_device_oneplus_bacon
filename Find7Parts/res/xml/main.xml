@@ -10,7 +10,11 @@
 			android:key="camera"
 			android:summary="@string/camera_summary_head"
 			android:title="@string/camera_title_head" />
-
+		<!-- KeyDisabler isn't used for now
+		<CheckBoxPreference
+			android:key="key_disabler"
+			android:summary="@string/key_disabler_summary_head"
+			android:title="@string/key_disabler_title_head" /> -->
 	</PreferenceCategory>
 
 </PreferenceScreen>

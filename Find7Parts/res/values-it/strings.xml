@@ -8,5 +8,6 @@
     <string name="camera_summary_head">Disegna un \"O\" per attivare la fotocamera</string>
     <string name="torch_title_head">Torcia</string>
     <string name="torch_summary_head">Disegna una  \"V\" per attivare la torcia</string>
-
+    <string name="key_disabler_title_head">Utilizzare la barra di navigazione</string>
+    <string name="key_disabler_summary_head">Utilizzare la barra di navigazione, invece di tasti fisici</string>
 </resources>

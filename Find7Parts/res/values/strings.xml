@@ -20,6 +20,7 @@
     <string name="double_tap_wake_summary_head">Double tap on screen will wake the device</string>
     <string name="camera_title_head">Camera</string>
     <string name="camera_summary_head">Draw a circle to start camera</string>
-
+    <string name="key_disabler_title_head">Enable software keys</string>
+    <string name="key_disabler_summary_head">Will use the software keys instead of hardware keys</string>
     <string name="offscreen_gestures_settings">Off screen gestures</string>
 </resources>
