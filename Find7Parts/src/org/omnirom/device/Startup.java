@@ -27,6 +27,6 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent bootintent) {
         DoubleTapSwitch.restore(context);
         CameraGestureSwitch.restore(context);
-	KeyDisabler.restore(context);
+	//KeyDisabler.restore(context);
     }
 }
