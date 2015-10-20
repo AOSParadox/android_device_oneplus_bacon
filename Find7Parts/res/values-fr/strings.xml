@@ -24,5 +24,5 @@
     <string name="torch_summary_head">Dessiner un V pour afficher la torche</string>
     <string name="key_disabler_title_head">Utiliser la barre de navigation</string>
     <string name="key_disabler_summary_head">Utilise la barre de navigation au lieu des buttons physiques</string>
-    <string name="offscreen_gestures_settings">Gestes d'extinction d'écran</string>
+    <string name="offscreen_gestures_settings">Gestes d\'extinction d\'écran</string>
 </resources>
