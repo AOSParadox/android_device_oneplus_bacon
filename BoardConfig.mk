@@ -103,9 +103,6 @@ TARGET_USE_CM_RAMDISK := true
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# NFC
-BOARD_NFC_CHIPSET := pn547
-
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
 BOARD_HAS_QCOM_WLAN_SDK          := true

@@ -81,7 +81,7 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    nfc_nci.pn54x.default
+    nfc_nci.bacon
 
 # Permissions
 PRODUCT_COPY_FILES += \
