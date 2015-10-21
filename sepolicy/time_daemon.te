@@ -1,6 +1,0 @@
-allow time_daemon qmuxd_socket:sock_file create_file_perms;
-allow time_daemon qmuxd_socket:dir create_dir_perms;
-allow time_daemon system_data_file:dir r_dir_perms;
-allow time_daemon devpts:chr_file rw_file_perms;
-allow time_daemon qmuxd:unix_stream_socket connectto;
-

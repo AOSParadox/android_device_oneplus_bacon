@@ -1,4 +1,2 @@
+# Our rmt storage bridges the ssd partition too
 allow rmt_storage ssd_device:blk_file rw_file_perms;
-
-# Allow reads/writes to modem related block devices
-allow rmt_storage modem_block_device:blk_file rw_file_perms;
