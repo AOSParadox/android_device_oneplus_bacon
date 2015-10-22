@@ -20,6 +20,11 @@
     <string name="double_tap_wake_summary_head">Un double appui sur l\'écran réveille l\'appareil</string>
     <string name="camera_title_head">Appareil photo</string>
     <string name="camera_summary_head">Dessiner un cercle pour démarrer l\'appareil photo</string>
+    <string name="music_title_head">Musique</string>
+    <string name="music_summary_head">Utilises les gestes pour contrôler l\'avancement de la musique \n
+    • Les deux doigts verticallement pour play/pause\n
+    • Slide vers la gauche pour revenir à la musique précédente\n
+    • Slide vers la droite pour lancer la musique suivante</string>
     <string name="torch_title_head">Torche</string>
     <string name="torch_summary_head">Dessiner un V pour afficher la torche</string>
     <string name="key_disabler_title_head">Utiliser la barre de navigation</string>
