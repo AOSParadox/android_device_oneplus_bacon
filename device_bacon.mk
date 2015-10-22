@@ -46,6 +46,10 @@ $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# ADB Workaround
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.secure=0
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
@@ -97,9 +101,6 @@ PRODUCT_PACKAGES += \
     keystore.qcom
 
 # USB
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
