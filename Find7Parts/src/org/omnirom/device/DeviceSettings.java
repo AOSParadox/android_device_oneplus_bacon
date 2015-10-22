@@ -27,9 +27,11 @@ public class DeviceSettings extends PreferenceActivity  {
     //public static final String KEY_DISABLER = "key_disabler";
     public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
+    public static final String KEY_MUSIC_SWITCH = "music";
 
     private TwoStatePreference mDoubleTapSwitch;
     private TwoStatePreference mCameraSwitch;
+    private TwoStatePreference mMusicSwitch;
     //private TwoStatePreference mKeyDisabler;
 
     @Override
@@ -53,6 +55,11 @@ public class DeviceSettings extends PreferenceActivity  {
         mCameraSwitch.setEnabled(CameraGestureSwitch.isSupported());
         mCameraSwitch.setChecked(CameraGestureSwitch.isEnabled(this));
         mCameraSwitch.setOnPreferenceChangeListener(new CameraGestureSwitch());
+
+        mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
+        mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
+        mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
+        mMusicSwitch.setOnPreferenceChangeListener(new MusicGestureSwitch());
 
     }
 
