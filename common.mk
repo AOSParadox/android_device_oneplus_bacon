@@ -408,6 +408,8 @@ PRODUCT_PACKAGES += vcard
 # tcmiface for tcm support
 PRODUCT_PACKAGES += tcmiface
 
+PRODUCT_PACKAGES += libemoji
+
 #intialise PRODUCT_PACKAGES_DEBUG list for debug modules
 PRODUCT_PACKAGES_DEBUG :=
 
