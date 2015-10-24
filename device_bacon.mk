@@ -81,7 +81,7 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    nfc_nci.bacon
+    nfc_nci.msm8974
 
 # Permissions
 PRODUCT_COPY_FILES += \
