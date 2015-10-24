@@ -23,11 +23,6 @@ on fs
 on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-
-    export EXTERNAL_STORAGE /sdcard
-    export SECONDARY_STORAGE /storage/sdcard1
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
@@ -40,6 +35,4 @@ on post-fs-data
     # Torch
     chown system camera /sys/class/leds/torch-light/brightness
     chmod 0660 /sys/class/leds/torch-light/brightness
-    chown system camera /sys/class/leds/led:flash_torch/brightness
-    chmod 0666 /sys/class/leds/led:flash_torch/brightness
 

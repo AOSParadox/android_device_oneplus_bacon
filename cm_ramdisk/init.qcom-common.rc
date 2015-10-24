@@ -84,9 +84,6 @@ on boot
     chown system system /sys/class/leds/rgb_green/brightness
     chown system system /sys/class/leds/button-backlight/brightness
 
-    # Turn on backlights at boot
-    write /sys/class/leds/button-backlight/brightness 50
-
     #charger
     chown root system /sys/module/qpnp_charger/parameters/charger_monitor
     chown root system /sys/class/power_supply/battery/input_current_max
@@ -189,6 +186,10 @@ on boot
     #venus
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
 
+    # Adaptive LMK
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
+
 on post-fs-data
 
     # NFC: create data/nfc for nv storage
@@ -263,15 +264,18 @@ on post-fs-data
     # Touchscreen
     chown system radio /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
+
     chown root system /proc/touchpanel/camera_enable
     chmod 0660 /proc/touchpanel/camera_enable
+
+    chown root system /proc/touchpanel/music_enable
+    chmod 0660 /proc/touchpanel/music_enable
+
     chown root system /proc/touchpanel/flashlight_enable
     chmod 0660 /proc/touchpanel/flashlight_enable
+
     chown root system /proc/touchpanel/keypad_enable
     chmod 0660 /proc/touchpanel/keypad_enable
-
-    # Disable HW Keys by default
-    write /proc/touchpanel/keypad_enable 0
 
     chown system system /sys/devices/virtual/graphics/fb0/cabc
     chmod 0660 /sys/devices/virtual/graphics/fb0/cabc
@@ -284,6 +288,9 @@ on post-fs-data
 
     chown system system /sys/devices/virtual/graphics/fb0/rgb
     chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
+
+    chown system system /sys/devices/virtual/graphics/fb0/aco
+    chmod 0660 /sys/devices/virtual/graphics/fb0/aco
 
     chown system system /sys/devices/virtual/graphics/fb0/dyn_pu
     chmod 0660 /sys/devices/virtual/graphics/fb0/dyn_pu
