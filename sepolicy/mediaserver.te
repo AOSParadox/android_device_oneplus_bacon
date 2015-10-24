@@ -1,5 +1,3 @@
-allow mediaserver audiod:binder call;
-allow mediaserver system_data_file:sock_file { write };
-allow mediaserver socket_device:sock_file { write };
-# 4k2k property
-allow mediaserver camera_prop:property_service set;
+# Allow media server to interact (helps camera)
+allow mediaserver system_file:file execmod;
+allow mediaserver system_file:file execute;

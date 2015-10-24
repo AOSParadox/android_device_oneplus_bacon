@@ -1,5 +1,14 @@
-allow system_server time_daemon:unix_stream_socket connectto;
-allow system_server apk_data_file:sock_file { read write getattr };
-allow system_server cache_file:file { execute };
-allow system_server sysfs_touchscreen:file rw_file_perms;
-allow system_server sysfs_touchscreen:dir { search };
+# TapToWake
+allow system_server proc_touchpanel:file rw_file_perms;
+allow system_server proc_touchpanel:dir search;
+
+# timerfd
+allow system_server rtc_device:chr_file rw_file_perms;
+
+# Permissions for sysfs_usb_supply
+allow system_server sysfs_usb_supply:dir search;
+allow system_server sysfs_usb_supply:file rw_file_perms;
+allow system_server sysfs_usb_supply:lnk_file read;
+
+# Reading from /persist/wifi/.genmac
+r_dir_file(system_server, persist_wifi_file)

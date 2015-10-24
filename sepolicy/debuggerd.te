@@ -1,0 +1,2 @@
+# Allow KGSL do its thing
+allow debuggerd gpu_device:chr_file read;

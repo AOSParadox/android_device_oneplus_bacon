@@ -1,2 +1,0 @@
-allow sensors apk_data_file:sock_file create_file_perms;
-allow sensors apk_data_file:dir create_dir_perms;
