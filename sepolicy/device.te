@@ -1,0 +1,5 @@
+type modem_block_device, dev_type;
+type persist_block_device, dev_type;
+
+type bluetooth_device, dev_type;
+type wpa_device, dev_type;

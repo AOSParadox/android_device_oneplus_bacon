@@ -1,0 +1,2 @@
+allow qti_init_shell qmuxd_socket:dir { add_name search write };
+allow qti_init_shell sysfs_devices_system_cpu:file setattr;

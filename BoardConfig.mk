@@ -57,7 +57,7 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x3b7 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x3b7 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_SEPARATED_DT := true
 
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
@@ -110,3 +110,6 @@ TARGET_RECOVERY_FSTAB = device/oneplus/bacon/rootdir/etc/fstab.qcom
 BOARD_NFC_CHIPSET := pn547
 
 USE_CUSTOM_AUDIO_POLICY := 1
+
+BOARD_SEPOLICY_DIRS += \
+     device/oneplus/bacon/sepolicy

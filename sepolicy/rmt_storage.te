@@ -1,0 +1,2 @@
+allow rmt_storage modem_block_device:blk_file { read write open };
+allow rmt_storage modem_efs_partition_device:blk_file { read write open };

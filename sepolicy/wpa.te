@@ -1,0 +1,2 @@
+allow wpa bluetooth_device:chr_file read;
+allow wpa wpa_device:chr_file read;

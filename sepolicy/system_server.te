@@ -1,0 +1,2 @@
+allow system_server sysfs_usb_supply:dir search;
+allow system_server sysfs_usb_supply:file { read getattr open };
