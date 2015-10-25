@@ -359,4 +359,7 @@
     <!--  Define Google play service package for FRP-->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 
+    <!--  Doze Power Management -->
+    <bool name="config_enableAutoPowerModes">true</bool>
+
 </resources>
