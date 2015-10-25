@@ -4,3 +4,9 @@ allow shell sysfs_battery_supply:dir r_dir_perms;
 
 # Permissions for sysfs_usb_supply
 allow shell sysfs_usb_supply:dir r_dir_perms;
+
+# Allow shell to use wcnss_service
+allow shell wcnss_service_exec:file getattr;
+allow shell wcnss_service_exec:file execute;
+allow shell wcnss_service_exec:file open;
+allow shell wcnss_service_exec:file read;

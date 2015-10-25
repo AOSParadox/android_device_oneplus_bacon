@@ -1,5 +1,2 @@
 # Permssions for dt2w switch
 type proc_touchpanel, fs_type, sysfs_type;
-
-# .genmac
-type persist_wifi_file, file_type;

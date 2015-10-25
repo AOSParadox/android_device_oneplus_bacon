@@ -10,5 +10,6 @@ allow system_server sysfs_usb_supply:dir search;
 allow system_server sysfs_usb_supply:file rw_file_perms;
 allow system_server sysfs_usb_supply:lnk_file read;
 
-# Reading from /persist/wifi/.genmac
-r_dir_file(system_server, persist_wifi_file)
+# Reading from /persist/.genmac
+allow system_server persist_file:dir r_dir_perms;
+r_dir_file(system_server, wifi_data_file)

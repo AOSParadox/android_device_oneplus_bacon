@@ -1,6 +1,5 @@
 allow wcnss_service persist_file:dir { search write create add_name };
+allow wcnss_service_exec persist_file:dir { search write create add_name };
 
 type_transition wcnss_service persist_file:file wifi_data_file ".genmac";
-
-# Reading from /persist/wifi/.genmac
-r_dir_file(wcnss_service, persist_wifi_file)
+type_transition wcnss_service_exec persist_file:file wifi_data_file ".genmac";
