@@ -119,7 +119,7 @@ TARGET_WCNSS_MAC_PREFIX          := e8bba8
 WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/oneplus/bacon/ramdisk/fstab.bacon
+TARGET_RECOVERY_FSTAB := device/oneplus/bacon/cm_ramdisk/fstab.bacon
 BOARD_VOLD_CRYPTFS_MIGRATE := true
 
 # Sepolicy
