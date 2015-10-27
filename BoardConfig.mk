@@ -35,7 +35,7 @@ TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
 TARGET_KERNEL_CONFIG := bacon_defconfig
 
 # Enables Adreno RS driver
-#OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
