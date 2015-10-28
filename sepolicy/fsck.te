@@ -1,3 +1,4 @@
 # Permissions for e2fsck
 allow fsck block_device:blk_file {getattr ioctl};
 allow fsck block_device:blk_file rw_file_perms;
+allow fsck persist_block_device:blk_file rw_file_perms;
