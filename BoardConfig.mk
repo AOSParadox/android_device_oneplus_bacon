@@ -113,3 +113,5 @@ USE_CUSTOM_AUDIO_POLICY := 1
 
 BOARD_SEPOLICY_DIRS += \
      device/oneplus/bacon/sepolicy
+
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
