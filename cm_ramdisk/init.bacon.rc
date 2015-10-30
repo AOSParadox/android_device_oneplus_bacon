@@ -28,9 +28,6 @@ on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
-on post-fs
-    export LD_PRELOAD /vendor/lib/libNimsWrap.so
-
 on post-fs-data
     # Torch
     chown system camera /sys/class/leds/torch-light/brightness
