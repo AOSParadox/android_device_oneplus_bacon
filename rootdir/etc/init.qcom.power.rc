@@ -64,6 +64,13 @@ on enable-low-power
     write /sys/kernel/cpu_input_boost/sync_threshold 1267200
     write /sys/kernel/cpu_input_boost/enabled 1
 
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/kernel/msm_thermal/low_thresh "1574400 40 37"
+    write /sys/kernel/msm_thermal/mid_thresh "1267200 46 43"
+    write /sys/kernel/msm_thermal/high_thresh "1190400 52 48"
+    write /sys/kernel/msm_thermal/sampling_ms 10000
+    write /sys/kernel/msm_thermal/enabled 1
+
     write /sys/class/devfreq/qcom,cpubw.40/governor "cpubw_hwmon"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
 
@@ -92,6 +99,14 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+
+on boot
+    # Set light thermal restrictions while optimizing apps
+    # [throttle_freq, throttle_temp, unthrottle_temp]
+    write /sys/kernel/msm_thermal/low_thresh "1728000 45 43"
+    write /sys/kernel/msm_thermal/mid_thresh "1574400 50 47"
+    write /sys/kernel/msm_thermal/high_thresh "1267200 55 53"
+    write /sys/kernel/msm_thermal/enabled 1
 
 on property:sys.boot_completed=1
     trigger enable-low-power

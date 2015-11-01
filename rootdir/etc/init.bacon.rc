@@ -497,13 +497,13 @@ service mpdecision /system/bin/mpdecision --avg_comp
    user root
    group system
 
-service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   group root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
+#service thermal-engine /system/vendor/bin/thermal-engine
+#   class main
+#   user root
+#   group root
+#   socket thermal-send-client stream 0666 system system
+#   socket thermal-recv-client stream 0660 system system
+#   socket thermal-recv-passive-client stream 0666 system system
 
 service time_daemon /system/bin/time_daemon
     class late_start
