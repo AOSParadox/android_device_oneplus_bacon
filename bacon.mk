@@ -92,6 +92,10 @@ PRODUCT_PROPERTY_OVERRIDES +=
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
+# Camera
+PRODUCT_PACKAGES += \
+    SnapdragonCamera
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
