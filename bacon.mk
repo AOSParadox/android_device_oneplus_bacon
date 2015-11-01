@@ -77,7 +77,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.qcom_parser=3310129 \
     audio.offload.buffer.size.kb=32 \
     audio.offload.video=true \
-    av.streaming.offload.enable=true \
     use.voice.path.for.pcm.voip=true \
     audio.offload.multiple.enabled=false \
     audio.offload.gapless.enabled=true \
