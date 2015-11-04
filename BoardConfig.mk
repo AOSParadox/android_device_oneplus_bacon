@@ -151,6 +151,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := device/oneplus/bacon/init/init_bacon.cpp
 
+# Keymaster
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
