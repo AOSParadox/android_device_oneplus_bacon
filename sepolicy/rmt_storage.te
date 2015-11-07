@@ -1,4 +1,2 @@
-# Our rmt storage bridges the ssd partition too
-allow rmt_storage ssd_device:blk_file rw_file_perms;
-# ... and interacts with modem partions
-allow rmt_storage block_device:blk_file rw_file_perms;
+# Allow rmt_storage to backup/restore NV contents
+allow rmt_storage nvbackup_block_device:blk_file rw_file_perms;
