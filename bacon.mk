@@ -299,6 +299,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=9 \
     ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
+    persist.data.qmi.adb_logmask=0 \
     persist.data.tcpackprio.enable=true \
     ro.data.large_tcp_window_size=true \
     telephony.lteOnGsmDevice=1 \
