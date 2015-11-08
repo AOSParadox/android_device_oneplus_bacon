@@ -116,7 +116,6 @@ WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME          := "wlan"
 TARGET_PROVIDES_WCNSS_QMI        := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
-TARGET_USES_WCNSS_MAC_ADDR_REV   := true
 WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
 
 # Recovery
