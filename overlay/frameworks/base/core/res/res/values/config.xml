@@ -338,10 +338,8 @@
     -->
     <integer name="config_longPressOnHomeBehavior">1</integer>
 
-    <!-- The RadioAccessFamilies supported by the device.
-         Empty is viewed as "all".  Only used on devices which
-         don't support RIL_REQUEST_GET_RADIO_CAPABILITY
-         format is UMTS|LTE|... -->
-   <string translatable="false" name="config_radio_access_family">GSM | WCDMA | LTE</string>
 
+
+    <!-- Our modem doesn't support this query yet -->
+    <string name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|LTE|HSPAP|GSM|TD_SCDMA|WCDMA|LTE_CA</string>
 </resources>
