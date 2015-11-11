@@ -21,7 +21,8 @@ $(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor.mk)
 
 # WCNSS
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8974/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+    device/qcom/msm8974/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
+    kernel/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat
 
 # CAF branch
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
