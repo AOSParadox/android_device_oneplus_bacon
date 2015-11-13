@@ -16,23 +16,20 @@
 
 #include <errno.h>
 #include <fcntl.h>
-#include <pthread.h>
 #include <stdbool.h>
 #include <string.h>
 
-#define LOG_TAG "PowerHAL"
+#define LOG_TAG "PowerHal"
 #include <utils/Log.h>
 
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 
-#define LOW_POWER_MAX_FREQ	"729600"
-#define NORMAL_MAX_FREQ 	"2457600"
+#define CPU_PATH_MAX 	   "/sys/kernel/msm_thermal/user_maxfreq"
+#define LOW_POWER_MAX_FREQ "960000"
+#define NORMAL_MAX_FREQ    "2457600"
 
-static const char *cpu_path_max = "/sys/kernel/msm_thermal/user_maxfreq";
-static bool freq_set;
-static bool low_power_mode = false;
-static pthread_mutex_t low_power_mode_lock = PTHREAD_MUTEX_INITIALIZER;
+static bool low_power_mode;
 
 static int sysfs_write(const char *path, char *s)
 {
@@ -67,29 +64,19 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
 {
 }
 
-static void power_hint( __attribute__((unused)) struct power_module *module,
+static void power_hint(__attribute__((unused)) struct power_module *module,
                       power_hint_t hint, __attribute__((unused)) void *data)
 {
-    int cpu, ret;
-
     if (hint != POWER_HINT_LOW_POWER)
         return;
 
-    pthread_mutex_lock(&low_power_mode_lock);
-    if (data) {
-        low_power_mode = true;
-        ret = sysfs_write(cpu_path_max, LOW_POWER_MAX_FREQ);
-        if (!ret) {
-            freq_set = true;
-        }
-    } else {
+    if (low_power_mode) {
         low_power_mode = false;
-        ret = sysfs_write(cpu_path_max, NORMAL_MAX_FREQ);
-        if (!ret) {
-            freq_set = false;
-        }
+        sysfs_write(CPU_PATH_MAX, NORMAL_MAX_FREQ);
+    } else {
+        low_power_mode = true;
+        sysfs_write(CPU_PATH_MAX, LOW_POWER_MAX_FREQ);
     }
-    pthread_mutex_unlock(&low_power_mode_lock);
 }
 
 static struct hw_module_methods_t power_module_methods = {
@@ -99,8 +86,9 @@ static struct hw_module_methods_t power_module_methods = {
 void set_feature(__attribute__((unused)) struct power_module *module,
 		feature_t feature, int state)
 {
-    char tmp_str[64];
 #ifdef TAP_TO_WAKE_NODE
+    char tmp_str[64];
+
     if (feature == POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
         snprintf(tmp_str, 64, "%d", state);
         sysfs_write(TAP_TO_WAKE_NODE, tmp_str);
