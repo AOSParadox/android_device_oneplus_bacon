@@ -25,12 +25,10 @@ import android.view.MenuItem;
 public class DeviceSettings extends PreferenceActivity  {
 
     //public static final String KEY_DISABLER = "key_disabler";
-    public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
     public static final String KEY_TORCH_SWITCH = "torch";
     public static final String KEY_MUSIC_SWITCH = "music";
 
-    private TwoStatePreference mDoubleTapSwitch;
     private TwoStatePreference mCameraSwitch;
     private TwoStatePreference mTorchSwitch;
     private TwoStatePreference mMusicSwitch;
@@ -47,11 +45,6 @@ public class DeviceSettings extends PreferenceActivity  {
         //mKeyDisabler.setEnabled(KeyDisabler.isSupported());
         //mKeyDisabler.setChecked(KeyDisabler.isEnabled(this));
         //mKeyDisabler.setOnPreferenceChangeListener(new KeyDisabler());
-
-        mDoubleTapSwitch = (TwoStatePreference) findPreference(KEY_DOUBLE_TAP_SWITCH);
-        mDoubleTapSwitch.setEnabled(DoubleTapSwitch.isSupported());
-        mDoubleTapSwitch.setChecked(DoubleTapSwitch.isEnabled(this));
-        mDoubleTapSwitch.setOnPreferenceChangeListener(new DoubleTapSwitch());
 
         mCameraSwitch = (TwoStatePreference) findPreference(KEY_CAMERA_SWITCH);
         mCameraSwitch.setEnabled(CameraGestureSwitch.isSupported());

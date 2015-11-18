@@ -39,7 +39,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_V_SCANCODE = 252;
     private static final int GESTURE_LTR_SCANCODE = 253;
     private static final int GESTURE_GTR_SCANCODE = 254;
-    private static final int KEY_DOUBLE_TAP = 255;
 
     private static final int[] sSupportedGestures = new int[]{
         GESTURE_CIRCLE_SCANCODE,
@@ -47,7 +46,6 @@ public class KeyHandler implements DeviceKeyHandler {
         GESTURE_SWIPE_DOWN_SCANCODE,
         GESTURE_LTR_SCANCODE,
         GESTURE_GTR_SCANCODE,
-        KEY_DOUBLE_TAP
     };
 
     private final Context mContext;
@@ -123,11 +121,6 @@ public class KeyHandler implements DeviceKeyHandler {
         if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
-            if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
-                if (DEBUG) Log.i(TAG, "KEY_DOUBLE_TAP");
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
-                return true;
-            }
             Message msg = getMessageForKeyEvent(event);
             mEventHandler.sendMessage(msg);
         }
