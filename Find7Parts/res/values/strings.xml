@@ -20,6 +20,8 @@
     <string name="double_tap_wake_summary_head">Double tap on screen will wake the device</string>
     <string name="camera_title_head">Camera</string>
     <string name="camera_summary_head">Draw a circle to start camera</string>
+    <string name="torch_title_head">Torch</string>
+    <string name="torch_summary_head">Draw a V to toggle torch</string>
     <string name="music_title_head">Music</string>
     <string name="music_summary_head">Use gestures to control music playback \n
     • Two fingers vertically to play/pause\n
