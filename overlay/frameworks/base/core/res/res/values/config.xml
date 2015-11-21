@@ -338,8 +338,6 @@
     -->
     <integer name="config_longPressOnHomeBehavior">1</integer>
 
-
-
     <!-- Our modem doesn't support this query yet -->
     <string name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|LTE|HSPAP|GSM|TD_SCDMA|WCDMA|LTE_CA</string>
 </resources>

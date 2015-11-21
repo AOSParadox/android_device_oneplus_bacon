@@ -1,2 +1,1 @@
-# Permssions for dt2w switch
 type proc_touchpanel, fs_type, sysfs_type;

@@ -1,6 +1,0 @@
-allow zygote init:unix_stream_socket read;
-allow zygote init:unix_stream_socket write;
-allow zygote init:unix_stream_socket listen;
-allow zygote init:unix_stream_socket accept;
-allow zygote init:unix_stream_socket getopt;
-

@@ -1,27 +1,19 @@
-# touchscreen gestures
-/proc/touchpanel(/.*)?	                        u:object_r:proc_touchpanel:s0
-/sys/class/leds/button-backlight/brightness	u:object_r:proc_touchpanel:s0
-
 # NV backup partitions
 /dev/block/platform/msm_sdcc\.1/by-name/oppodycnvbk     u:object_r:nvbackup_block_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/oppostanvbk     u:object_r:nvbackup_block_device:s0
 
+# Persist filesystem
+/dev/block/platform/msm_sdcc\.1/by-name/persist         u:object_r:persist_block_device:s0
+
 # Old camera socket
 /data/cam_socket1                                       u:object_r:camera_socket:s0
 /data/cam_socket2                                       u:object_r:camera_socket:s0
-/data/fdAlbum                                           u:object_r:camera_data_file:s0
-
-# Old slim_ap executable
-/system/vendor/bin/slim_ap_daemon                       u:object_r:location_exec:s0
 
 # BT/WiFi MAC
 /persist/.genmac                                        u:object_r:wifi_data_file:s0
 /persist/.bt_nv.bin                                     u:object_r:bluetooth_data_file:s0
 
-# Filesystems
-/dev/block/platform/msm_sdcc\.1/by-name/boot         u:object_r:boot_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/system       u:object_r:system_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/recovery     u:object_r:recovery_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/metadata     u:object_r:metadata_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/cache        u:object_r:cache_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/persist      u:object_r:persist_block_device:s0
+# Touchscreen gestures
+/proc/touchpanel(/.*)?                                  u:object_r:proc_touchpanel:s0
+/sys/class/leds/button-backlight/brightness             u:object_r:proc_touchpanel:s0
+
