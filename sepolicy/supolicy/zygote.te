@@ -1,0 +1,11 @@
+allow zygote devpts:chr_file { ioctl read write getattr open };
+allow zygote init:fifo_file { ioctl read write getattr };
+allow zygote init:unix_stream_socket { ioctl read write getattr setattr lock connect listen accept getopt setopt shutdown sendto name_bind connectto };
+allow zygote platform_app:unix_stream_socket { read write connectto };
+allow zygote recovery:fifo_file { ioctl read write getattr };
+allow zygote recovery:unix_stream_socket { read write getattr setattr listen accept getopt setopt connectto };
+allow zygote system_app:unix_stream_socket { read write connectto };
+allow zygote system_server:unix_stream_socket { read write connectto };
+allow zygote toolbox:fd { use };
+allow zygote untrusted_app:unix_stream_socket { read write connectto };
+allow zygote untrusted_app_devpts:chr_file { ioctl read write getattr open };

@@ -1,0 +1,4 @@
+allow system_app devpts:chr_file { ioctl read write getattr open };
+allow system_app system_app:capability { chown dac_override dac_read_search kill setgid setuid setpcap net_bind_service net_raw ipc_lock sys_chroot sys_pacct sys_admin sys_boot sys_resource sys_time sys_tty_config mknod audit_write audit_control };
+allow system_app untrusted_app:unix_stream_socket { read write getattr setattr lock relabelto bind accept getopt shutdown name_bind connectto };
+allow system_app untrusted_app_devpts:chr_file { ioctl read write getattr open };

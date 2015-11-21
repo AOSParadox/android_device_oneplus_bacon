@@ -1,0 +1,4 @@
+allow platform_app devpts:chr_file { ioctl read write getattr open };
+allow platform_app init:unix_stream_socket { read write getattr setattr lock relabelto bind accept getopt shutdown name_bind connectto };
+allow platform_app untrusted_app:unix_stream_socket { ioctl read write create setattr lock append bind connect accept getopt shutdown recv_msg name_bind connectto };
+allow platform_app untrusted_app_devpts:chr_file { ioctl read write getattr open };

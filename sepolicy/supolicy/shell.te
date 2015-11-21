@@ -1,0 +1,6 @@
+allow shell init:fifo_file { ioctl read write getattr };
+allow shell init:unix_stream_socket { read write connectto };
+allow shell shell:capability { setgid setuid };
+allow shell toolbox:fd { use };
+allow shell untrusted_app:unix_stream_socket { read write connectto };
+allow shell untrusted_app_devpts:chr_file { ioctl read write getattr open };

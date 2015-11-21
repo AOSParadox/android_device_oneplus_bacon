@@ -1,0 +1,3 @@
+allow servicemanager init:file { read getattr open };
+allow servicemanager init:process { getattr };
+allow servicemanager init:dir { ioctl read getattr setattr lock relabelto unlink execute swapon mounton search rmdir open };

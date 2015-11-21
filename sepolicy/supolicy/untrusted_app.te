@@ -1,0 +1,3 @@
+allow untrusted_app devpts:chr_file { ioctl read write getattr open };
+allow untrusted_app init:unix_stream_socket { ioctl read write create setattr lock listen accept getopt shutdown sendto name_bind connectto };
+allow untrusted_app untrusted_app:capability { dac_read_search fowner kill setgid setuid setpcap net_broadcast net_raw ipc_lock sys_module sys_rawio sys_pacct sys_admin sys_boot sys_tty_config lease audit_write audit_control };

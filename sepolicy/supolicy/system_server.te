@@ -1,0 +1,6 @@
+allow init system_server:process { fork transition sigchld signull signal getsched getsession getcap setcap getattr setfscreate siginh setrlimit rlimitinh setcurrent setsockcreate };
+allow system_server devpts:chr_file { ioctl read write getattr open };
+allow system_server recovery:unix_stream_socket { getattr setattr listen accept getopt setopt };
+allow system_server system_server:capability {  setgid setuid };
+allow system_server untrusted_app:unix_stream_socket { ioctl read write getattr setattr lock append listen accept getopt shutdown recv_msg name_bind connectto };
+allow system_server untrusted_app_devpts:chr_file { ioctl read write getattr open };
