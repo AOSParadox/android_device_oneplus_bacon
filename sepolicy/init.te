@@ -1,0 +1,3 @@
+allow init kernel:security read_policy;
+allow init kernel:security load_policy;
+allow init property_socket:sock_file write;
