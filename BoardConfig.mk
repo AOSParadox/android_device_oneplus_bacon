@@ -98,11 +98,6 @@ BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 2048
 TARGET_USE_CM_RAMDISK := true
 
-WLAN_MODULES:
-	mv $(KERNEL_MODULES_OUT)/wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-
-TARGET_KERNEL_MODULES += WLAN_MODULES
-
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
@@ -121,6 +116,7 @@ WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME          := "wlan"
 TARGET_PROVIDES_WCNSS_QMI        := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
+WLAN_SELECT                      += CONFIG_PRIMA_WLAN=y
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oneplus/bacon/cm_ramdisk/fstab.bacon
