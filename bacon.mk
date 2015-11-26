@@ -74,9 +74,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
-    mm.enable.qcom_parser=3310129 \
+    ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.voicecall=true \
     audio.offload.buffer.size.kb=32 \
     audio.offload.video=true \
+    av.streaming.offload.enable=true \
     use.voice.path.for.pcm.voip=true \
     audio.offload.multiple.enabled=false \
     audio.offload.gapless.enabled=true \
@@ -94,7 +96,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
-    SnapdragonCamera
+    camera.bacon
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -124,8 +126,7 @@ PRODUCT_PACKAGES += \
     gralloc.msm8974 \
     hwcomposer.msm8974 \
     memtrack.msm8974 \
-    liboverlay \
-    libboringssl-compat
+    liboverlay
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -140,7 +141,7 @@ PRODUCT_COPY_FILES += \
 
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=deadline
+    sys.io.scheduler=bfq
 
 # IPC router config
 PRODUCT_COPY_FILES += \
@@ -153,11 +154,6 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8974
-
-# Limit dex2oat threads to improve thermals
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-threads=2 \
-    dalvik.vm.image-dex2oat-threads=4
 
 # Media profile
 PRODUCT_COPY_FILES += \
@@ -237,7 +233,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.bacon
+    power.msm8974
 
 # Proprietary wifi display, if available
 ifneq ($(QCPATH),)
@@ -303,15 +299,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608 \
     ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-    persist.data.qmi.adb_logmask=0 \
     persist.data.tcpackprio.enable=true \
     ro.data.large_tcp_window_size=true \
     telephony.lteOnGsmDevice=1 \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
+    ro.qualcomm.perf.cores_online=2 \
+    ro.vendor.extension_library=libqti-perfd-client.so \
     ro.telephony.call_ring.multiple=0 \
-    ro.telephony.default_network=9 \
-    persist.sys.strictmode.disable=true
+    ro.telephony.default_network=9
 
 # Call the proprietary setup
 $(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor.mk)
