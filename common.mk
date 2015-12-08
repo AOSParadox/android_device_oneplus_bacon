@@ -4,6 +4,8 @@ QCOM_BOARD_PLATFORMS += msm8974
 
 TARGET_USE_VENDOR_CAMERA_EXT := true
 
+ANDROID_COMPILE_WITH_JACK := false
+
 # Below projects/packages with LOCAL_MODULEs will be used by
 # PRODUCT_PACKAGES to build LOCAL_MODULEs that are tagged with
 # optional tag, which will not be available on target unless
@@ -154,6 +156,7 @@ LIBCAMERA += libmmcamera_interface2
 LIBCAMERA += libmmjpeg_interface
 LIBCAMERA += libqomx_core
 LIBCAMERA += mm-qcamera-app
+LIBCAMERA += camera_test
 LIBCAMERA += org.codeaurora.camera
 
 #LIBCOPYBIT
@@ -333,6 +336,7 @@ CRDA := crda
 CRDA += regdbdump
 CRDA += regulatory.bin
 CRDA += linville.key.pub.pem
+CRDA += init.crda.sh
 
 PRODUCT_PACKAGES += $(ALSA_HARDWARE)
 PRODUCT_PACKAGES += $(ANGLE)
