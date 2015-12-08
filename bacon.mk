@@ -7,8 +7,6 @@ $(call inherit-product, device/oneplus/bacon/common.mk)
 
 $(call inherit-product, vendor/oneplus/bacon/bacon-vendor.mk)
 
-$(call inherit-product, device/qcom/common/common.mk)
-
 PRODUCT_COPY_FILES += device/oneplus/bacon/media/media_profiles_8974.xml:system/etc/media_profiles.xml \
                       device/oneplus/bacon/media/media_codecs_8974.xml:system/etc/media_codecs.xml \
                       device/oneplus/bacon/media/media_codecs_performance_8974.xml:system/etc/media_codecs_performance.xml
