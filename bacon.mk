@@ -3,13 +3,13 @@ LOCAL_PATH := device/oneplus/bacon
 DEVICE_PACKAGE_OVERLAYS := \
    $(LOCAL_PATH)/overlay
 
-# media_profiles and media_codecs xmls for 8974
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/media/media_profiles_8974.xml:system/etc/media_profiles.xml \
-                      $(LOCAL_PATH)/media/media_codecs_8974.xml:system/etc/media_codecs.xml
-
 $(call inherit-product, device/oneplus/bacon/common.mk)
 
 $(call inherit-product, vendor/oneplus/bacon/bacon-vendor.mk)
+
+PRODUCT_COPY_FILES += device/oneplus/bacon/media/media_profiles_8974.xml:system/etc/media_profiles.xml \
+                      device/oneplus/bacon/media/media_codecs_8974.xml:system/etc/media_codecs.xml \
+                      device/oneplus/bacon/media/media_codecs_performance_8974.xml:system/etc/media_codecs_performance.xml
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
@@ -58,8 +58,11 @@ PRODUCT_PACKAGES += \
     hostapd.accept \
     hostapd.deny
 
-PRODUCT_PACKAGES += \
-    wcnss_service
+PRODUCT_PACKAGES += wcnss_service
+
+# MIDI feature
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
 
 # GPS Configuration
 PRODUCT_COPY_FILES += \
