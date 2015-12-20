@@ -60,7 +60,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_GTR_SCANCODE = 254;
     private static final int KEY_DOUBLE_TAP = 255;
 
-    private static final String BUTTON_DISABLE_FILE = "/sys/kernel/touchscreen/button_disable";
+    private static final String BUTTON_DISABLE_FILE = "/proc/touchpanel/keypad_enable";
 
     private static final int[] sSupportedGestures = new int[]{
         GESTURE_CIRCLE_SCANCODE,
