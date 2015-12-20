@@ -1,2 +1,2 @@
 allow vold persist_file:dir { read ioctl open };
-
+allow vold proc_touchpanel:dir { read open };
