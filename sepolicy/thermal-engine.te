@@ -1,2 +1,0 @@
-allow thermal-engine thermal-engine:netlink_kobject_uevent_socket { bind create read setopt };
-allow thermal-engine thermal-engine:capability net_admin;
