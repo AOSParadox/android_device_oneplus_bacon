@@ -23,9 +23,6 @@ TARGET_SPECIFIC_HEADER_PATH := device/oneplus/bacon/include
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
-# Build with Clang by default
-USE_CLANG_PLATFORM_BUILD := true
-
 # Assertions
 TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
