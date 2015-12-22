@@ -1,4 +1,5 @@
 type modem_block_device, dev_type;
+type nvbackup_block_device, dev_type;
 type persist_block_device, dev_type;
 
 type bluetooth_device, dev_type;
