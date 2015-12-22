@@ -31,8 +31,11 @@ TARGET_BOARD_INFO_FILE ?= device/oneplus/bacon/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
 # Kernel
+BOARD_CUSTOM_BOOTIMG_MK := device/oneplus/bacon/mkbootimg.mk
+KERNEL_DEFCONFIG := bacon_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
+BOARD_RAMDISK_OFFSET := 0x02000000
+BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
 TARGET_USE_CM_RAMDISK := true
 
 # ANT+
