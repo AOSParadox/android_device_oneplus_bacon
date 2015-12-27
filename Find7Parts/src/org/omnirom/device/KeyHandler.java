@@ -1,20 +1,3 @@
-/*
-* Copyright (C) 2015 The OmniROM Project
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*
-*/
 package org.omnirom.device;
 
 import android.app.ActivityManagerNative;
@@ -71,14 +54,11 @@ public class KeyHandler implements DeviceKeyHandler {
         KEY_DOUBLE_TAP
     };
 
-    private static final int[] sHandledGestures = new int[]{
-        GESTURE_V_SCANCODE,
-    };
-
     private final Context mContext;
     private final PowerManager mPowerManager;
     private EventHandler mEventHandler;
     private WakeLock mGestureWakeLock;
+    private KeyguardManager mKeyguardManager;
     private Handler mHandler = new Handler();
     private SettingsObserver mSettingsObserver;
 
@@ -114,11 +94,37 @@ public class KeyHandler implements DeviceKeyHandler {
         mSettingsObserver.observe();
     }
 
+    private void ensureKeyguardManager() {
+        if (mKeyguardManager == null) {
+            mKeyguardManager =
+                    (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        }
+    }
+
     private class EventHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             KeyEvent event = (KeyEvent) msg.obj;
             switch(event.getScanCode()) {
+            case GESTURE_CIRCLE_SCANCODE:
+                if (DEBUG) Log.i(TAG, "GESTURE_CIRCLE_SCANCODE");
+                ensureKeyguardManager();
+                String action = null;
+                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
+                    action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
+                } else {
+                    try {
+                        WindowManagerGlobal.getWindowManagerService().dismissKeyguard();
+                    } catch (RemoteException e) {
+                        // Ignore
+                    }
+                    action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA;
+                }
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "android.policy:GESTURE");
+                Intent intent = new Intent(action, null);
+                startActivitySafely(intent);
+                break;
             case GESTURE_V_SCANCODE:
                 if (DEBUG) Log.i(TAG, "GESTURE_V_SCANCODE");
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
@@ -146,17 +152,17 @@ public class KeyHandler implements DeviceKeyHandler {
             return false;
         }
         if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
-        boolean isKeySupported = ArrayUtils.contains(sHandledGestures, event.getScanCode());
+        boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
+            if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
+                if (DEBUG) Log.i(TAG, "KEY_DOUBLE_TAP");
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "android.policy:GESTURE");
+                return true;
+            }
             Message msg = getMessageForKeyEvent(event);
             mEventHandler.sendMessage(msg);
         }
         return isKeySupported;
-    }
-
-    @Override
-    public boolean canHandleKeyEvent(KeyEvent event) {
-        return ArrayUtils.contains(sSupportedGestures, event.getScanCode());
     }
 
     private Message getMessageForKeyEvent(KeyEvent keyEvent) {
@@ -178,28 +184,24 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
+    private void startActivitySafely(Intent intent) {
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        try {
+            UserHandle user = new UserHandle(UserHandle.USER_CURRENT);
+            mContext.startActivityAsUser(intent, null, user);
+        } catch (ActivityNotFoundException e) {
+            // Ignore
+        }
+    }
 
     public static void setButtonDisable(Context context) {
         final boolean disableButtons = Settings.System.getInt(
                 context.getContentResolver(), Settings.System.HARDWARE_KEYS_DISABLE, 0) == 1;
         if (DEBUG) Log.i(TAG, "setButtonDisable=" + disableButtons);
         Utils.writeValue(BUTTON_DISABLE_FILE, disableButtons ? "1" : "0");
-    }
-
-    @Override
-    public boolean isCameraLaunchEvent(KeyEvent event) {
-        if (event.getAction() != KeyEvent.ACTION_UP) {
-            return false;
-        }
-        return event.getScanCode() == GESTURE_CIRCLE_SCANCODE;
-    }
-
-    @Override
-    public boolean isWakeEvent(KeyEvent event){
-        if (event.getAction() != KeyEvent.ACTION_UP) {
-            return false;
-        }
-        return event.getScanCode() == KEY_DOUBLE_TAP;
     }
 }
 
