@@ -42,7 +42,7 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
-ril.subscription.types=NV,RUIM
+#ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 # Start in global mode
 ro.telephony.default_network=9
@@ -108,7 +108,7 @@ ro.qualcomm.cabl=0
 #
 # System props for telephony
 # System prop to turn on CdmaLTEPhone always
-telephony.lteOnCdmaDevice=1
+#telephony.lteOnCdmaDevice=1
 
 #
 # System props for bluetooth

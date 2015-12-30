@@ -65,6 +65,10 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     keystore.qcom
 
+# Find7Parts
+PRODUCT_PACKAGES += \
+    Find7Parts
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974
