@@ -33,7 +33,7 @@ BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET     := 0x02000000
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
-TARGET_KERNEL_CONFIG := bacon_defconfig
+TARGET_KERNEL_CONFIG := baconx_defconfig
 
 # Enables Adreno RS driver
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
