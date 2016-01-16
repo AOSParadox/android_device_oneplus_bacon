@@ -5,7 +5,6 @@ import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.database.ContentObserver;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -20,7 +19,6 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
@@ -43,8 +41,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_GTR_SCANCODE = 254;
     private static final int KEY_DOUBLE_TAP = 255;
 
-    private static final String BUTTON_DISABLE_FILE = "/proc/touchpanel/keypad_enable";
-
     private static final int[] sSupportedGestures = new int[]{
         GESTURE_CIRCLE_SCANCODE,
         GESTURE_V_SCANCODE,
@@ -59,30 +55,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private EventHandler mEventHandler;
     private WakeLock mGestureWakeLock;
     private KeyguardManager mKeyguardManager;
-    private Handler mHandler = new Handler();
-    private SettingsObserver mSettingsObserver;
-
-    private class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.HARDWARE_KEYS_DISABLE),
-                    false, this);
-            update();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            update();
-        }
-
-        public void update() {
-            setButtonDisable(mContext);
-        }
-    }
 
     public KeyHandler(Context context) {
         mContext = context;
@@ -90,8 +62,6 @@ public class KeyHandler implements DeviceKeyHandler {
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mGestureWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "GestureWakeLock");
-        mSettingsObserver = new SettingsObserver(mHandler);
-        mSettingsObserver.observe();
     }
 
     private void ensureKeyguardManager() {
@@ -146,7 +116,6 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
-    @Override
     public boolean handleKeyEvent(KeyEvent event) {
         if (event.getAction() != KeyEvent.ACTION_UP) {
             return false;
@@ -195,13 +164,6 @@ public class KeyHandler implements DeviceKeyHandler {
         } catch (ActivityNotFoundException e) {
             // Ignore
         }
-    }
-
-    public static void setButtonDisable(Context context) {
-        final boolean disableButtons = Settings.System.getInt(
-                context.getContentResolver(), Settings.System.HARDWARE_KEYS_DISABLE, 0) == 1;
-        if (DEBUG) Log.i(TAG, "setButtonDisable=" + disableButtons);
-        Utils.writeValue(BUTTON_DISABLE_FILE, disableButtons ? "1" : "0");
     }
 }
 

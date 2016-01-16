@@ -29,6 +29,6 @@ public class Startup extends BroadcastReceiver {
         CameraGestureSwitch.restore(context);
         TorchGestureSwitch.restore(context);
         MusicGestureSwitch.restore(context);
-        KeyHandler.setButtonDisable(context);
+	//KeyDisabler.restore(context);
     }
 }
