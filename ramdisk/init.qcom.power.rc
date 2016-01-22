@@ -72,7 +72,8 @@ on enable-low-power
     write /sys/class/devfreq/qcom,cpubw.40/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
 
-    write /dev/cpuctl/cpu.notify_on_migrate 1
+    # disabled due to instability
+    write /dev/cpuctl/cpu.notify_on_migrate 0
 
     start mpdecision
 
