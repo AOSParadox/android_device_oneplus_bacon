@@ -77,6 +77,8 @@ on enable-low-power
 
     start mpdecision
 
+    setprop sys.io.scheduler cfq
+
 on charger
     write /sys/module/lpm_levels/enable_low_power/l2 2
     write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
