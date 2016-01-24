@@ -134,18 +134,7 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
@@ -177,10 +166,6 @@ on boot
     write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
     #venus
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
-
-    # Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
 
     # msm_thermal (for power HAL usage)
     chown system system /sys/kernel/msm_thermal/user_maxfreq
@@ -274,23 +259,8 @@ on post-fs-data
     chown root system /proc/touchpanel/keypad_enable
     chmod 0660 /proc/touchpanel/keypad_enable
 
-    chown system system /sys/devices/virtual/graphics/fb0/cabc
-    chmod 0660 /sys/devices/virtual/graphics/fb0/cabc
-
-    chown system system /sys/devices/virtual/graphics/fb0/sre
-    chmod 0660 /sys/devices/virtual/graphics/fb0/sre
-
-    chown system system /sys/devices/virtual/graphics/fb0/color_enhance
-    chmod 0660 /sys/devices/virtual/graphics/fb0/color_enhance
-
     chown system system /sys/devices/virtual/graphics/fb0/rgb
     chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
-
-    chown system system /sys/devices/virtual/graphics/fb0/aco
-    chmod 0660 /sys/devices/virtual/graphics/fb0/aco
-
-    chown system system /sys/devices/virtual/graphics/fb0/dyn_pu
-    chmod 0660 /sys/devices/virtual/graphics/fb0/dyn_pu
 
     chown system system /sys/class/timed_output/vibrator/vtg_level
     chown system system /sys/class/timed_output/vibrator/vtg_max
@@ -351,9 +321,6 @@ service sensors /system/bin/sensors.qcom
 # but only if ro.data.large_tcp_window_size property is set.
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
-
-on property:persist.env.fastdorm.enabled=true
-    setprop persist.radio.data_no_toggle 1
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
@@ -494,14 +461,6 @@ service mpdecision /system/bin/mpdecision --avg_comp
    user root
    group system
    disabled
-
-#service thermal-engine /system/vendor/bin/thermal-engine
-#   class main
-#   user root
-#   group root
-#   socket thermal-send-client stream 0666 system system
-#   socket thermal-recv-client stream 0660 system system
-#   socket thermal-recv-passive-client stream 0666 system system
 
 service time_daemon /system/bin/time_daemon
     class late_start
