@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The AOSParadox Project
+# Copyright (C) 2016 The AOSParadox Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -70,9 +70,6 @@ BLOCK_BASED_OTA := false
 USE_DEVICE_SPECIFIC_CAMERA := true
 COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE -DCAMERA_VENDOR_L_COMPAT
 
-# Charger
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
@@ -89,7 +86,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Graphics
 BOARD_EGL_CFG := device/qcom/msm8974/egl.cfg
-HAVE_ADRENO_SOURCE := false
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so

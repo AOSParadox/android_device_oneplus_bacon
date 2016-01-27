@@ -1,4 +1,4 @@
 Device tree for One+One
 
-Copyright 2015, The AOSParadox Project
+Copyright 2016, The AOSParadox Project
 

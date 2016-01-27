@@ -44,18 +44,11 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 
-# Haters gonna hate..
-PRODUCT_CHARACTERISTICS := nosdcard
-
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
     com.dsi.ant.antradio_library \
     libantradio
-
-# Dalvik/HWUI
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapminfree=2m
 
 # Display
 PRODUCT_AAPT_CONFIG := normal
