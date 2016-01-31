@@ -33,6 +33,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.hardware=bacon
 
+# Set right FRP mount point
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.frp.pst=/dev/block/platform/msm_sdcc.1/by-name/config
+
 # CodeAurora MSM9874 Device Tree
 $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
