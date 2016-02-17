@@ -107,7 +107,7 @@ USE_CUSTOM_AUDIO_POLICY := 1
 BOARD_SEPOLICY_DIRS += \
      device/oneplus/bacon/sepolicy
 
-TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/gesture_enable"
 USE_OPENGL_RENDERER := true
 
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
