@@ -1,1 +1,2 @@
 allow mpdecision mediaserver:dir search;
+allow mpdecision mediaserver:file read;

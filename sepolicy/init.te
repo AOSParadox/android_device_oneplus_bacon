@@ -1,0 +1,1 @@
+allow init proc_touchpanel:file getattr;
