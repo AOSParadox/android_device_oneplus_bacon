@@ -83,9 +83,7 @@ LOCAL_CFLAGS += \
     -fno-short-enums \
     -D_ANDROID_ \
 
-ifeq ($(TARGET_USES_QCOM_BSP), true)
 LOCAL_CFLAGS += -DTARGET_USES_QCOM_BSP
-endif
 
 ## Includes
 LOCAL_C_INCLUDES:= \
