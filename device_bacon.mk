@@ -87,6 +87,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
 
+# QTI Telephony
+PRODUCT_COPY_FILES += \
+    qti-telephony-common
+
 # Power
 PRODUCT_PACKAGES += \
     power.qcom
