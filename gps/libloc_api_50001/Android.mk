@@ -40,8 +40,7 @@ LOCAL_CFLAGS += \
 LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils \
     $(TARGET_OUT_HEADERS)/libloc_core \
-    $(LOCAL_PATH) \
-    $(TARGET_OUT_HEADERS)/libflp
+    $(LOCAL_PATH)
 
 LOCAL_COPY_HEADERS_TO:= libloc_eng/
 LOCAL_COPY_HEADERS:= \
@@ -91,8 +90,22 @@ endif
 ## Includes
 LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils \
-    $(TARGET_OUT_HEADERS)/libloc_core \
-    $(TARGET_OUT_HEADERS)/libflp
+    $(TARGET_OUT_HEADERS)/libloc_core
+
+ifneq ($(QCPATH),)
+ifeq ($(filter $(TARGET_DEVICE), apq8064 msm8960),)
+$(call print-vars, $(TARGET_DEVICE))
+LOCAL_SHARED_LIBRARIES += \
+    libmdmdetect \
+    libperipheral_client
+
+LOCAL_C_INCLUDES += \
+    $(TARGET_OUT_HEADERS)/libmdmdetect/inc \
+    $(TARGET_OUT_HEADERS)/libperipheralclient/inc
+LOCAL_CFLAGS += \
+    -DMODEM_POWER_VOTE
+endif
+endif
 
 LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE_RELATIVE_PATH := hw
