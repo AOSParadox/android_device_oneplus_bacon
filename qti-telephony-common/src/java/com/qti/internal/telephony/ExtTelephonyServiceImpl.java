@@ -2,9 +2,11 @@ package com.qti.internal.telephony;
 
 import android.content.Context;
 import android.os.ServiceManager;
+import android.os.RemoteException;
 import android.telephony.Rlog;
 import android.util.Log;
 import com.android.internal.telephony.IExtTelephony.Stub;
+import com.android.internal.telephony.IExtTelephony;
 
 public class ExtTelephonyServiceImpl extends Stub {
     private static final boolean DBG = true;
@@ -13,6 +15,8 @@ public class ExtTelephonyServiceImpl extends Stub {
     private static ExtTelephonyServiceImpl sInstance = null;
     private UiccCardProvisioner mCardProvisioner = null;
     private Context mContext;
+    boolean fdn_enabled = false;
+    IExtTelephony mExtTelephony =  IExtTelephony.Stub.asInterface(ServiceManager.getService("extphone"));
 
     public static ExtTelephonyServiceImpl init(Context c) {
         ExtTelephonyServiceImpl extTelephonyServiceImpl;
@@ -57,6 +61,23 @@ public class ExtTelephonyServiceImpl extends Stub {
 
     public int deactivateUiccCard(int slotId) {
         return this.mCardProvisioner.deactivateUiccCard(slotId);
+    }
+
+    public boolean isFdnEnabled() {
+	try {
+		if (mExtTelephony.isFdnEnabled()) {
+			Log.w(LOG_TAG, "FDN is enabled");
+			fdn_enabled = true;
+		} else {
+			Log.w(LOG_TAG, "FDN is disabled");
+			fdn_enabled = false;
+		}
+	} catch (NullPointerException ex) {
+		Log.w(LOG_TAG, "NullPointerException @isFdnEnabled", ex);
+	} catch (RemoteException ex) {
+		Log.w(LOG_TAG,"RemoteException @isFdnEnabled" + ex);
+	}
+		return fdn_enabled;
     }
 
     public boolean isSMSPromptEnabled() {
