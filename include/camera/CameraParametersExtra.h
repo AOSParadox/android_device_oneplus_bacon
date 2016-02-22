@@ -30,13 +30,16 @@
  * Commit-Id: https://codeaurora.org/cgit/quic/la/platform/frameworks/av/commit/?h=LA.BF.1.1.1&id=0b8cd4917f2535c59c1fdc79bcd13188b2cd3c99
 */
 
+
 #define CAMERA_PARAMETERS_EXTRA_C \
 const char CameraParameters::WHITE_BALANCE_MANUAL_CCT[] = "manual-cct"; \
-const char CameraParameters::FOCUS_MODE_MANUAL_POSITION[] = "manual";
+const char CameraParameters::FOCUS_MODE_MANUAL_POSITION[] = "manual"; \
+const char CameraParameters::KEY_APP_MASK[] = "app-mask";
 
 
 #define CAMERA_PARAMETERS_EXTRA_H \
     static const char WHITE_BALANCE_MANUAL_CCT[]; \
-    static const char FOCUS_MODE_MANUAL_POSITION[];
+    static const char FOCUS_MODE_MANUAL_POSITION[]; \
+    static const char KEY_APP_MASK[];
 
 
