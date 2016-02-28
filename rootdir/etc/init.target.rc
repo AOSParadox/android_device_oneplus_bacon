@@ -70,8 +70,8 @@ on post-fs-data
     chmod 0644 /sys/class/timed_output/vibrator/vtg_max
     chmod 0644 /sys/class/timed_output/vibrator/vtg_min
 
-    chown system radio /proc/touchpanel/double_tap_enable
-    chmod 0660 /proc/touchpanel/double_tap_enable
+    chown system radio /proc/touchpanel/gesture_enable
+    chmod 0660 /proc/touchpanel/gesture_enable
 
 on boot
     #Create OPPO NV item directory
