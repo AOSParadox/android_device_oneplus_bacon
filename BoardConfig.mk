@@ -35,12 +35,6 @@ BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
 TARGET_USE_CM_RAMDISK := true
 
-WLAN_MODULES:
-	mv $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko $(KERNEL_MODULES_OUT)/wlan.ko
-	rm -rf $(KERNEL_MODULES_OUT)/pronto
-
-TARGET_KERNEL_MODULES += WLAN_MODULES
-
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
@@ -147,7 +141,7 @@ BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
-WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/pronto/pronto_wlan.ko"
+WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/pronto/wlan.ko"
 WIFI_DRIVER_MODULE_NAME          := "wlan"
 TARGET_PROVIDES_WCNSS_QMI        := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
