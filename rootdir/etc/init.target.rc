@@ -105,8 +105,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
 
-on property:sys.boot_completed=1
-
 service qseecomd /system/bin/qseecomd
    class core
    user root
