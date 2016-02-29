@@ -75,6 +75,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-threads=2 \
     dalvik.vm.image-dex2oat-threads=4
 
+# libOP
+PRODUCT_PACKAGES += \
+    libOP
+
 # NFC
 PRODUCT_PACKAGES += \
     nfc_nci.pn54x.default
