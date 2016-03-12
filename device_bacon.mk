@@ -59,8 +59,8 @@ PRODUCT_PACKAGES += \
     keystore.qcom
 
 # Find7Parts
-PRODUCT_PACKAGES += \
-    Find7Parts
+#PRODUCT_PACKAGES += \
+#    Find7Parts
 
 # GPS
 PRODUCT_PACKAGES += \

@@ -171,14 +171,12 @@
     -->
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
-
     <!-- Nuke com.qualcomm.location and use Google Location provider -->
     <bool name="config_enableNetworkLocationOverlay" translatable="false">true</bool>
     <string name="config_networkLocationProviderPackageName" translatable="false">@null</string>
     <bool name="config_enableFusedLocationOverlay" translatable="false">true</bool>
     <string name="config_fusedLocationProviderPackageName" translatable="false">com.android.location.fused</string>
     <string name="config_comboNetworkLocationProvider" translatable="false">@null</string>
-
 
     <!-- Component name of the combo network location provider. -->
     <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
@@ -224,10 +222,10 @@
 
     <!-- The list absolute paths of jar/apk files containing the device specific handlers,
         delimited by File.pathSeparator, which defaults to ":" on Android -->
-    <string name="config_deviceKeyHandlerLib" translatable="false">/system/app/Find7Parts/Find7Parts.apk</string>
+    <!-- <string name="config_deviceKeyHandlerLib" translatable="false">/system/app/Find7Parts/Find7Parts.apk</string> -->
     <!-- Full qualified name of the class that implements
         com.android.internal.os.DeviceKeyHandler interface. -->
-    <string name="config_deviceKeyHandlerClass" translatable="false">org.omnirom.device.KeyHandler</string>
+    <!-- <string name="config_deviceKeyHandlerClass" translatable="false">org.omnirom.device.KeyHandler</string> -->
 
 
     <!--  Maximum number of supported users -->
