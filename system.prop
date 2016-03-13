@@ -12,7 +12,6 @@ persist.radio.add_power_save=1
 persist.radio.apm_sim_not_pwdn=1
 persist.sys.ui.hw=true
 ro.gps.agps_provider=1
-ro.qc.sdk.camera.facialproc=true
 ro.qti.sdk.sensors.gestures=true
 ro.qti.sensors.bte=true
 ro.qti.sensors.gtap=true
@@ -130,8 +129,6 @@ persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=false
 
-ro.qc.sdk.sensors.gestures=true
-ro.qc.sdk.gestures.camera=false
 ro.qc.sdk.camera.facialproc=true
 # system prop for NFC DT
 ro.nfc.port=I2C
@@ -165,3 +162,7 @@ ro.hwui.text_large_cache_height=1024
 
 #disable dsp gapless mode by default
 audio.offload.gapless.enabled=true
+
+# msm8974: Disable strict mode
+persist.sys.strictmode.disable=true
+

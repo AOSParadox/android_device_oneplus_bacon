@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
+
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor-blobs.mk)
-
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/oneplus/bacon/ramdisk,root)
@@ -57,10 +57,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.qcom
-
-# Find7Parts
-#PRODUCT_PACKAGES += \
-#    Find7Parts
 
 # GPS
 PRODUCT_PACKAGES += \
