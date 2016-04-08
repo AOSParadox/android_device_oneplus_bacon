@@ -1,5 +1,9 @@
+allow system_server perf_data_file:sock_file write;
+
 allow system_server proc_touchpanel:file rw_file_perms;
 allow system_server proc_touchpanel:dir { search };
 
 allow system_server sysfs_usb_supply:dir search;
 allow system_server sysfs_usb_supply:file { read getattr open };
+
+allow system_server system_data_file:sock_file write;

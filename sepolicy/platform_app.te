@@ -1,0 +1,1 @@
+allow platform_app perf_data_file:sock_file write;

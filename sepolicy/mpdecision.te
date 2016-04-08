@@ -1,2 +1,5 @@
 allow mpdecision mediaserver:dir search;
 allow mpdecision mediaserver:file read;
+allow mpdecision perf_data_file:sock_file unlink;
+allow mpdecision system_data_file:dir { write remove_name add_name };
+allow mpdecision system_data_file:sock_file { write create unlink setattr };
