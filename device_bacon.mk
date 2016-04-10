@@ -62,6 +62,10 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     keystore.qcom
 
+# KeyHandler
+PRODUCT_PACKAGES += \
+    com.paradox.keyhandler
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974
