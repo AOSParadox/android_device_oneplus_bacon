@@ -4,3 +4,7 @@ allow system_server proc_touchpanel:dir { search };
 
 # examine battery state
 r_dir_file(system_server, sysfs_usb_supply);
+
+allow system_server logd:dir search;
+allow system_server logd:file { read getattr open };
+allow system_server zygote:binder call;
