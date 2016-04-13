@@ -344,4 +344,6 @@
 
     <bool name="config_networkSamplingWakesDevice">false</bool>
 
+    <string name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|LTE|HSPAP|GSM|TD_SCDMA|WCDMA|LTE_CA</string>
+
 </resources>
