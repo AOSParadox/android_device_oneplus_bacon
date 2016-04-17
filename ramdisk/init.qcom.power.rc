@@ -39,7 +39,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
     write /sys/devices/system/cpu/cpufreq/interactive/timer_slack -1
 
-    write /sys/kernel/cpu_input_boost/ib_freqs "1190400 1190400"
+    write /sys/kernel/cpu_input_boost/ib_freqs "1190400 1497600"
     write /sys/kernel/cpu_input_boost/ib_duration_ms 1400
     write /sys/kernel/cpu_input_boost/enabled 1
 
