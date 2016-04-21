@@ -17,3 +17,7 @@
 /proc/touchpanel(/.*)?                                  u:object_r:proc_touchpanel:s0
 /sys/class/leds/button-backlight/brightness             u:object_r:proc_touchpanel:s0
 
+# Camera data file
+/data/fdAlbum                                           u:object_r:camera_data_file:s0
+
+

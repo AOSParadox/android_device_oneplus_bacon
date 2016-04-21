@@ -1,1 +1,7 @@
-allow mm-qcamerad system_data_file:file { write open };
+# The current BSP's faceproc library still needs this
+allow mm-qcamerad system_file:file execmod;
+
+# /data/fdAlbum
+type_transition mm-qcamerad system_data_file:file camera_data_file "fdAlbum";
+allow mm-qcamerad camera_data_file:file create_file_perms;
+
