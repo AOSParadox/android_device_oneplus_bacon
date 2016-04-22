@@ -12,3 +12,7 @@ allow init runas_exec:file getattr;
 allow init sdcardd_exec:file getattr;
 allow init sgdisk_exec:file getattr;
 allow init su_exec:file getattr;
+allow init loop_device:blk_file write;
+allow init procrank_exec:file { read open };
+allow init property_socket:sock_file write;
+allow init su_exec:file mounton;

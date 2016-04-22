@@ -8,3 +8,4 @@ r_dir_file(system_server, sysfs_usb_supply);
 allow system_server logd:dir search;
 allow system_server logd:file { read getattr open };
 allow system_server zygote:binder call;
+allow system_server cache_file:file execute;
