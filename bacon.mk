@@ -120,3 +120,7 @@ PRODUCT_PACKAGES += \
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/thermal/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
+
+# Doze mode
+PRODUCT_PACKAGES += \
+    OneplusDoze
