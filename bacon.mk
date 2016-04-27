@@ -116,3 +116,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8974
+
+# Thermal
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/thermal/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
