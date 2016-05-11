@@ -31,6 +31,9 @@ on early-init
     mkdir /cache 0771 system system
     symlink /data/tombstones /tombstones
 
+    # boot with max freq, will be reset in post_boot script
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 2457600
+
 on init
     # Set the property to indicate type of virtual display to 0
     # 0 indicates that virtual display is not a Wifi display and that the
