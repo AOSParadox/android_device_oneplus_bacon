@@ -581,3 +581,7 @@ on property:sys.qbcharger.enable=true
 
 on property:sys.qbcharger.enable=false
     stop qbcharger
+
+# Fix rear cam not working until next reboot
+on property:sys.boot_completed=1
+    restart qcamerasvr
