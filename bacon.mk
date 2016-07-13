@@ -82,7 +82,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    nfc_nci.msm8974 \
+    nfc_nci.pn54x.default \
     NfcNci \
     Tag \
     com.android.nfc_extras
