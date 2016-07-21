@@ -23,3 +23,6 @@ $(call add-radio-file,images/sbl1.mbn)
 $(call add-radio-file,images/sdi.mbn)
 $(call add-radio-file,images/static_nvbk.bin)
 $(call add-radio-file,images/tz.mbn)
+
+include device/qcom/msm8974/AndroidBoard.mk
+

@@ -1,4 +1,7 @@
-LOCAL_PATH := device/oneplus/bacon
+
+# CAF Branch
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.par.branch=LA.BF.1.1.3-01310-8x74.0
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -8,69 +11,31 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/oneplus/bacon/prebuilt/system,system)
 
-DEVICE_PACKAGE_OVERLAYS := \
-   $(LOCAL_PATH)/overlay
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
+
+PRODUCT_AAPT_CONFIG += xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+# CodeAurora MSM9874 Device Tree
+$(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
 $(call inherit-product, device/oneplus/bacon/common.mk)
 $(call inherit-product, vendor/oneplus/bacon/bacon-vendor.mk)
 
-
+# Haters gonna hate ..
 PRODUCT_CHARACTERISTICS := nosdcard
 
-
+# WiFi
 PRODUCT_PACKAGES += \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libqcompostprocbundle
-
-# Feature definition files for 8974
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
-
-# WiFi configuration
-
-PRODUCT_PACKAGES += \
-    libwpa_client \
-    hostapd \
-    dhcpcd.conf \
-    wpa_supplicant \
-    wpa_supplicant.conf
-
-PRODUCT_PACKAGES += wcnss_service
-
-# MIDI feature
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
-
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1
+    wcnss_service
 
 # NFC
 PRODUCT_PACKAGES += \
-    nfc_nci.pn54x.default \
-    NfcNci \
-    Tag \
-    com.android.nfc_extras
+    nfc_nci.pn54x.default
 
-# file that declares the MIFARE NFC constant
-# Commands to migrate prefs from com.android.nfc3 to com.android.nfc
-# NFC access control + feature files + configuration
-PRODUCT_COPY_FILES += \
-        frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-        frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-        frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
-
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
+# USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
