@@ -23,8 +23,10 @@ TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
 # Firmware
 ADD_RADIO_FILES ?= true
-TARGET_NO_BOOTLOADER := true
 TARGET_RELEASETOOLS_EXTENSIONS := device/oneplus/bacon
+
+# Audio
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
@@ -37,6 +39,16 @@ ifeq ($(HOST_OS),linux)
       WITH_DEXPREOPT := true
 endif
 
+# Display
+USE_OPENGL_RENDERER := true
+
+
+# Flashlight
+COMMON_GLOBAL_CPPFLAGS += -DLEGACY_FLASHLIGHT_FIX
+
+# Gestures
+TARGET_GESTURES_NODE := "/proc/touchpanel/gesture_enable"
+
 # GPS
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
@@ -44,23 +56,14 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_CUSTOM_DTBTOOL := dtbToolBacon
-TARGET_INIT_VENDOR_LIB := libinit_msm
 KERNEL_DEFCONFIG := baconx_defconfig
 KERNEL_DIR := kernel/oneplus/msm8974
-TARGET_RECOVERY_FSTAB = device/oneplus/bacon/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB = device/oneplus/bacon/ramdisk/fstab.qcom
 TARGET_USE_CM_RAMDISK := true
+TARGET_NO_BOOTLOADER := true
 
 # NFC
 BOARD_NFC_CHIPSET := pn547
-
-# Gestures
-TARGET_GESTURES_NODE := "/proc/touchpanel/gesture_enable"
-
-# Display
-USE_OPENGL_RENDERER := true
-
-# Audio
-USE_CUSTOM_AUDIO_POLICY := 1
 
 # Paritions
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
@@ -70,6 +73,10 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1388314624
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13271448576
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Sepolicy
+BOARD_SEPOLICY_DIRS += \
+     device/oneplus/bacon/sepolicy
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
@@ -81,10 +88,3 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-
-# Flashlight Fix
-COMMON_GLOBAL_CPPFLAGS += -DLEGACY_FLASHLIGHT_FIX
-
-# Sepolicy
-BOARD_SEPOLICY_DIRS += \
-     device/oneplus/bacon/sepolicy

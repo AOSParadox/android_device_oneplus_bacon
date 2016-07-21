@@ -35,6 +35,10 @@ PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 PRODUCT_AAPT_CONFIG += xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# CAF Branch
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.par.branch=LA.BF.1.1.3-01610-8x74.0
+
 # CodeAurora MSM9874 Device Tree
 $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
@@ -55,10 +59,6 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
-
-# Power
-PRODUCT_PACKAGES += \
-    power.msm8974
 
 # Doze mode
 PRODUCT_PACKAGES += \
