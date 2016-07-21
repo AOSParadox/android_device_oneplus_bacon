@@ -1,3 +1,20 @@
+#
+# Copyright (C) 2016 The AOSParadox Project
+# Copyright (C) 2016 Paranoid Android
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 # inherit CodeAurora MSM8974 Board Config
 -include device/qcom/msm8974/BoardConfig.mk
 
@@ -28,8 +45,8 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bo
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_CUSTOM_DTBTOOL := dtbToolBacon
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_KERNEL_CONFIG := baconx_defconfig
-TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
+KERNEL_DEFCONFIG := baconx_defconfig
+KERNEL_DIR := kernel/oneplus/msm8974
 TARGET_RECOVERY_FSTAB = device/oneplus/bacon/rootdir/etc/fstab.qcom
 TARGET_USE_CM_RAMDISK := true
 
