@@ -21,12 +21,15 @@
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/oneplus/bacon/include
 
-# Assert
+# Asserts
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
 # Firmware
 ADD_RADIO_FILES ?= true
 TARGET_RELEASETOOLS_EXTENSIONS := device/oneplus/bacon
+
+# Bootloader
+TARGET_NO_BOOTLOADER := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -56,10 +59,6 @@ ifeq ($(HOST_OS),linux)
       WITH_DEXPREOPT := true
 endif
 
-# Display
-USE_OPENGL_RENDERER := true
-
-
 # Flashlight
 COMMON_GLOBAL_CPPFLAGS += -DLEGACY_FLASHLIGHT_FIX
 
@@ -71,13 +70,13 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive # Selinux permissive for bringup
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_CUSTOM_DTBTOOL := dtbToolBacon
 KERNEL_DEFCONFIG := baconx_defconfig
 KERNEL_DIR := kernel/oneplus/msm8974
 TARGET_RECOVERY_FSTAB = device/oneplus/bacon/ramdisk/fstab.qcom
 TARGET_USE_CM_RAMDISK := true
-TARGET_NO_BOOTLOADER := true
 
 # NFC
 BOARD_NFC_CHIPSET := pn547
@@ -99,18 +98,20 @@ BOARD_USES_QCOM_HARDWARE := false
 
 # Sepolicy
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += \
-     device/oneplus/bacon/sepolicy
+BOARD_SEPOLICY_DIRS += device/oneplus/bacon/sepolicy
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
-BOARD_WLAN_DEVICE := qcwcn
+BOARD_HAS_QCOM_WLAN_SDK := true
 BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 -include vendor/oneplus/bacon/BoardConfigVendor.mk

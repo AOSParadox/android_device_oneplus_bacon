@@ -15,8 +15,7 @@
 # limitations under the License.
 #
 
-
-# call the proprietary setup
+# Call the proprietary setup
 $(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor-blobs.mk)
 
 # Ramdisk
@@ -28,13 +27,32 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/oneplus/bacon/prebuilt/system,system)
 
 # Dalvik/HWUI
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapstartsize=24m \
+    dalvik.vm.heapgrowthlimit=320m \
+    dalvik.vm.heapsize=768m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=2m \
+    dalvik.vm.heapmaxfree=8m
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.texture_cache_size=96 \
+    ro.hwui.layer_cache_size=64 \
+    ro.hwui.r_buffer_cache_size=12 \
+    ro.hwui.path_cache_size=39 \
+    ro.hwui.gradient_cache_size=1 \
+    ro.hwui.drop_shadow_cache_size=7 \
+    ro.hwui.texture_cache_flushrate=0.4 \
+    ro.hwui.text_small_cache_width=2048 \
+    ro.hwui.text_small_cache_height=2048 \
+    ro.hwui.text_large_cache_width=3072 \
+    ro.hwui.text_large_cache_height=2048
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/oneplus/bacon/overlay
 
+# Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG += xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
@@ -48,26 +66,9 @@ $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 # Haters gonna hate ..
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8974
-
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm8974
-
-# WiFi
-PRODUCT_PACKAGES += \
-    wcnss_service
-
 # NFC
 PRODUCT_PACKAGES += \
     nfc_nci.pn54x.default
-
-# Power
-PRODUCT_PACKAGES += \
-    power.msm8974 \
-    power.qcom
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
