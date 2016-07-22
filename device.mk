@@ -1,4 +1,3 @@
-
 #
 # Copyright (C) 2016 The AOSParadox Project
 # Copyright (C) 2016 Paranoid Android
@@ -16,10 +15,9 @@
 # limitations under the License.
 #
 
-# CAF Branch
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.par.branch=LA.BF.1.1.3-01310-8x74.0
 
+# call the proprietary setup
+$(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor-blobs.mk)
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/oneplus/bacon/ramdisk,root)
@@ -42,11 +40,16 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # CodeAurora MSM9874 Device Tree
 $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 
-$(call inherit-product, device/oneplus/bacon/common.mk)
-$(call inherit-product, vendor/oneplus/bacon/bacon-vendor.mk)
-
 # Haters gonna hate ..
 PRODUCT_CHARACTERISTICS := nosdcard
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8974
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8974
 
 # WiFi
 PRODUCT_PACKAGES += \
@@ -56,6 +59,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     nfc_nci.pn54x.default
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8974 \
+    power.qcom
+
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
@@ -63,3 +71,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Doze mode
 PRODUCT_PACKAGES += \
     OneplusDoze
+
+# Call the proprietary setup
+$(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor.mk)

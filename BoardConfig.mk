@@ -18,6 +18,9 @@
 # inherit CodeAurora MSM8974 Board Config
 -include device/qcom/msm8974/BoardConfig.mk
 
+# Include path
+TARGET_SPECIFIC_HEADER_PATH := device/oneplus/bacon/include
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
@@ -74,7 +77,14 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1388314624
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13271448576
 TARGET_USERIMAGES_USE_F2FS := true
 
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+# QCOM hardware
+BOARD_USES_QCOM_HARDWARE := false
+
 # Sepolicy
+include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
      device/oneplus/bacon/sepolicy
 
@@ -88,3 +98,5 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+-include vendor/oneplus/bacon/BoardConfigVendor.mk
