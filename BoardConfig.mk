@@ -53,12 +53,6 @@ BLUETOOTH_HCI_USE_MCT := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oneplus/bacon
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
-# Dex-opt
-# Enable dex pre-opt to speed up initial boot
-ifeq ($(HOST_OS),linux)
-      WITH_DEXPREOPT := true
-endif
-
 # Flashlight
 COMMON_GLOBAL_CPPFLAGS += -DLEGACY_FLASHLIGHT_FIX
 
