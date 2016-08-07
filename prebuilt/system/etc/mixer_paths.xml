@@ -979,8 +979,8 @@
         <ctl name="COMP2 Switch" value="1" />
         <ctl name="LINEOUT1 Volume" value="13" />
         <ctl name="LINEOUT3 Volume" value="13" />
-        <ctl name="RX3 Digital Volume" value="80" />
-        <ctl name="RX4 Digital Volume" value="80" />
+        <ctl name="RX3 Digital Volume" value="92" />
+        <ctl name="RX4 Digital Volume" value="92" />
       	<ctl name="SPKR Enable" value="1" />
     </path>
 
@@ -1146,7 +1146,7 @@
     <path name="voice-handset">
         <path name="sidetone-handset" />
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="89" />
+        <ctl name="RX1 Digital Volume" value="94" />
     </path>
 
     <path name="voice-handset-qosound">
