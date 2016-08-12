@@ -70,9 +70,20 @@ $(call inherit-product, device/qcom/msm8974/msm8974.mk)
 # Haters gonna hate ..
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# NFC
+# NFC packages
 PRODUCT_PACKAGES += \
-    nfc_nci.pn54x.default
+    libnfc-nci \
+    libnfc_nci_jni \
+    nfc_nci.pn54x.default \
+    NfcNci \
+    Tag \
+    com.android.nfc_extras
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
